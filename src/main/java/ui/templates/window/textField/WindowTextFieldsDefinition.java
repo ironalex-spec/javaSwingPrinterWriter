@@ -14,13 +14,19 @@ public class WindowTextFieldsDefinition {
     }
 
     public void add(String key, String text, int x, int y, int width, int height){
-        JTextField jTextField = new JTextField(text);
+        JTextField jTextField = new JTextField(text, 25);
         jTextField.setBounds(x,y,width, height);
         jTextField.setVisible(true);
+
+        jTextField.setToolTipText("Hello");
 
         frame.add(jTextField);
 
         textFields.put(key, jTextField);
+    }
+
+    public void addToolTipText(String key, String text){
+        textFields.get(key).setToolTipText(text);
     }
 
 
