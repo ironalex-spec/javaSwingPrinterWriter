@@ -8,10 +8,7 @@ import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
 
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-import java.io.IOException;
-
+import javax.swing.*;
 
 
 public class Main {
@@ -31,8 +28,6 @@ public class Main {
                                 System.out.println("Second controller");
                         }
                 }));
-
-
 
                 baseWindow.addTextField("MyFirstTextField","Text field", 100,200,100,100);
                 baseWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));

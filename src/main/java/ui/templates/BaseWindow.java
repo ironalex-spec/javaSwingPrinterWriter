@@ -1,19 +1,14 @@
 package main.java.ui.templates;
 
-import main.java.ui.templates.window.ElementActionControler;
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.button.WindowButtonsDefinition;
 import main.java.ui.templates.window.label.WindowLabelsDefinition;
 import main.java.ui.templates.window.menu.MenuBarDefinition;
-import main.java.ui.templates.window.menu.MenuDefinition;
-import main.java.ui.templates.window.menu.SubMenuDefinition;
 import main.java.ui.templates.window.textField.WindowTextFieldsDefinition;
 
 import javax.swing.*;
-import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class BaseWindow {
     private JFrame frame;
@@ -59,7 +54,7 @@ public class BaseWindow {
     }
 
     public void addButtonListener(String key, ElementActionListener elementActionListener){
-        windowButtonDefinition.addListener(key, elementActionListener);
+        windowButtonDefinition.addActionListener(key, elementActionListener);
     }
 
     public void addLabel(String key, String text, int x, int y, int width, int height){
@@ -71,7 +66,7 @@ public class BaseWindow {
     }
 
     public void addTextFieldListener(String key, ElementActionListener elementActionListener){
-        windowTextFieldsDefinition.addListener(key, elementActionListener);
+        windowTextFieldsDefinition.addActionListener(key, elementActionListener);
     }
 
     public void addTextFieldToolTip(String key, String text){

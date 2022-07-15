@@ -1,11 +1,12 @@
 package main.java.ui.templates.window.textField;
 
 import main.java.ui.templates.window.ElementActionListener;
+import main.java.ui.templates.window.WindowElementsDefinition;
 
 import javax.swing.*;
 import java.util.HashMap;
 
-public class WindowTextFieldsDefinition {
+public class WindowTextFieldsDefinition implements WindowElementsDefinition {
     private JFrame frame;
     private HashMap<String, JTextField> textFields = new HashMap<String, JTextField>();
 
@@ -13,6 +14,7 @@ public class WindowTextFieldsDefinition {
         this.frame = frame;
     }
 
+    @Override
     public void add(String key, String text, int x, int y, int width, int height){
         JTextField jTextField = new JTextField(text, 25);
         jTextField.setBounds(x,y,width, height);
@@ -29,8 +31,8 @@ public class WindowTextFieldsDefinition {
         textFields.get(key).setToolTipText(text);
     }
 
-
-    public void addListener(String key, ElementActionListener elementActionListener){
+    @Override
+    public void addActionListener(String key, ElementActionListener elementActionListener){
         JTextField jTextField = textFields.get(key);
         jTextField.addActionListener(elementActionListener);
     }
