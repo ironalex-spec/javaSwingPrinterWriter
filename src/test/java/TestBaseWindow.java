@@ -1,4 +1,4 @@
-package main.java;
+package test.java;
 
 import main.java.controller.HomeController;
 import main.java.controller.MyFirstMenuI1tem1Controller;
@@ -8,10 +8,8 @@ import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
 
-import javax.swing.*;
 
-
-public class Main {
+public class TestBaseWindow {
         public static void main(String[] args) {
                 HomeController mn = HomeController.getInstance();
 

@@ -14,6 +14,8 @@ public class BaseWindow {
     private JFrame frame;
     private JMenuBar jMenuBar;
 
+    JDesktopPane jDesktopPane = new JDesktopPane();
+
     /*Item definition base window*/
     private MenuBarDefinition menuBarDefinition;
     private WindowButtonsDefinition windowButtonDefinition;
@@ -21,7 +23,7 @@ public class BaseWindow {
     private WindowTextFieldsDefinition windowTextFieldsDefinition;
 
     public BaseWindow(int x, int y, int width, int height, int menuHeight) {
-        frame = new JFrame();
+        frame = new JFrame("Base window");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setSize(width, height);
@@ -36,13 +38,24 @@ public class BaseWindow {
             frame.setJMenuBar(jMenuBar);
         }
 
-        frame.setLayout(null);
+        /*frame.setLayout(null);*/
+        frame.add(jDesktopPane);
+        frame.setContentPane(jDesktopPane);
+        jDesktopPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         frame.setVisible(true);
 
 
         windowButtonDefinition = new WindowButtonsDefinition(frame);
         windowLabelDefinition = new WindowLabelsDefinition(frame);
         windowTextFieldsDefinition = new WindowTextFieldsDefinition(frame);
+    }
+
+    public JFrame getJFrame(){
+        return frame;
+    }
+
+    public JDesktopPane getDesktop(){
+        return jDesktopPane;
     }
 
     public BaseWindow(){
@@ -86,7 +99,9 @@ public class BaseWindow {
         //repaint Menu bar
         frame.setJMenuBar(jMenuBar);
     }
-
+    public void addInternalFrame(JInternalFrame jInternalFrame){
+        jDesktopPane.add(jInternalFrame);
+    }
     public void addMenuItem(String keyMenu, String keyItem, String name){
         menuBarDefinition.addMenuItem(keyMenu, keyItem, name);
     }
