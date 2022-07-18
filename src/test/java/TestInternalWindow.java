@@ -9,28 +9,25 @@ import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
 
+import javax.swing.*;
+
 
 public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        BaseWindow baseWindow = new BaseWindow(200,0,500,500, 0);
-        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1", 0,0,200,200);
-        internalWindow.addLabel("MyFirstLabel","Label1", 0,0,100,100);
+        BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
 
-        InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
-        internalWindow2.addLabel("MyFirstLabel","Label2", 10,10,100,100);
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
+        internalWindow.addLabel("Pane1","MyFirstLabel","Label11", 10,10,100,10);
+        internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,20,100,10);
+        internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane1", "Pane2", 100);
 
-        /*internalWindow.addButton("MyFirstButton","1", 0,100,100,100);
-        internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
-
-        internalWindow.addButton ("MySecondButton","2", 200,100,100,100);
-        internalWindow.addButtonListener("MySecondButton", new ElementActionListener(new ElementActionControler() {
-            @Override
-            public void doMethod() {
-                System.out.println("Second controller");
-            }
-        }));*/
+        InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2*", 10,10,200,200);
+        internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
 
         baseWindow.repaint();
     }

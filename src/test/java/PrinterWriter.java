@@ -1,4 +1,4 @@
-package main.java.communication;
+package test.java;
 
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;

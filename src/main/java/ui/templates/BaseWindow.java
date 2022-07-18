@@ -9,11 +9,11 @@ import main.java.ui.templates.window.textField.WindowTextFieldsDefinition;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.util.HashMap;
 
 public class BaseWindow {
     private JFrame frame;
     private JMenuBar jMenuBar;
-
     JDesktopPane jDesktopPane = new JDesktopPane();
 
     /*Item definition base window*/
@@ -21,6 +21,8 @@ public class BaseWindow {
     private WindowButtonsDefinition windowButtonDefinition;
     private WindowLabelsDefinition windowLabelDefinition;
     private WindowTextFieldsDefinition windowTextFieldsDefinition;
+
+    private HashMap<String, JPanel> panelHashMap = new HashMap<String, JPanel>();
 
     public BaseWindow(int x, int y, int width, int height, int menuHeight) {
         frame = new JFrame("Base window");
@@ -39,9 +41,8 @@ public class BaseWindow {
         }
 
         /*frame.setLayout(null);*/
-        frame.add(jDesktopPane);
         frame.setContentPane(jDesktopPane);
-        jDesktopPane.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        /*jPanel.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);*/
         frame.setVisible(true);
 
 
@@ -54,7 +55,7 @@ public class BaseWindow {
         return frame;
     }
 
-    public JDesktopPane getDesktop(){
+    public JDesktopPane getDesktopPane(){
         return jDesktopPane;
     }
 
@@ -101,6 +102,8 @@ public class BaseWindow {
     }
     public void addInternalFrame(JInternalFrame jInternalFrame){
         jDesktopPane.add(jInternalFrame);
+
+        frame.setContentPane(jDesktopPane);
     }
     public void addMenuItem(String keyMenu, String keyItem, String name){
         menuBarDefinition.addMenuItem(keyMenu, keyItem, name);
