@@ -2,11 +2,12 @@ package main.java.ui.templates.window.label;
 
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.WindowElementsDefinition;
+import main.java.ui.templates.window.WindowInternalElementsDefinition;
 
 import javax.swing.*;
 import java.util.HashMap;
 
-public class WindowInternalLabelsDefinition {
+public class WindowInternalLabelsDefinition implements WindowInternalElementsDefinition {
     private JInternalFrame jInternalFrameFrame;
     private JDesktopPane jDesktopPane = new JDesktopPane();
 
@@ -26,12 +27,6 @@ public class WindowInternalLabelsDefinition {
         lbl.setHorizontalTextPosition(JLabel.CENTER);
 
         jDesktopPane.add(lbl);
-
-        if (!this.jDesktopPane.equals(jDesktopPane)) {
-            jInternalFrameFrame.add(jDesktopPane);
-            jInternalFrameFrame.setContentPane(jDesktopPane);
-            this.jDesktopPane = jDesktopPane;
-        }
 
         labels.put(keyLabel, lbl);
     }

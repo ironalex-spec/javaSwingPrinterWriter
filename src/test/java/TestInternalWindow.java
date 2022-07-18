@@ -22,13 +22,22 @@ public class TestInternalWindow {
         internalWindow.addLabel("Pane1","MyFirstLabel","Label11", 10,10,100,10);
         internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,20,100,10);
         internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addButton("Pane1", "MyFirstButton","1", 0,100,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane1", "Pane2", 100);
+
+        internalWindow.addTextField("Pane3", "MyFirstTextField","1", 100,200,100,100);
+        internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 10);
+
+        internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
+        internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
+        internalWindow.addLabel("Pane3","MyFirstLabel4","Label14", 10,20,100,10);
 
         InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2*", 10,10,200,200);
         internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
 
+        internalWindow.repaint();
         baseWindow.repaint();
     }
 }

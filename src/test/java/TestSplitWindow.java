@@ -20,29 +20,38 @@ public class TestSplitWindow {
         JDesktopPane pBase = new JDesktopPane();
         JDesktopPane pInter = new JDesktopPane();
         JDesktopPane pInter2 = new JDesktopPane();
+        JDesktopPane pInter3 = new JDesktopPane();
 
         // create text areas
         JLabel t1 = new JLabel("10, 10");
         JLabel t2 = new JLabel("20, 10");
+        JLabel t3 = new JLabel("30, 10");
 
         t1.setBounds(0,0,100, 10);
-        t2.setBounds(0,0,100, 100);
+        t2.setBounds(0,0,100, 10);
+        t3.setBounds(0,0,100, 10);
         // set texts
         t1.setText("this is first text area");
         t2.setText("this is second text area");
-
-        JButton btn = new JButton("Test button");
+        t3.setText("this is third text area");
 
         // add text area to panel
         jInternalFrame.add(t1);
         jInternalFrame2.add(t2);
 
         pInter.add(t1);
+        pInter2.add(t2);
+        pInter3.add(t3);
         JSplitPane sl = new JSplitPane(SwingConstants.VERTICAL, pInter, pInter2);
         sl.setDividerLocation(100);
+        sl = new JSplitPane(SwingConstants.HORIZONTAL, sl, pInter3);
+        sl.setDividerLocation(100);
+
 
         jInternalFrame.setContentPane(sl);
         pBase.add(jInternalFrame);
+
+
         pBase.add(jInternalFrame2);
         frame.add(pBase);
 
