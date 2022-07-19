@@ -16,6 +16,10 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
+        internalWindowWithSplit();
+    }
+
+    public static void internalWindowWithSplit(){
         BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
 
         InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
@@ -27,10 +31,10 @@ public class TestInternalWindow {
 
         internalWindow.addTextField("Pane3", "MyFirstTextField","1", 100,200,100,100);
         internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 10);
-
         internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
         internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
-        internalWindow.addLabel("Pane3","MyFirstLabel4","Label14", 10,20,100,10);
+        internalWindow.addLabel("Pane3","MyFirstLabel4","Label14", 10,20,100,100);
+        internalWindow.savePaneAsImage("Pane3", "bmp");
 
         InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2*", 10,10,200,200);
         internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
@@ -39,5 +43,19 @@ public class TestInternalWindow {
 
         internalWindow.repaint();
         baseWindow.repaint();
+    }
+
+    public static void addScrollPane(){
+        BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
+        internalWindow.addLabel("Pane1","MyFirstLabel","Label11__________________________________________________________________" +
+                "_____________________________________________________________" +
+                "_____________________________________________________________", 10,20,500,50);
+        internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,10,500,50);
+        internalWindow.addLabel("Pane1","MyFirstLabel3","Label13", 10,30,500,50);
+
+        internalWindow.addScrolPaneOneComponent( "Pane1");
+        /*internalWindow.repaint();
+        baseWindow.repaint();*/
     }
 }

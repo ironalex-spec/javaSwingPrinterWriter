@@ -18,7 +18,7 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
     }
 
 
-    public void add(JDesktopPane jDesktopPane, String keyLabel, String text, int x, int y, int width, int height){
+    public void add(JComponent jDesktopPane, String keyLabel, String text, int x, int y, int width, int height){
 
 
         JLabel lbl = new JLabel(text);
