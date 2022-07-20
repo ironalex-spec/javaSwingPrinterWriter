@@ -16,30 +16,33 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowWithSplit();
+        internalWindowWithSplitAndScroll();
     }
 
-    public static void internalWindowWithSplit(){
+    public static void internalWindowWithSplitAndScroll(){
         BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
 
-        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1", 0,0,200,200);
         internalWindow.addLabel("Pane1","MyFirstLabel","Label11", 10,10,100,10);
         internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,20,100,10);
         internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
         internalWindow.addButton("Pane1", "MyFirstButton","1", 0,100,100,100);
-        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane1", "Pane2", 100);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
 
-        internalWindow.addTextField("Pane3", "MyFirstTextField","1", 100,200,100,100);
-        internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 10);
+        internalWindow.addTextField("Pane2", "MyFirstTextField","1", 100,200,100,100);
+  /*      internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);*/
         internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
         internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
-        internalWindow.addLabel("Pane3","MyFirstLabel4","Label14", 10,20,100,100);
-        internalWindow.savePaneAsImage("Pane3", "bmp");
+        internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
 
-        InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2*", 10,10,200,200);
+        internalWindow.savePaneAsImage("Pane2", "bmp");
+
+        InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
         internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
+        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
 
         internalWindow.repaint();
         baseWindow.repaint();
@@ -54,7 +57,7 @@ public class TestInternalWindow {
         internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,10,500,50);
         internalWindow.addLabel("Pane1","MyFirstLabel3","Label13", 10,30,500,50);
 
-        internalWindow.addScrolPaneOneComponent( "Pane1");
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
         /*internalWindow.repaint();
         baseWindow.repaint();*/
     }
