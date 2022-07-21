@@ -6,9 +6,13 @@ import main.java.ui.templates.window.label.WindowLabelsDefinition;
 import main.java.ui.templates.window.menu.MenuBarDefinition;
 import main.java.ui.templates.window.textField.WindowTextFieldsDefinition;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class BaseWindow {
@@ -49,6 +53,14 @@ public class BaseWindow {
         windowButtonDefinition = new WindowButtonsDefinition(frame);
         windowLabelDefinition = new WindowLabelsDefinition(frame);
         windowTextFieldsDefinition = new WindowTextFieldsDefinition(frame);
+    }
+
+    public void updateWindowIcon(String filename){
+        try {
+            frame.setIconImage(Toolkit.getDefaultToolkit().getImage(filename));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public JFrame getJFrame(){

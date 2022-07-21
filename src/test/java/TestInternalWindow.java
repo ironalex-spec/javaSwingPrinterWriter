@@ -1,10 +1,8 @@
 package test.java;
 
 import main.java.controller.HomeController;
-import main.java.controller.MyFirstMenuI1tem1Controller;
 import main.java.controller.MyFirstTextFieldActionController;
 import main.java.ui.templates.InternalWindow;
-import main.java.ui.templates.window.ElementActionControler;
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
@@ -16,7 +14,7 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowWithSplitAndScroll();
+        internalWindowAddImageTest();
     }
 
     public static void internalWindowWithSplitAndScroll(){
@@ -36,7 +34,7 @@ public class TestInternalWindow {
         internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
         internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
 
-        internalWindow.savePaneAsImage("Pane2", "bmp");
+        internalWindow.saveComponentAsImage("Pane2", "bmp");
 
         InternalWindow internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
         internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
@@ -58,7 +56,23 @@ public class TestInternalWindow {
         internalWindow.addLabel("Pane1","MyFirstLabel3","Label13", 10,30,500,50);
 
         internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
+        internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
+
         /*internalWindow.repaint();
         baseWindow.repaint();*/
+    }
+
+    public static void internalWindowAddImageTest(){
+        BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
+        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
+        internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
+
+        internalWindow.updateLabelImage("MyFirstLabel", "snapshot.bmp");
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
     }
 }
