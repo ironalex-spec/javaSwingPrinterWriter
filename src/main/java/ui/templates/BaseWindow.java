@@ -1,18 +1,16 @@
 package main.java.ui.templates;
 
+import main.java.ui.libClass.Swing.ScrollPane.Corner;
+import main.java.ui.libClass.Swing.ScrollPane.Rule;
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.button.WindowButtonsDefinition;
 import main.java.ui.templates.window.label.WindowLabelsDefinition;
 import main.java.ui.templates.window.menu.MenuBarDefinition;
 import main.java.ui.templates.window.textField.WindowTextFieldsDefinition;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class BaseWindow {

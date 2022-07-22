@@ -37,13 +37,17 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
         try
         {
             BufferedImage img = ImageIO.read(new File(filePath));
-            JLabel lbl = new JLabel(new ImageIcon(img));
+            ImageIcon imgIco = new ImageIcon(img);
+
+            JLabel lbl = new JLabel(imgIco);
 
             lbl.setBounds(x,y,width, height);
             lbl.setVerticalTextPosition(JLabel.BOTTOM);
             lbl.setHorizontalTextPosition(JLabel.CENTER);
 
             jDesktopPane.add(lbl);
+
+
 
             labels.put(keyLabel, lbl);
         }

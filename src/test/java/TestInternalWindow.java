@@ -14,7 +14,7 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowAddImageTest();
+        internalWindowAddImageWithScaleTest();
     }
 
     public static void internalWindowWithSplitAndScroll(){
@@ -26,7 +26,7 @@ public class TestInternalWindow {
         internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
         internalWindow.addButton("Pane1", "MyFirstButton","1", 0,100,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
-        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
 
         internalWindow.addTextField("Pane2", "MyFirstTextField","1", 100,200,100,100);
   /*      internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);*/
@@ -40,7 +40,7 @@ public class TestInternalWindow {
         internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
-        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
+        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
 
         internalWindow.repaint();
         baseWindow.repaint();
@@ -55,7 +55,7 @@ public class TestInternalWindow {
         internalWindow.addLabel("Pane1","MyFirstLabel2","Label12", 10,10,500,50);
         internalWindow.addLabel("Pane1","MyFirstLabel3","Label13", 10,30,500,50);
 
-        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
         internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
 
@@ -63,16 +63,17 @@ public class TestInternalWindow {
         baseWindow.repaint();*/
     }
 
-    public static void internalWindowAddImageTest(){
-        BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
+    public static void internalWindowAddImageWithScaleTest(){
+        BaseWindow baseWindow = new BaseWindow(0,0,500,500, 25);
         baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
 
-        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,200,200);
-        internalWindow.addLabel("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
+        internalWindow.addButton("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
         internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
 
-        internalWindow.updateLabelImage("MyFirstLabel", "snapshot.bmp");
-        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1");
+        internalWindow.updateLabelImage("MyFirstLabel", "smile.jpg");
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", true);
     }
 }
