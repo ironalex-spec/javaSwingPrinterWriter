@@ -6,6 +6,7 @@ import main.java.ui.templates.window.WindowInternalElementsDefinition;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
             lbl.setBounds(x,y,width, height);
             lbl.setVerticalTextPosition(JLabel.BOTTOM);
             lbl.setHorizontalTextPosition(JLabel.CENTER);
+
 
             jDesktopPane.add(lbl);
 
@@ -61,12 +63,24 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
 
 
             JLabel lbl = getLabel(keyLabel);
+            ImageIcon imageIcon = new ImageIcon(img);
 
             if (lbl != null) {
-                lbl.setIcon(new ImageIcon(img));
+                lbl.setIcon(imageIcon);
             }
+
+            imageIcon = null;
+            img = null;
+            System.gc();
         }
         catch (IOException e) {}
+    }
+
+    static void clearImage(BufferedImage img) {
+        Graphics2D g2 = img.createGraphics();
+        g2.setComposite(AlphaComposite.Clear);
+        g2.fillRect(0, 0, img.getWidth(), img.getHeight());
+        g2.dispose();
     }
 
 
@@ -76,5 +90,11 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
 
     private JLabel getLabel(String keyLabel){
         return labels.get(keyLabel);
+    }
+
+    @Override
+    protected void finalize() throws Throwable
+    {
+        System.out.println("Garbage collector in action! Deleted InternalLabelDefinition object!");
     }
 }

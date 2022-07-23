@@ -8,13 +8,16 @@ import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
 
 import javax.swing.*;
+import java.awt.*;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryUsage;
 
 
 public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowAddImageWithScaleTest();
+        internalWindowClearMemory();
     }
 
     public static void internalWindowWithSplitAndScroll(){
@@ -29,7 +32,7 @@ public class TestInternalWindow {
         internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
 
         internalWindow.addTextField("Pane2", "MyFirstTextField","1", 100,200,100,100);
-  /*      internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);*/
+        internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);
         internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
         internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
         internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
@@ -41,6 +44,27 @@ public class TestInternalWindow {
         internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
         internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
         internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
+
+        internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
+        internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
+        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
+
+        internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
+        internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
+        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
+
+        internalWindow2 = new InternalWindow(baseWindow, "Internal2", 10,10,200,200);
+        internalWindow2.addLabel("Pane1","MyFirstLabel","Label21", 10,10,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel2","Label22", 10,20,100,10);
+        internalWindow2.addLabel("Pane1","MyFirstLabel3","Label23", 10,30,100,10);
+        internalWindow2.addScrolPaneOneComponent( "ScrolPane1", "Pane1", false);
+
+        /*internalWindow = null;
+        internalWindow2 = null;*/
 
         internalWindow.repaint();
         baseWindow.repaint();
@@ -72,8 +96,33 @@ public class TestInternalWindow {
         internalWindow.addButton("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
         internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
-
-        internalWindow.updateLabelImage("MyFirstLabel", "smile.jpg");
         internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", true);
+    }
+
+    public static void internalWindowClearMemory(){
+        BaseWindow baseWindow = new BaseWindow(0,0,500,500, 25);
+        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
+
+        InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
+        internalWindow.addButton("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", true);
+
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","snapshot.bmp");
+
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","smile.jpg");
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","smile.jpg");
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","smile.jpg");
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","smile.jpg");
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","smile.jpg");
+        internalWindow.updateLabelImage("ScrolPane1", "MyFirstLabel","snapshot.bmp");
+
+
+        TestGC test = new TestGC();
+        test = null;
+
+        System.gc();
     }
 }

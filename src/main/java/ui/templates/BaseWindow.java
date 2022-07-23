@@ -1,7 +1,6 @@
 package main.java.ui.templates;
 
-import main.java.ui.libClass.Swing.ScrollPane.Corner;
-import main.java.ui.libClass.Swing.ScrollPane.Rule;
+
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.button.WindowButtonsDefinition;
 import main.java.ui.templates.window.label.WindowLabelsDefinition;
@@ -13,8 +12,7 @@ import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.util.HashMap;
 
-public class BaseWindow {
-    private JFrame frame;
+public class BaseWindow extends  JFrame{
     private JMenuBar jMenuBar;
     JDesktopPane jDesktopPane = new JDesktopPane();
 
@@ -27,42 +25,43 @@ public class BaseWindow {
     private HashMap<String, JPanel> panelHashMap = new HashMap<String, JPanel>();
 
     public BaseWindow(int x, int y, int width, int height, int menuHeight) {
-        frame = new JFrame("Base window");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Base window");
+        /*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        frame.setSize(width, height);
-        frame.setPreferredSize(new Dimension(10,10));
-        frame.setLocation(x, y);
+        this.setSize(width, height);
+        this.setPreferredSize(new Dimension(10,10));
+        this.setLocation(x, y);
 
         if (menuHeight != 0) {
             jMenuBar = new JMenuBar();
             jMenuBar.add(Box.createRigidArea(new Dimension(0, menuHeight)));
 
             menuBarDefinition = new MenuBarDefinition(jMenuBar);
-            frame.setJMenuBar(jMenuBar);
+            this.setJMenuBar(jMenuBar);
         }
 
         /*frame.setLayout(null);*/
-        frame.setContentPane(jDesktopPane);
+        this.setContentPane(jDesktopPane);
         /*jPanel.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);*/
-        frame.setVisible(true);
+        this.setVisible(true);
 
 
-        windowButtonDefinition = new WindowButtonsDefinition(frame);
-        windowLabelDefinition = new WindowLabelsDefinition(frame);
-        windowTextFieldsDefinition = new WindowTextFieldsDefinition(frame);
+        windowButtonDefinition = new WindowButtonsDefinition(this);
+        windowLabelDefinition = new WindowLabelsDefinition(this);
+        windowTextFieldsDefinition = new WindowTextFieldsDefinition(this);
     }
 
     public void updateWindowIcon(String filename){
         try {
-            frame.setIconImage(Toolkit.getDefaultToolkit().getImage(filename));
+            this.setIconImage(Toolkit.getDefaultToolkit().getImage(filename));
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     public JFrame getJFrame(){
-        return frame;
+        return this;
     }
 
     public JDesktopPane getDesktopPane(){
@@ -97,23 +96,16 @@ public class BaseWindow {
         windowTextFieldsDefinition.addToolTipText(key, text);
     }
 
-    public void repaint(){
-        frame.repaint();
-    }
-    public void setWindowVisible(boolean isVisible) {
-        frame.setVisible(isVisible);
-    }
-
     public void addMenu(String keyMenu, String name){
         menuBarDefinition.addMenu(keyMenu, name);
 
         //repaint Menu bar
-        frame.setJMenuBar(jMenuBar);
+        this.setJMenuBar(jMenuBar);
     }
     public void addInternalFrame(JInternalFrame jInternalFrame){
         jDesktopPane.add(jInternalFrame);
 
-        frame.setContentPane(jDesktopPane);
+        this.setContentPane(jDesktopPane);
     }
     public void addMenuItem(String keyMenu, String keyItem, String name){
         menuBarDefinition.addMenuItem(keyMenu, keyItem, name);
@@ -141,5 +133,11 @@ public class BaseWindow {
 
     public void addSubMenuItemActionListener(String keyMenu, String keySubMenu, String keySubMenuItem, ElementActionListener elementActionListener){
         menuBarDefinition.addSubMenuItemActionListener(keyMenu, keySubMenu, keySubMenuItem, elementActionListener);
+    }
+
+    @Override
+    protected void finalize() throws Throwable
+    {
+        System.out.println("Garbage collector in action! Deleted one BaseWindow object;");
     }
 }
