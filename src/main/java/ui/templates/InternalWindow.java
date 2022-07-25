@@ -396,6 +396,6 @@ public class InternalWindow extends JInternalFrame{
     @Override
     protected void finalize() throws Throwable
     {
-        System.out.println("Garbage collector in action! Deleted InternalWindow object!");
+        /*System.out.println("Garbage collector in action! Deleted InternalWindow object!");*/
     }
 }

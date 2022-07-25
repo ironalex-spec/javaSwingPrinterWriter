@@ -4,6 +4,7 @@ import main.java.ui.templates.window.ElementActionListener;
 
 import javax.swing.*;
 import javax.swing.event.MenuListener;
+import java.awt.*;
 import java.util.HashMap;
 
 public class MenuDefinition {
@@ -29,8 +30,13 @@ public class MenuDefinition {
         subMenuDefinition.addSubMenuItem(keySubmenuItem, name);
     }
 
-    public void addMenuItem(String key, String name){
+    public void addMenuItem(String key, String name, int width, int height){
         JMenuItem jMenuItem = new JMenuItem(name);
+
+        jMenuItem.setMaximumSize(new Dimension(width, height));
+        jMenuItem.setMinimumSize(new Dimension(width, height));
+        jMenuItem.setPreferredSize(new Dimension(width, height));
+        jMenuItem.setHorizontalAlignment(SwingConstants.RIGHT);
 
         jMenu.add(jMenuItem);
         menuItems.put(key, jMenuItem);

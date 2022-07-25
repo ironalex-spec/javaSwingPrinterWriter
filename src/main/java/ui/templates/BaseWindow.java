@@ -29,6 +29,7 @@ public class BaseWindow extends  JFrame{
         /*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        this.setResizable(false);
         this.setSize(width, height);
         this.setPreferredSize(new Dimension(10,10));
         this.setLocation(x, y);
@@ -96,19 +97,24 @@ public class BaseWindow extends  JFrame{
         windowTextFieldsDefinition.addToolTipText(key, text);
     }
 
-    public void addMenu(String keyMenu, String name){
-        menuBarDefinition.addMenu(keyMenu, name);
+    public void addMenu(String keyMenu, String name, int width, int height){
+        menuBarDefinition.addMenu(keyMenu, name, width, height);
 
         //repaint Menu bar
         this.setJMenuBar(jMenuBar);
     }
+
+    public void addMenuHorizontalGlue(){
+        menuBarDefinition.addMenuHorizontalGlue();
+    }
+
     public void addInternalFrame(JInternalFrame jInternalFrame){
         jDesktopPane.add(jInternalFrame);
 
         this.setContentPane(jDesktopPane);
     }
-    public void addMenuItem(String keyMenu, String keyItem, String name){
-        menuBarDefinition.addMenuItem(keyMenu, keyItem, name);
+    public void addMenuItem(String keyMenu, String keyItem, String name, int width, int height){
+        menuBarDefinition.addMenuItem(keyMenu, keyItem, name, width, height);
     }
 
     public void addSubMenu(String keyMenu, String keySubmenu, String name){

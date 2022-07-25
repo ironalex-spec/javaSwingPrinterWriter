@@ -31,11 +31,11 @@ public class TestBaseWindow {
                 baseWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
                 baseWindow.addTextFieldToolTip("MyFirstTextField", "Tooltip");
 
-                baseWindow.addMenu("MyMenu1", "First menu");
-                baseWindow.addMenu("MyMenu2", "Second menu");
-                baseWindow.addMenuItem("MyMenu1", "MyMenu1Item1", "Item 1");
+                baseWindow.addMenu("MyMenu1", "First menu", 100, 100);
+                baseWindow.addMenu("MyMenu2", "Second menu", 100, 100);
+                baseWindow.addMenuItem("MyMenu1", "MyMenu1Item1", "Item 1", 100,100);
                 baseWindow.addMenuItemActionListener("MyMenu1", "MyMenu1Item1", new ElementActionListener(new MyFirstMenuI1tem1Controller()));
-                baseWindow.addMenuItem("MyMenu1", "MyMenu1Item2", "Item 2");
+                baseWindow.addMenuItem("MyMenu1", "MyMenu1Item2", "Item 2", 100,100);
                 baseWindow.addSubMenu("MyMenu1", "MyMenu1Sub1", "Submenu1");
                 baseWindow.addSubMenuItem("MyMenu1", "MyMenu1Sub1","MyMenu1Sub1Item1","Item 1");
                 baseWindow.addSubMenuItemActionListener("MyMenu1", "MyMenu1Sub1","MyMenu1Sub1Item1", new ElementActionListener(new MyFirstMenuI1tem1Controller()));

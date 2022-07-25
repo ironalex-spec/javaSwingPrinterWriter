@@ -5,6 +5,8 @@ import main.java.ui.templates.window.ElementActionListener;
 
 import javax.swing.*;
 import javax.swing.event.MenuListener;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 public class MenuBarDefinition {
@@ -15,17 +17,26 @@ public class MenuBarDefinition {
         this.jMenuBar = jMenuBar;
     }
 
-    public void addMenu(String key, String name){
-        JMenu menu = new JMenu(name);
+    public void addMenu(String key, String name, int width, int height){
+        JMenu menu = new JMenu("<html><p style='align-items: center;justify-content: center;'>" + name + "</p></html>");
+        menu.setMaximumSize(new Dimension(width, height));
+        menu.setMinimumSize(new Dimension(width, height));
+        menu.setPreferredSize(new Dimension(width, height));
+        menu.setHorizontalAlignment(SwingConstants.RIGHT);
+
         MenuDefinition menusDefinition = new MenuDefinition(menu);
 
         jMenuBar.add(menu);
         menus.put(key, menusDefinition);
     }
 
-    public void addMenuItem(String keyMenu, String keyItem, String name){
+    public void addMenuHorizontalGlue(){
+        jMenuBar.add(Box.createHorizontalGlue());
+    }
+
+    public void addMenuItem(String keyMenu, String keyItem, String name, int width, int height){
         MenuDefinition menuDefinition = menus.get(keyMenu);
-        menuDefinition.addMenuItem(keyItem, name);
+        menuDefinition.addMenuItem(keyItem, name, width, height);
     }
 
     public void addSubMenu(String keyMenu, String keySubmenu, String name){

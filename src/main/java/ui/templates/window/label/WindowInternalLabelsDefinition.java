@@ -95,6 +95,6 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
     @Override
     protected void finalize() throws Throwable
     {
-        System.out.println("Garbage collector in action! Deleted InternalLabelDefinition object!");
+        /*System.out.println("Garbage collector in action! Deleted InternalLabelDefinition object!");*/
     }
 }
