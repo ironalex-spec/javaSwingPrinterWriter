@@ -3,6 +3,7 @@ package test.java;
 import main.java.controller.HomeController;
 import main.java.controller.MyFirstTextFieldActionController;
 import main.java.ui.templates.InternalWindow;
+import main.java.ui.templates.window.ElementActionControler;
 import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
@@ -17,7 +18,7 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowClearMemory();
+        internalWindowComboBox();
     }
 
     public static void internalWindowWithSplitAndScroll(){
@@ -124,5 +125,30 @@ public class TestInternalWindow {
         test = null;
 
         System.gc();
+    }
+
+    public static void internalWindowComboBox(){
+        BaseWindow baseWindow = new BaseWindow(0,0,500,500, 25);
+        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
+
+        final InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
+        internalWindow.addButton("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
+        internalWindow.addComboBox("Pane2","MyFirstComboBox1", null, 10,50,100,20);
+        internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello");
+        internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello2");
+        internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello3");
+
+        internalWindow.addComboBoxActionListener("MyFirstComboBox1", new ElementActionListener(new ElementActionControler() {
+                                    @Override
+                                    public void doMethod() {
+                                        System.out.println(internalWindow.getComboBoxSelectedItem("MyFirstComboBox1"));
+                                    }
+                                }));
+
+
+        internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
+        internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", true);
     }
 }
