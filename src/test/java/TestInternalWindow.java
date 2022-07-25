@@ -18,7 +18,7 @@ public class TestInternalWindow {
     public static void main(String[] args) {
         HomeController mn = HomeController.getInstance();
 
-        internalWindowComboBox();
+        internalWindowClearMemory();
     }
 
     public static void internalWindowWithSplitAndScroll(){
