@@ -3,7 +3,6 @@ package main.java.ui.templates;
 import main.java.ui.libClass.Swing.ScrollPane.Corner;
 import main.java.ui.libClass.Swing.ScrollPane.Rule;
 import main.java.ui.libClass.Swing.ScrollPane.ScrollablePicture;
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.button.WindowInternalButtonsDefinition;
 import main.java.ui.templates.window.combobox.WindowInternalComboBoxDefinition;
 import main.java.ui.templates.window.label.WindowInternalLabelsDefinition;
@@ -12,9 +11,12 @@ import main.java.ui.templates.window.textField.WindowInternalTextFieldsDefinitio
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -76,8 +78,12 @@ public class InternalWindow extends JInternalFrame{
         addComponentToFrame(jComponent, false);
     }
 
-    public void addButtonListener(String key, ElementActionListener elementActionListener){
-        windowInternalButtonsDefinition.addActionListener(key, elementActionListener);
+    public void setButtonEnable(String key, boolean enable){
+        windowInternalButtonsDefinition.setButtonEnable(key, enable);
+    }
+
+    public void addButtonListener(String key, ActionListener actionListener){
+        windowInternalButtonsDefinition.addActionListener(key, actionListener);
     }
 
     public void addLabel(String keyDesktopPane, String key, String text, int x, int y, int width, int height){
@@ -155,6 +161,14 @@ public class InternalWindow extends JInternalFrame{
         addComponentToFrame(jDesktopPane, false);
     }
 
+    public void setTextFieldFormat(String keyTextField, byte format){
+        windowInternalTextFieldsDefinition.setTextFieldFormat(keyTextField, format);
+    }
+
+    public String getTextFieldData(String keyTextField){
+        return windowInternalTextFieldsDefinition.getText(keyTextField);
+    }
+
     public void addScrolTextField(String keyScrolPane, String keyTextField, String text, int x, int y, int width, int height){
         JComponent jScrolPane = getComponentPane(keyScrolPane);
         if (jScrolPane == null) {jScrolPane = createDesktopPaneComponent(keyScrolPane);}
@@ -164,8 +178,16 @@ public class InternalWindow extends JInternalFrame{
         addComponentToFrame(jScrolPane, false);
     }
 
-    public void addTextFieldListener(String keyTextField, ElementActionListener elementActionListener){
-        windowInternalTextFieldsDefinition.addActionListener(keyTextField, elementActionListener);
+    public void addTextFieldListener(String keyTextField, ActionListener actionListener){
+        windowInternalTextFieldsDefinition.addActionListener(keyTextField, actionListener);
+    }
+
+    public void addTextFieldDocumentListener(String keyTextField, DocumentListener documentListener){
+        windowInternalTextFieldsDefinition.addDocumentListener(keyTextField, documentListener);
+    }
+
+    public void addTextFieldFocusListener(String keyTextField, FocusAdapter focusAdapter){
+        windowInternalTextFieldsDefinition.addFocusListener(keyTextField, focusAdapter);
     }
 
     public void addTextFieldToolTip(String key, String text){
@@ -189,8 +211,8 @@ public class InternalWindow extends JInternalFrame{
         windowInternalComboBoxDefinition.addComboBoxItem(keyComboBox, object);
     }
 
-    public void addComboBoxActionListener(String keyTComboBox, ElementActionListener elementActionListener) {
-        windowInternalComboBoxDefinition.addActionListener(keyTComboBox, elementActionListener);
+    public void addComboBoxActionListener(String keyTComboBox, ActionListener actionListener) {
+        windowInternalComboBoxDefinition.addActionListener(keyTComboBox, actionListener);
     }
 
     public Object getComboBoxSelectedItem(String keyTComboBox) {

@@ -1,10 +1,9 @@
 package main.java.ui.templates.window.menu;
 
-import main.java.ui.templates.window.ElementActionListener;
-
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class MenuDefinition {
@@ -46,10 +45,10 @@ public class MenuDefinition {
         jMenu.addMenuListener(menuListener);
     }
 
-    public void addMenuItemActionListener(String keyItem, ElementActionListener elementActionListener){
+    public void addMenuItemActionListener(String keyItem, ActionListener actionListener){
         JMenuItem jMenuItem = menuItems.get(keyItem);
 
-        jMenuItem.addActionListener(elementActionListener);
+        jMenuItem.addActionListener(actionListener);
     }
 
     public void addSubMenuListener(String keySubmenu, MenuListener menuListener){
@@ -58,9 +57,9 @@ public class MenuDefinition {
         submenuDefinition.addSubMenuListener(menuListener);
     }
 
-    public void addSubMenuItemActionListener(String keySubMenu, String keySubMenuItem, ElementActionListener elementActionListener){
+    public void addSubMenuItemActionListener(String keySubMenu, String keySubMenuItem,  ActionListener actionListener){
         SubMenuDefinition subMenuDefinition = subMenus.get(keySubMenu);
 
-        subMenuDefinition.addSubMenuItemActionListener(keySubMenuItem, elementActionListener);
+        subMenuDefinition.addSubMenuItemActionListener(keySubMenuItem, actionListener);
     }
 }

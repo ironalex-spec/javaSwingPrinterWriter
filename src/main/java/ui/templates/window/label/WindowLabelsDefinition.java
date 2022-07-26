@@ -1,9 +1,9 @@
 package main.java.ui.templates.window.label;
 
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.WindowElementsDefinition;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class WindowLabelsDefinition implements WindowElementsDefinition {
@@ -26,7 +26,7 @@ public class WindowLabelsDefinition implements WindowElementsDefinition {
     }
 
     @Override
-    public void addActionListener(String key, ElementActionListener elementActionListener) {
+    public void addActionListener(String key, ActionListener actionListener) {
         ;
     }
 }

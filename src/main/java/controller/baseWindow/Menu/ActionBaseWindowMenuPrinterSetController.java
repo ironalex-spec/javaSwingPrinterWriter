@@ -1,10 +1,11 @@
 package main.java.controller.baseWindow.Menu;
 
-import main.java.ui.templates.window.ElementActionControler;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ActionBaseWindowMenuPrinterSetController implements ElementActionControler {
+public class ActionBaseWindowMenuPrinterSetController implements ActionListener {
     @Override
-    public void doMethod() {
+    public void actionPerformed(ActionEvent e) {
         System.out.println("Printer Set controller");
     }
 }

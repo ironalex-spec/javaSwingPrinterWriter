@@ -1,10 +1,12 @@
 package main.java.controller;
 
-import main.java.ui.templates.window.ElementActionControler;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MyFirstMenuI1tem1Controller implements ElementActionControler {
+public class MyFirstMenuI1tem1Controller implements ActionListener {
+
     @Override
-    public void doMethod() {
+    public void actionPerformed(ActionEvent e) {
         System.out.println("Item 1 controller");
     }
 }

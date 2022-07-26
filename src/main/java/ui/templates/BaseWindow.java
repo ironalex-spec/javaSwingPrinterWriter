@@ -1,7 +1,6 @@
 package main.java.ui.templates;
 
 
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.button.WindowButtonsDefinition;
 import main.java.ui.templates.window.label.WindowLabelsDefinition;
 import main.java.ui.templates.window.menu.MenuBarDefinition;
@@ -10,6 +9,7 @@ import main.java.ui.templates.window.textField.WindowTextFieldsDefinition;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class BaseWindow extends  JFrame{
@@ -77,8 +77,8 @@ public class BaseWindow extends  JFrame{
         windowButtonDefinition.add(key, text, x, y,width, height);
     }
 
-    public void addButtonListener(String key, ElementActionListener elementActionListener){
-        windowButtonDefinition.addActionListener(key, elementActionListener);
+    public void addButtonListener(String key, ActionListener actionListener){
+        windowButtonDefinition.addActionListener(key, actionListener);
     }
 
     public void addLabel(String key, String text, int x, int y, int width, int height){
@@ -89,8 +89,8 @@ public class BaseWindow extends  JFrame{
         windowTextFieldsDefinition.add(key, text, x, y,width, height);
     }
 
-    public void addTextFieldListener(String key, ElementActionListener elementActionListener){
-        windowTextFieldsDefinition.addActionListener(key, elementActionListener);
+    public void addTextFieldListener(String key, ActionListener actionListener){
+        windowTextFieldsDefinition.addActionListener(key, actionListener);
     }
 
     public void addTextFieldToolTip(String key, String text){
@@ -129,16 +129,16 @@ public class BaseWindow extends  JFrame{
         menuBarDefinition.addMenuListener(keyMenu, menuListener);
     }
 
-    public void addMenuItemActionListener(String keyMenu, String keyItem, ElementActionListener elementActionListener){
-        menuBarDefinition.addMenuItemActionListener(keyMenu, keyItem, elementActionListener);
+    public void addMenuItemActionListener(String keyMenu, String keyItem, ActionListener actionListener){
+        menuBarDefinition.addMenuItemActionListener(keyMenu, keyItem, actionListener);
     }
 
     public void addSubMenuListener(String keyMenu, String keySubMenu, MenuListener menuListener){
         menuBarDefinition.addSubMenuListener(keyMenu, keySubMenu, menuListener);
     }
 
-    public void addSubMenuItemActionListener(String keyMenu, String keySubMenu, String keySubMenuItem, ElementActionListener elementActionListener){
-        menuBarDefinition.addSubMenuItemActionListener(keyMenu, keySubMenu, keySubMenuItem, elementActionListener);
+    public void addSubMenuItemActionListener(String keyMenu, String keySubMenu, String keySubMenuItem, ActionListener actionListener){
+        menuBarDefinition.addSubMenuItemActionListener(keyMenu, keySubMenu, keySubMenuItem, actionListener);
     }
 
     @Override

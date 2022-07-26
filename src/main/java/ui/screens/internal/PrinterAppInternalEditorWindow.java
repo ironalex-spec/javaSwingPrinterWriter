@@ -1,9 +1,8 @@
 package main.java.ui.screens.internal;
 
-import main.java.controller.internalEditorWindow.ActionInternalEditorWindowComboBoxTemplates;
+import main.java.controller.internalWindow.editor.ActionInternalEditorWindowComboBoxTemplates;
 import main.java.ui.templates.BaseWindow;
 import main.java.ui.templates.InternalWindow;
-import main.java.ui.templates.window.ElementActionListener;
 
 import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
@@ -31,7 +30,7 @@ public class PrinterAppInternalEditorWindow {
         internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello3");
 
 
-        internalWindow.addComboBoxActionListener("MyFirstComboBox1", new ElementActionListener(new ActionInternalEditorWindowComboBoxTemplates()));
+        internalWindow.addComboBoxActionListener("MyFirstComboBox1", new ActionInternalEditorWindowComboBoxTemplates());
 
 
         internalWindow.addLabelAsImage("Pane_2","MyFirstLabel","smile.jpg", 0,10,100,100);

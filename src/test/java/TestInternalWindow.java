@@ -3,15 +3,12 @@ package test.java;
 import main.java.controller.HomeController;
 import main.java.controller.MyFirstTextFieldActionController;
 import main.java.ui.templates.InternalWindow;
-import main.java.ui.templates.window.ElementActionControler;
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.controller.MyFirstButtonActionController;
 import main.java.ui.templates.BaseWindow;
 
 import javax.swing.*;
-import java.awt.*;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryUsage;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class TestInternalWindow {
@@ -34,8 +31,8 @@ public class TestInternalWindow {
 
         internalWindow.addTextField("Pane2", "MyFirstTextField","1", 100,200,100,100);
         internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);
-        internalWindow.addButtonListener("MyFirstButton", new ElementActionListener(new MyFirstButtonActionController()));
-        internalWindow.addTextFieldListener("MyFirstTextField", new ElementActionListener(new MyFirstTextFieldActionController()));
+        internalWindow.addButtonListener("MyFirstButton", new MyFirstButtonActionController());
+        internalWindow.addTextFieldListener("MyFirstTextField", new MyFirstTextFieldActionController());
         internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
 
         internalWindow.saveComponentAsImage("Pane2", "bmp");
@@ -139,12 +136,12 @@ public class TestInternalWindow {
         internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello2");
         internalWindow.addComboBoxItem("MyFirstComboBox1", "Hello3");
 
-        internalWindow.addComboBoxActionListener("MyFirstComboBox1", new ElementActionListener(new ElementActionControler() {
-                                    @Override
-                                    public void doMethod() {
-                                        System.out.println(internalWindow.getComboBoxSelectedItem("MyFirstComboBox1"));
-                                    }
-                                }));
+        internalWindow.addComboBoxActionListener("MyFirstComboBox1", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(internalWindow.getComboBoxSelectedItem("MyFirstComboBox1"));
+            }
+        });
 
 
         internalWindow.addLabelAsImage("Pane1","MyFirstLabel","smile.jpg", 0,10,100,100);

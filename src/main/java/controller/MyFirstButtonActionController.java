@@ -1,10 +1,11 @@
 package main.java.controller;
 
-import main.java.ui.templates.window.ElementActionControler;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MyFirstButtonActionController implements ElementActionControler {
+public class MyFirstButtonActionController implements ActionListener {
     @Override
-    public void doMethod() {
+    public void actionPerformed(ActionEvent e) {
         System.out.println("MyFirstButtonActionListener");
     }
 }

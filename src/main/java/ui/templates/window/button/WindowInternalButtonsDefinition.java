@@ -1,9 +1,9 @@
 package main.java.ui.templates.window.button;
 
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.WindowInternalElementsDefinition;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class WindowInternalButtonsDefinition implements WindowInternalElementsDefinition {
@@ -19,6 +19,8 @@ public class WindowInternalButtonsDefinition implements WindowInternalElementsDe
     public void add(JComponent jDesktopPane, String keyButton, String text, int x, int y, int width, int height){
         JButton btn = new JButton(text);
 
+
+
         btn.setBounds(x,y,width, height);
         btn.setVisible(true);
 
@@ -27,9 +29,14 @@ public class WindowInternalButtonsDefinition implements WindowInternalElementsDe
         buttons.put(keyButton, btn);
     }
 
-    @Override
-    public void addActionListener(String key, ElementActionListener elementActionListener) {
+    public void setButtonEnable(String key, boolean enable){
         JButton button = buttons.get(key);
-        button.addActionListener(elementActionListener);
+        button.setEnabled(enable);
+    }
+
+    @Override
+    public void addActionListener(String key, ActionListener actionListener) {
+        JButton button = buttons.get(key);
+        button.addActionListener(actionListener);
     }
 }

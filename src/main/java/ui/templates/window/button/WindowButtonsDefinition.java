@@ -1,9 +1,9 @@
 package main.java.ui.templates.window.button;
 
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.WindowElementsDefinition;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class WindowButtonsDefinition implements WindowElementsDefinition {
@@ -26,8 +26,8 @@ public class WindowButtonsDefinition implements WindowElementsDefinition {
     }
 
     @Override
-    public void addActionListener(String key, ElementActionListener elementActionListener){
+    public void addActionListener(String key, ActionListener actionListener){
         JButton button = buttons.get(key);
-        button.addActionListener(elementActionListener);
+        button.addActionListener(actionListener);
     }
 }

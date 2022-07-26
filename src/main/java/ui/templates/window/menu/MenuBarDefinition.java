@@ -1,12 +1,10 @@
 package main.java.ui.templates.window.menu;
 
-import main.java.ui.templates.window.ElementActionListener;
-
 
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class MenuBarDefinition {
@@ -55,9 +53,9 @@ public class MenuBarDefinition {
         menuDefinition.addMenuListener(menuListener);
     }
 
-    public void addMenuItemActionListener(String keyMenu, String keyItem, ElementActionListener elementActionListener){
+    public void addMenuItemActionListener(String keyMenu, String keyItem, ActionListener actionListener){
         MenuDefinition menuDefinition = menus.get(keyMenu);
-        menuDefinition.addMenuItemActionListener(keyItem, elementActionListener);
+        menuDefinition.addMenuItemActionListener(keyItem, actionListener);
     }
 
     public void addSubMenuListener(String keyMenu, String keySubMenu, MenuListener menuListener){
@@ -66,9 +64,9 @@ public class MenuBarDefinition {
         menuDefinition.addSubMenuListener(keySubMenu, menuListener);
     }
 
-    public void addSubMenuItemActionListener(String keyMenu, String keySubMenu, String keySubMenuItem, ElementActionListener elementActionListener){
+    public void addSubMenuItemActionListener(String keyMenu, String keySubMenu, String keySubMenuItem, ActionListener actionListener){
         MenuDefinition menuDefinition = menus.get(keyMenu);
 
-        menuDefinition.addSubMenuItemActionListener(keySubMenu, keySubMenuItem, elementActionListener);
+        menuDefinition.addSubMenuItemActionListener(keySubMenu, keySubMenuItem, actionListener);
     }
 }

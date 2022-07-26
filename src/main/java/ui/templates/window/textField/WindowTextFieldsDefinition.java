@@ -1,9 +1,9 @@
 package main.java.ui.templates.window.textField;
 
-import main.java.ui.templates.window.ElementActionListener;
 import main.java.ui.templates.window.WindowElementsDefinition;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class WindowTextFieldsDefinition implements WindowElementsDefinition {
@@ -32,8 +32,8 @@ public class WindowTextFieldsDefinition implements WindowElementsDefinition {
     }
 
     @Override
-    public void addActionListener(String key, ElementActionListener elementActionListener){
+    public void addActionListener(String key, ActionListener actionListener){
         JTextField jTextField = textFields.get(key);
-        jTextField.addActionListener(elementActionListener);
+        jTextField.addActionListener(actionListener);
     }
 }

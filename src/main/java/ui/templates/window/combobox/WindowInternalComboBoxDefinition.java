@@ -1,14 +1,7 @@
 package main.java.ui.templates.window.combobox;
 
-import main.java.ui.templates.window.ElementActionListener;
-import main.java.ui.templates.window.WindowInternalElementsDefinition;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class WindowInternalComboBoxDefinition {
@@ -47,9 +40,9 @@ public class WindowInternalComboBoxDefinition {
         return comboBox.getSelectedItem();
     }
 
-    public void addActionListener(String key, ElementActionListener elementActionListener) {
+    public void addActionListener(String key, ActionListener actionListener) {
         JComboBox comboBox = comboBoxes.get(key);
-        comboBox.addActionListener(elementActionListener);
+        comboBox.addActionListener(actionListener);
     }
 
     @Override
