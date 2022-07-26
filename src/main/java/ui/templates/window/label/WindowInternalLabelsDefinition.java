@@ -38,9 +38,15 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
     public void addLabelAsImage(JComponent jDesktopPane, String keyLabel, String filePath, int x, int y, int width, int height){
         try
         {
-            BufferedImage img = ImageIO.read(new File(filePath));
-            ImageIcon imgIco = new ImageIcon(img);
+            BufferedImage img = null;
 
+            if (filePath != null) {
+                img = ImageIO.read(new File(filePath));
+            } else {
+                img = ImageIO.read(new File("src/main/resources/editor/img/default.jpg"));
+            }
+
+            ImageIcon imgIco = new ImageIcon(img);
             JLabel lbl = new JLabel(imgIco);
 
             lbl.setBounds(x,y,width, height);

@@ -1,8 +1,8 @@
-package main.java.ui.screens.main;
+package main.java.ui.screens;
 
-import main.java.controller.HomeController;
 import main.java.controller.MyFirstMenuI1tem1Controller;
 import main.java.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewController;
+import main.java.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewTemplateController;
 import main.java.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
 import main.java.ui.templates.BaseWindow;
 import main.java.ui.templates.window.ElementActionListener;
@@ -27,8 +27,12 @@ public class PrinterAppBaseWindow {
         printerAppBaseWindow.addMenuHorizontalGlue();
         printerAppBaseWindow.addMenu("Menu_Help", "Help", 100, 20);
 
-        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_New", "New", 100, 20);
+        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_NewTemplate", "New Template", 100, 20);
+        printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_NewTemplate", new ElementActionListener(new ActionBaseWindowMenuFileNewTemplateController()));
+
+        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_New", "New Editor", 100, 20);
         printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_New", new ElementActionListener(new ActionBaseWindowMenuFileNewController()));
+
 
         printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_Set", "Set", 100, 20);
         printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Set", new ElementActionListener(new ActionBaseWindowMenuPrinterSetController()));

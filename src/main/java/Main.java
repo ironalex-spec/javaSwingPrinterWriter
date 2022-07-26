@@ -1,6 +1,6 @@
 package main.java;
 
-import main.java.ui.screens.main.PrinterAppBaseWindow;
+import main.java.ui.screens.PrinterAppBaseWindow;
 
 public class Main {
     private static int internalWindowNumber = 0;
