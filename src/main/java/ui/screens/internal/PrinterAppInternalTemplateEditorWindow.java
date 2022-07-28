@@ -1,8 +1,8 @@
 package main.java.ui.screens.internal;
 
-import main.java.controller.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowButtonSave;
-import main.java.controller.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowComboBoxFiles;
-import main.java.controller.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowTextFields;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowButtonSave;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowComboBoxFiles;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowTextFields;
 import main.java.ui.templates.BaseWindow;
 import main.java.ui.templates.InternalWindow;
 

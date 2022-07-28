@@ -1,4 +1,4 @@
-package main.java.controller.internalWindow.editor;
+package main.java.controller.baseWindow.internalWindow.editor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,6 +1,6 @@
 package main.java.ui.screens.internal;
 
-import main.java.controller.internalWindow.editor.ActionInternalEditorWindowComboBoxTemplates;
+import main.java.controller.baseWindow.internalWindow.editor.ActionInternalEditorWindowComboBoxTemplates;
 import main.java.ui.templates.BaseWindow;
 import main.java.ui.templates.InternalWindow;
 

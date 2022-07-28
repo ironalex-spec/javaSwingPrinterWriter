@@ -13,7 +13,7 @@ public class PrinterAppBaseWindow {
     private static PrinterAppBaseWindow single_instance = null;
     private BaseWindow printerAppBaseWindow;
 
-    public PrinterAppBaseWindow(){
+    private PrinterAppBaseWindow(){
         printerAppBaseWindow = new BaseWindow(0,0,800,500, 20);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
