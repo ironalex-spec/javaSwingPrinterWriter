@@ -1,28 +1,39 @@
 package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
-import main.java.service.baseWindow.internalWindow.editorTemplate.ServiceInternalEditorTemplate;
+import main.java.service.Service;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.*;
 
-public class ActionInternalEditorTemplateWindowTextFields extends FocusAdapter implements ActionListener {
+public class ActionInternalEditorTemplateWindowTextFields implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ServiceInternalEditorTemplate serviceInternalEditorTemplate = ServiceInternalEditorTemplate.getInstance();
-
-        serviceInternalEditorTemplate.setSaveButtonEnable();
+  /*      ServiceInternalEditorTemplate serviceInternalEditorTemplate = ServiceInternalEditorTemplate.getInstance();
+*/
+        /*serviceInternalEditorTemplate.setSaveButtonEnable();*/
     }
 
     @Override
-    public void focusLost(FocusEvent e) {
-        ServiceInternalEditorTemplate serviceInternalEditorTemplate = ServiceInternalEditorTemplate.getInstance();
+    public void keyTyped(KeyEvent e) {
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        serviceInternalEditorTemplate.setSaveButtonEnable();
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
+
+        printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

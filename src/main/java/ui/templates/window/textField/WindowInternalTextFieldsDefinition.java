@@ -9,6 +9,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -48,6 +49,11 @@ public class WindowInternalTextFieldsDefinition implements WindowInternalElement
     public void addFocusListener(String keyTextField, FocusAdapter focusAdapter){
         JFormattedTextField jTextField = textFields.get(keyTextField);
         jTextField.addFocusListener(focusAdapter);
+    }
+
+    public void addKeyListener(String keyTextField, KeyListener keyListener){
+        JFormattedTextField jTextField = textFields.get(keyTextField);
+        jTextField.addKeyListener(keyListener);
     }
 
     public void setTextFieldFormat(String keyTextField, byte format){

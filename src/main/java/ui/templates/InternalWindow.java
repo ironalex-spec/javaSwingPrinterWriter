@@ -17,6 +17,7 @@ import javax.swing.event.InternalFrameEvent;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -188,6 +189,10 @@ public class InternalWindow extends JInternalFrame{
 
     public void addTextFieldFocusListener(String keyTextField, FocusAdapter focusAdapter){
         windowInternalTextFieldsDefinition.addFocusListener(keyTextField, focusAdapter);
+    }
+
+    public void addTextFieldKeyListener(String keyTextField, KeyListener keyListener){
+        windowInternalTextFieldsDefinition.addKeyListener(keyTextField, keyListener);
     }
 
     public void addTextFieldToolTip(String key, String text){

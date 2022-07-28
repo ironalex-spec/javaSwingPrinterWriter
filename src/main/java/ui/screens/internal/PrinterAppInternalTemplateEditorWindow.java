@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 public class PrinterAppInternalTemplateEditorWindow {
     private static PrinterAppInternalTemplateEditorWindow single_instance = null;
@@ -34,21 +35,21 @@ public class PrinterAppInternalTemplateEditorWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Width","Width, mm", 5,80,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_Width","", 90,80,100,30);
-        internalWindow.setTextFieldFormat("Pane_1_TextField_Width", (byte) 2);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_Width", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Width", new ActionInternalEditorTemplateWindowTextFields());
-        internalWindow.addTextFieldFocusListener("Pane_1_TextField_Width", new ActionInternalEditorTemplateWindowTextFields());
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_Width", new ActionInternalEditorTemplateWindowTextFields());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Height","Height, mm", 5,130,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_Height","", 90,130,100,30);
-        internalWindow.setTextFieldFormat("Pane_1_TextField_Height", (byte) 2);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_Height", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Height", new ActionInternalEditorTemplateWindowTextFields());
-        internalWindow.addTextFieldFocusListener("Pane_1_TextField_Height", new ActionInternalEditorTemplateWindowTextFields());
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_Height", new ActionInternalEditorTemplateWindowTextFields());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Fillet","Fillet, mm", 5,180,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_Fillet","", 90,180,100,30);
-        internalWindow.setTextFieldFormat("Pane_1_TextField_Fillet", (byte) 2);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_Fillet", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
-        internalWindow.addTextFieldFocusListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
 
         internalWindow.addButton("Pane_1","Pane_1_Button_Save","Save", 90,230,100,30);
         internalWindow.setButtonEnable("Pane_1_Button_Save", false);
@@ -78,6 +79,20 @@ public class PrinterAppInternalTemplateEditorWindow {
         return  internalWindow.getComboBoxSelectedItem(keyComboBox);
     }
 
+    public ArrayList<Object> getTextFieldsValues(){
+        ArrayList<Object> arrayList = new ArrayList<>();
+
+        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Width"));
+        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Height"));
+        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Fillet"));
+
+        return  arrayList;
+    }
+
+    public void setSaveButtonEnable(boolean enable){
+        internalWindow.setButtonEnable("Pane_1_Button_Save", enable);
+    }
+
     public void updateImage(String imagePath){
         internalWindow.updateLabelImage("ScrolPane_1","MyFirstLabel",imagePath);
     }
@@ -93,20 +108,6 @@ public class PrinterAppInternalTemplateEditorWindow {
             single_instance = new PrinterAppInternalTemplateEditorWindow(baseWindow);
         }
         return single_instance;
-    }
-
-    public boolean isTextFieldDataValid(){
-        String height = internalWindow.getTextFieldData("Pane_1_TextField_Height");
-        String width = internalWindow.getTextFieldData("Pane_1_TextField_Width");
-        String fillet = internalWindow.getTextFieldData("Pane_1_TextField_Fillet");
-
-        boolean valid = false;
-
-        if (!height.equals("") && !width.equals("") && !fillet.equals("")){
-            valid = true;
-        }
-
-        return valid;
     }
 
     public static String[] listFilesForFolder(String filesFolder) {
@@ -134,6 +135,8 @@ public class PrinterAppInternalTemplateEditorWindow {
                 i++;
             }
         }
+
+
 
 
         return objects;

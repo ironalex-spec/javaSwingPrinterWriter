@@ -1,6 +1,5 @@
 package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
-import main.java.service.baseWindow.internalWindow.editorTemplate.ServiceInternalEditorTemplate;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
@@ -12,8 +11,21 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ServiceInternalEditorTemplate serviceInternalEditorTemplate = ServiceInternalEditorTemplate.getInstance();
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        serviceInternalEditorTemplate.updatePanelImageComboBoxSelected();
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        Object selectedItem = printerAppInternalTemplateEditorWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Files");
+
+        updatePanelImage("src/main/resources/editor/img/" + selectedItem);
+    }
+
+    public void updatePanelImage(String pathImage){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        printerAppInternalTemplateEditorWindow.updateImage(pathImage);
+
     }
 }
