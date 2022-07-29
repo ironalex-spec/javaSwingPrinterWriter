@@ -171,6 +171,10 @@ public class InternalWindow extends JInternalFrame{
         return windowInternalTextFieldsDefinition.getText(keyTextField);
     }
 
+    public void setTextFieldData(String keyTextField, Object object){
+        windowInternalTextFieldsDefinition.setTextFieldData(keyTextField, object);
+    }
+
     public void addScrolTextField(String keyScrolPane, String keyTextField, String text, int x, int y, int width, int height){
         JComponent jScrolPane = getComponentPane(keyScrolPane);
         if (jScrolPane == null) {jScrolPane = createDesktopPaneComponent(keyScrolPane);}
@@ -211,6 +215,10 @@ public class InternalWindow extends JInternalFrame{
         windowInternalComboBoxDefinition.add(jDesktopPane, keyComboBox, texts, x, y,width, height);
 
         addComponentToFrame(jDesktopPane, false);
+    }
+
+    public void chooseComboBoxItem(String keyComboBox, Object object){
+        windowInternalComboBoxDefinition.chooseComboBoxItem(keyComboBox, object);
     }
 
     public void updateComboBoxItems(String keyComboBox, String[] data) {

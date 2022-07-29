@@ -19,6 +19,18 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
         Object selectedItem = printerAppInternalTemplateEditorWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Files");
 
         if (selectedItem != null) {
+            String filename = (String) selectedItem;
+
+            Integer width = ServiceInternalTemplateEditor.getWidthFromFilename(filename);
+            Integer height = ServiceInternalTemplateEditor.getHeightFromFilename(filename);
+            Integer fillet = ServiceInternalTemplateEditor.getFilletFromFilename(filename);
+
+            if (width != null && height != null && fillet != null) {
+                printerAppInternalTemplateEditorWindow.setWidth(width.toString());
+                printerAppInternalTemplateEditorWindow.setHeight(height.toString());
+                printerAppInternalTemplateEditorWindow.setFillet(fillet.toString());
+            }
+
             ServiceInternalTemplateEditor.updatePanelImage("src/main/resources/editor/img/" + selectedItem);
         }
     }

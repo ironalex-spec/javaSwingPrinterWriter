@@ -29,12 +29,14 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
         int width = Integer.parseInt(printerAppInternalTemplateEditorWindow.getWidth());
         int fillet = Integer.parseInt(printerAppInternalTemplateEditorWindow.getFillet());
 
-        String filename = "_" + width + "_" + height + "_" + fillet + ".png";
+        String filename = ServiceInternalTemplateEditor.generateFilenameByPrm(width, height, fillet);
 
         ServicePrintRoundedRectangleAsImage.savePrintRectangleImage("src/main/resources/editor/img/"+filename,width,height, fillet,1);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
         ServiceInternalTemplateEditor.updatePanelImage("src/main/resources/editor/img/" + filename);
+
+        printerAppInternalTemplateEditorWindow.chooseComboBoxObject(filename);
     }
 }

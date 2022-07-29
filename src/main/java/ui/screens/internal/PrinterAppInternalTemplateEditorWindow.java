@@ -96,30 +96,41 @@ public class PrinterAppInternalTemplateEditorWindow {
         return  arrayList;
     }
 
-    public void updateClassFields(){
-        setDataTextFieldWidth();
-        setDataTextFieldFilet();
-        setDataTextFieldHeight();
-    }
-
     public String getHeight(){
-        setDataTextFieldHeight();
+        setHeightClassField();
 
         return sValue_Input_Height;
     }
 
     public String getWidth(){
-        setDataTextFieldWidth();
+        setWidthClassField();
 
         return sValue_Input_Width;
     }
 
     public String getFillet(){
-        setDataTextFieldFilet();
+        setWidthClassField();
 
         return sValue_Input_Fillet;
     }
 
+    public void setFillet(String fillet){
+        sValue_Input_Fillet = fillet;
+
+        internalWindow.setTextFieldData("Pane_1_TextField_Fillet", sValue_Input_Fillet);
+    }
+
+    public void setWidth(String width){
+        sValue_Input_Width = width;
+
+        internalWindow.setTextFieldData("Pane_1_TextField_Width", sValue_Input_Width);
+    }
+
+    public void setHeight(String height){
+        sValue_Input_Height = height;
+
+        internalWindow.setTextFieldData("Pane_1_TextField_Height", sValue_Input_Height);
+    }
 
     public void setSaveButtonEnable(boolean enable){
         internalWindow.setButtonEnable("Pane_1_Button_Save", enable);
@@ -132,6 +143,10 @@ public class PrinterAppInternalTemplateEditorWindow {
     public void updateComboBoxFileItem(){
         String[] filesName = listFilesForFolder("src/main/resources/editor/img/");
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
+    }
+
+    public void chooseComboBoxObject(Object object){
+        internalWindow.chooseComboBoxItem("Pane_1_ComboBox_Files", object);
     }
 
     public static PrinterAppInternalTemplateEditorWindow getInstance(BaseWindow baseWindow)
@@ -175,15 +190,21 @@ public class PrinterAppInternalTemplateEditorWindow {
         return objects;
     }
 
-    private void setDataTextFieldWidth(){
+    private void updateClassFields(){
+        setWidthClassField();
+        setFilletClassField();
+        setHeightClassField();
+    }
+
+    private void setWidthClassField(){
         sValue_Input_Width = internalWindow.getTextFieldData("Pane_1_TextField_Width");
     }
 
-    private void setDataTextFieldFilet(){
+    private void setFilletClassField(){
         sValue_Input_Fillet = internalWindow.getTextFieldData("Pane_1_TextField_Fillet");
     }
 
-    private void setDataTextFieldHeight(){
+    private void setHeightClassField(){
         sValue_Input_Height = internalWindow.getTextFieldData("Pane_1_TextField_Height");
     }
 

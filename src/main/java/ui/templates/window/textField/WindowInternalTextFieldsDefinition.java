@@ -24,8 +24,9 @@ public class WindowInternalTextFieldsDefinition implements WindowInternalElement
 
     @Override
     public void add(JComponent jDesktopPane, String keyTextField, String text, int x, int y, int width, int height){
-        final JFormattedTextField jTextField = new JFormattedTextField();
+        JFormattedTextField jTextField = new JFormattedTextField();
 
+        jTextField.setValue(text);
         jTextField.setBounds(x,y,width, height);
         jTextField.setVisible(true);
 
@@ -64,6 +65,12 @@ public class WindowInternalTextFieldsDefinition implements WindowInternalElement
     public String getText(String keyTextField){
         JFormattedTextField jTextField = textFields.get(keyTextField);
         return jTextField.getText();
+    }
+
+    public void setTextFieldData(String keyTextField, Object object){
+        JFormattedTextField jTextField = textFields.get(keyTextField);
+
+        jTextField.setValue(object);
     }
 
     private void setTextFieldFormat(JFormattedTextField jTextField, byte format){

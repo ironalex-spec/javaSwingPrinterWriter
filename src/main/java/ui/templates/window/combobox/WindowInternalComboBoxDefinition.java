@@ -40,7 +40,7 @@ public class WindowInternalComboBoxDefinition {
         comboBox.addItem(object);
     }
 
-    public void setVisibleComboBoxItem(String keyComboBox, Object object) {
+    public void chooseComboBoxItem(String keyComboBox, Object object) {
         JComboBox comboBox = comboBoxes.get(keyComboBox);
 
         comboBox.getModel().setSelectedItem(object);
