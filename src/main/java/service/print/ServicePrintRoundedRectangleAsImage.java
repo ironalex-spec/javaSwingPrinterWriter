@@ -27,7 +27,6 @@ public class ServicePrintRoundedRectangleAsImage {
         }
     }
     private static BufferedImage printRoundedRectangleImage(int widthPx, int heightPx, int radiusPx, int borderWidthPx){
-
             radiusPx = radiusPx * 2;
 
             BufferedImage bi = new BufferedImage(widthPx + 2*borderWidthPx,heightPx + 2*borderWidthPx,BufferedImage.TYPE_INT_ARGB);

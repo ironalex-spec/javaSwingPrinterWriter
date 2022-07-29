@@ -7,7 +7,7 @@ import main.java.settings.AppSettings;
 public class TestPrintingImages {
     public static void main(String[] args) {
 
-        testRoundedRectangle();
+        testRoundedRectangleWithText();
     }
 
     public static void testRoundedRectangle(){
@@ -15,13 +15,12 @@ public class TestPrintingImages {
     }
 
     public static void testPrintText(){
-        ServicePrintTextAsImage.savePrintTextAsImage("save.png", 5000,400, 0, 400,"Hello My Dear friend",400,"Serif");
+        ServicePrintTextAsImage.savePrintTextAsImage("src/main/resources/editor/img/save.png", 100,10, 0, 0,"Hello My Dear friend",10,"Serif");
     }
 
     public static void testRoundedRectangleWithText(){
-        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage("rounded.png", 1000,500,300,2);
+        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage("src/main/resources/editor/img/rounded.png", 500,100,50,1);
 
-        ServicePrintTextAsImage.addImgText("rounded.png", "rounded.png", 1004,504,"Hello My Dear friend",100,"Serif");
-
+        ServicePrintTextAsImage.addImgText("src/main/resources/editor/img/rounded.png", "src/main/resources/editor/img/rounded.png", 500,100,0,0,"Hello My Dear friend",40,"Serif");
     }
 }
