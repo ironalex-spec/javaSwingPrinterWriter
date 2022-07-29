@@ -1,13 +1,13 @@
 package main.java.ui.libClass.Swing.ScrollPane;
 
+import main.java.settings.AppSettings;
+
 import java.awt.*;
 import javax.swing.*;
 
 /* Rule.java is used by ScrollDemo.java. */
 
 public class Rule extends JComponent {
-    public static final int INCH = Toolkit.getDefaultToolkit().
-            getScreenResolution();
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
     public static final int SIZE = 35;
@@ -30,11 +30,12 @@ public class Rule extends JComponent {
     }
 
     private void setIncrementAndUnits() {
+        int INCHi = Toolkit.getDefaultToolkit().getScreenResolution();
         if (isMetric) {
-            units = (int)((double)INCH / (double)2.03/*2.54*/); // dots per centimeter
+            units = AppSettings.PPI_CM_Screen; // dots per centimeter
             increment = units;
         } else {
-            units = INCH;
+            units = AppSettings.PPI_INCH_Screen;
             increment = units / 2;
         }
     }

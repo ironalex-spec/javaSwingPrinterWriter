@@ -13,7 +13,6 @@ public class Main {
         Main.internalWindowNumber = internalWindowNumber;
     }
 
-
     public static void main(String[] args){
         PrinterAppBaseWindow.getInstance();
     }

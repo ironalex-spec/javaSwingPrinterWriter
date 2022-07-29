@@ -29,7 +29,7 @@ public class BaseWindow extends  JFrame{
         /*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.setResizable(false);
+        this.setResizable(true);
         this.setSize(width, height);
         this.setPreferredSize(new Dimension(10,10));
         this.setLocation(x, y);
