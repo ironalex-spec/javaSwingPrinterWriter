@@ -17,6 +17,11 @@ public class PrinterAppInternalTemplateEditorWindow {
     private BaseWindow printerAppBaseWindow;
     private InternalWindow internalWindow;
 
+    private String sValue_Input_Width = null;
+    private String sValue_Input_Height = null;
+    private String sValue_Input_Fillet = null;
+
+
     public PrinterAppInternalTemplateEditorWindow(BaseWindow baseWindow){
         printerAppBaseWindow =  baseWindow;
 
@@ -82,23 +87,51 @@ public class PrinterAppInternalTemplateEditorWindow {
     public ArrayList<Object> getTextFieldsValues(){
         ArrayList<Object> arrayList = new ArrayList<>();
 
-        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Width"));
-        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Height"));
-        arrayList.add(internalWindow.getTextFieldData("Pane_1_TextField_Fillet"));
+        updateClassFields();
+
+        arrayList.add(sValue_Input_Width);
+        arrayList.add(sValue_Input_Height);
+        arrayList.add(sValue_Input_Fillet);
 
         return  arrayList;
     }
+
+    public void updateClassFields(){
+        setDataTextFieldWidth();
+        setDataTextFieldFilet();
+        setDataTextFieldHeight();
+    }
+
+    public String getHeight(){
+        setDataTextFieldHeight();
+
+        return sValue_Input_Height;
+    }
+
+    public String getWidth(){
+        setDataTextFieldWidth();
+
+        return sValue_Input_Width;
+    }
+
+    public String getFillet(){
+        setDataTextFieldFilet();
+
+        return sValue_Input_Fillet;
+    }
+
 
     public void setSaveButtonEnable(boolean enable){
         internalWindow.setButtonEnable("Pane_1_Button_Save", enable);
     }
 
     public void updateImage(String imagePath){
-        internalWindow.updateLabelImage("ScrolPane_1","MyFirstLabel",imagePath);
+        internalWindow.updateLabelImage("ScrolPane_1","LabelImage_1",imagePath);
     }
 
-    private void  clearInternalWindowInstance(){
-        single_instance = null;
+    public void updateComboBoxFileItem(){
+        String[] filesName = listFilesForFolder("src/main/resources/editor/img/");
+        internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 
     public static PrinterAppInternalTemplateEditorWindow getInstance(BaseWindow baseWindow)
@@ -140,5 +173,21 @@ public class PrinterAppInternalTemplateEditorWindow {
 
 
         return objects;
+    }
+
+    private void setDataTextFieldWidth(){
+        sValue_Input_Width = internalWindow.getTextFieldData("Pane_1_TextField_Width");
+    }
+
+    private void setDataTextFieldFilet(){
+        sValue_Input_Fillet = internalWindow.getTextFieldData("Pane_1_TextField_Fillet");
+    }
+
+    private void setDataTextFieldHeight(){
+        sValue_Input_Height = internalWindow.getTextFieldData("Pane_1_TextField_Height");
+    }
+
+    private void  clearInternalWindowInstance(){
+        single_instance = null;
     }
 }

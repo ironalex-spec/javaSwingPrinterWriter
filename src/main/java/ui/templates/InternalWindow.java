@@ -20,6 +20,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InternalWindow extends JInternalFrame{
@@ -210,6 +211,14 @@ public class InternalWindow extends JInternalFrame{
         windowInternalComboBoxDefinition.add(jDesktopPane, keyComboBox, texts, x, y,width, height);
 
         addComponentToFrame(jDesktopPane, false);
+    }
+
+    public void updateComboBoxItems(String keyComboBox, String[] data) {
+        windowInternalComboBoxDefinition.clearComboBoxItems(keyComboBox);
+
+        for(String s : data){
+            addComboBoxItem(keyComboBox, s);
+        }
     }
 
     public void addComboBoxItem(String keyComboBox, Object object) {

@@ -1,6 +1,8 @@
 package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
 
+import main.java.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import main.java.service.print.ServicePrintRoundedRectangleAsImage;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
@@ -23,33 +25,16 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
 
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
-        testSaveImage();
-    }
+        int height = Integer.parseInt(printerAppInternalTemplateEditorWindow.getHeight());
+        int width = Integer.parseInt(printerAppInternalTemplateEditorWindow.getWidth());
+        int fillet = Integer.parseInt(printerAppInternalTemplateEditorWindow.getFillet());
 
-    public void testSaveImage(){
-        try {
-            // retrieve image
-            BufferedImage bi = new BufferedImage(600,400,BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = bi.createGraphics();
-            g2d.setComposite(AlphaComposite.Clear);
+        String filename = "_" + width + "_" + height + "_" + fillet + ".png";
 
+        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage("src/main/resources/editor/img/"+filename,width,height, fillet,1);
 
-            // Keep this until I figured out if it's painted on load or not.
-            g2d.setComposite(AlphaComposite.Src);
-            g2d.setColor(new Color(255, 255, 255));
-            g2d.fillRoundRect(250,100,100, 200, 10, 10);
-            g2d.setColor(new Color(0, 0, 0));
+        printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
-            int borderWidth = 20;
-            g2d.setStroke(new BasicStroke(borderWidth));
-            g2d.drawRoundRect(250,100,100, 200, 10, 10);
-
-            g2d.dispose();
-
-            File outputfile = new File("saved.png");
-            ImageIO.write(bi, "png", outputfile);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        ServiceInternalTemplateEditor.updatePanelImage("src/main/resources/editor/img/" + filename);
     }
 }

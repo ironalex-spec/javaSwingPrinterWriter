@@ -12,6 +12,6 @@ public class ActionBaseWindowMenuFileNewController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        PrinterAppInternalEditorWindow.getInstance(baseWindow);
+        PrinterAppInternalEditorWindow printerAppInternalEditorWindow = PrinterAppInternalEditorWindow.getInstance(baseWindow);
     }
 }

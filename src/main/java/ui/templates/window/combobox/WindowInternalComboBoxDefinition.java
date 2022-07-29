@@ -28,10 +28,22 @@ public class WindowInternalComboBoxDefinition {
             comboBoxes.put(keyComboBox, comboBox);
     }
 
+    public void clearComboBoxItems(String keyComboBox){
+        JComboBox comboBox = comboBoxes.get(keyComboBox);
+
+        comboBox.removeAllItems();
+    }
+
     public void addComboBoxItem(String keyComboBox, Object object) {
         JComboBox comboBox = comboBoxes.get(keyComboBox);
 
         comboBox.addItem(object);
+    }
+
+    public void setVisibleComboBoxItem(String keyComboBox, Object object) {
+        JComboBox comboBox = comboBoxes.get(keyComboBox);
+
+        comboBox.getModel().setSelectedItem(object);
     }
 
     public Object getComboBoxSelectedItem(String keyComboBox) {
