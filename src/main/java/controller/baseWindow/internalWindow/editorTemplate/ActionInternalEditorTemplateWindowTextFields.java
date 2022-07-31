@@ -35,5 +35,6 @@ public class ActionInternalEditorTemplateWindowTextFields implements ActionListe
         boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
 
         printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
+        printerAppInternalTemplateEditorWindow.setClearButtonEnable(enableButton);
     }
 }

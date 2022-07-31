@@ -3,6 +3,7 @@ package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
 import main.java.service.internal.templateEditor.ServiceInternalTemplateEditor;
 import main.java.service.print.ServicePrintRoundedRectangleAsImage;
+import main.java.settings.AppSettings;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
@@ -31,11 +32,11 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
 
         String filename = ServiceInternalTemplateEditor.generateFilenameByPrm(width, height, fillet);
 
-        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage("src/main/resources/editor/img/"+filename,width,height, fillet,1);
+        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage(AppSettings.templateFolder + filename,width,height, fillet,1);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
-        ServiceInternalTemplateEditor.updatePanelImage("src/main/resources/editor/img/" + filename);
+        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + filename);
 
         printerAppInternalTemplateEditorWindow.chooseComboBoxObject(filename);
     }

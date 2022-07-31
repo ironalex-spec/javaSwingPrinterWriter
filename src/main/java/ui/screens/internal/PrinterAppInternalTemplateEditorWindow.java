@@ -1,8 +1,8 @@
 package main.java.ui.screens.internal;
 
-import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowButtonSave;
-import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowComboBoxFiles;
-import main.java.controller.baseWindow.internalWindow.editorTemplate.ActionInternalEditorTemplateWindowTextFields;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.*;
+import main.java.service.Service;
+import main.java.settings.AppSettings;
 import main.java.ui.templates.BaseWindow;
 import main.java.ui.templates.InternalWindow;
 
@@ -34,35 +34,45 @@ public class PrinterAppInternalTemplateEditorWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Width","Width, mm", 5,30,80,30);
 
-        String[] filesName = listFilesForFolder("src/main/resources/editor/img/");
-        internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,100,30);
+        String[] filesName = Service.listFilesForFolder(AppSettings.templateFolder);
+        internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorTemplateWindowComboBoxFiles());
 
-        internalWindow.addLabel("Pane_1","Pane_1_Label_Width","Width, mm", 5,80,80,30);
-        internalWindow.addTextField("Pane_1","Pane_1_TextField_Width","", 90,80,100,30);
+        internalWindow.addButton("Pane_1","Pane_1_Button_ClearAll","Clear All", 250,30,90,30);
+   /*     internalWindow.setButtonEnable("Pane_1_Button_ClearAll", true);*/
+        internalWindow.addButtonListener("Pane_1_Button_ClearAll", new ActionInternalEditorTemplateWindowButtonClearAll());
+
+        internalWindow.addButton("Pane_1","Pane_1_Button_Save","Save", 90,80,70,30);
+        internalWindow.setButtonEnable("Pane_1_Button_Save", false);
+        internalWindow.addButtonListener("Pane_1_Button_Save", new ActionInternalEditorTemplateWindowButtonSave());
+
+        internalWindow.addButton("Pane_1","Pane_1_Button_Clear","Clear", 170,80,70,30);
+        internalWindow.setButtonEnable("Pane_1_Button_Clear", false);
+        internalWindow.addButtonListener("Pane_1_Button_Clear", new ActionInternalEditorTemplateWindowButtonClear());
+
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Width","Width, mm", 5,130,80,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_Width","", 90,130,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_Width", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Width", new ActionInternalEditorTemplateWindowTextFields());
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_Width", new ActionInternalEditorTemplateWindowTextFields());
 
-        internalWindow.addLabel("Pane_1","Pane_1_Label_Height","Height, mm", 5,130,80,30);
-        internalWindow.addTextField("Pane_1","Pane_1_TextField_Height","", 90,130,100,30);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Height","Height, mm", 5,180,80,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_Height","", 90,180,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_Height", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Height", new ActionInternalEditorTemplateWindowTextFields());
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_Height", new ActionInternalEditorTemplateWindowTextFields());
 
-        internalWindow.addLabel("Pane_1","Pane_1_Label_Fillet","Fillet, mm", 5,180,80,30);
-        internalWindow.addTextField("Pane_1","Pane_1_TextField_Fillet","", 90,180,100,30);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Fillet","Fillet, mm", 5,230,80,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_Fillet","", 90,230,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_Fillet", (byte) 0);
         internalWindow.addTextFieldListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
 
-        internalWindow.addButton("Pane_1","Pane_1_Button_Save","Save", 90,230,100,30);
-        internalWindow.setButtonEnable("Pane_1_Button_Save", false);
-        internalWindow.addButtonListener("Pane_1_Button_Save", new ActionInternalEditorTemplateWindowButtonSave());
+
 
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",null, 0,10,100,100);
-        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 200);
+        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
         internalWindow.addInternalFrameListener(new InternalFrameAdapter(){
@@ -136,12 +146,16 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setButtonEnable("Pane_1_Button_Save", enable);
     }
 
+    public void setClearButtonEnable(boolean enable){
+        internalWindow.setButtonEnable("Pane_1_Button_Clear", enable);
+    }
+
     public void updateImage(String imagePath){
         internalWindow.updateLabelImage("ScrolPane_1","LabelImage_1",imagePath);
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = listFilesForFolder("src/main/resources/editor/img/");
+        String[] filesName = Service.listFilesForFolder(AppSettings.templateFolder);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 
@@ -149,45 +163,12 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.chooseComboBoxItem("Pane_1_ComboBox_Files", object);
     }
 
-    public static PrinterAppInternalTemplateEditorWindow getInstance(BaseWindow baseWindow)
-    {
+    public static PrinterAppInternalTemplateEditorWindow getInstance(BaseWindow baseWindow) {
         // To ensure only one instance is created
         if (single_instance == null) {
             single_instance = new PrinterAppInternalTemplateEditorWindow(baseWindow);
         }
         return single_instance;
-    }
-
-    public static String[] listFilesForFolder(String filesFolder) {
-        String[] objects = null;
-
-        File folder = new File(filesFolder);
-
-        int numObject = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                numObject++;
-            }
-        }
-
-        objects = new String[numObject];
-
-        int i = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                objects[i] = fileEntry.getName();
-                i++;
-            }
-        }
-
-
-
-
-        return objects;
     }
 
     private void updateClassFields(){

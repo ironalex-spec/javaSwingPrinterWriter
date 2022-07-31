@@ -1,6 +1,8 @@
 package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
+import main.java.service.Service;
 import main.java.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import main.java.settings.AppSettings;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
@@ -29,9 +31,18 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
                 printerAppInternalTemplateEditorWindow.setWidth(width.toString());
                 printerAppInternalTemplateEditorWindow.setHeight(height.toString());
                 printerAppInternalTemplateEditorWindow.setFillet(fillet.toString());
+            } else {
+                printerAppInternalTemplateEditorWindow.setWidth("");
+                printerAppInternalTemplateEditorWindow.setHeight("");
+                printerAppInternalTemplateEditorWindow.setFillet("");
             }
 
-            ServiceInternalTemplateEditor.updatePanelImage("src/main/resources/editor/img/" + selectedItem);
+            boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
+
+            printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
+            printerAppInternalTemplateEditorWindow.setClearButtonEnable(enableButton);
+
+            ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + selectedItem);
         }
     }
 }

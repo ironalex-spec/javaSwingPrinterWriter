@@ -1,8 +1,15 @@
 package main.java.service.internal.templateEditor;
 
+import main.java.service.Service;
+import main.java.settings.AppSettings;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ServiceInternalTemplateEditor {
     public static void updatePanelImage(String pathImage){
@@ -19,10 +26,33 @@ public class ServiceInternalTemplateEditor {
         return filename;
     }
 
+    public static void clearAllGeneratedFiles(){
+        String[] files = Service.listFilesForFolder(AppSettings.templateFolder);
+        for(String s : files){
+            if (isValidFilename(s)){
+                try {
+                    Files.delete(Paths.get(AppSettings.templateFolder + s));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    public static void clearFileByFilename(String filename){
+        if (isValidFilename(filename)){
+            try {
+                Files.delete(Paths.get(AppSettings.templateFolder + filename));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public static Integer getWidthFromFilename(String filename){
         String[] filesData = getDataFromFilename(filename);
 
-        if (filesData != null) {
+        if (isValidFilename(filename)) {
             return Integer.parseInt(filesData[1]);
         } else {
             return null;
@@ -32,7 +62,7 @@ public class ServiceInternalTemplateEditor {
     public static Integer getHeightFromFilename(String filename){
         String[] filesData = getDataFromFilename(filename);
 
-        if (filesData != null) {
+        if (isValidFilename(filename)) {
             return Integer.parseInt(filesData[2]);
         } else {
             return null;
@@ -42,7 +72,7 @@ public class ServiceInternalTemplateEditor {
     public static Integer getFilletFromFilename(String filename){
         String[] filesData = getDataFromFilename(filename);
 
-        if (filesData != null) {
+        if (isValidFilename(filename)) {
             return Integer.parseInt(filesData[3]);
         } else {
             return null;
@@ -52,10 +82,20 @@ public class ServiceInternalTemplateEditor {
     private static String[] getDataFromFilename(String filename){
         String[] split = filename.split("_");
 
-        if(split.length < 5){
-            return null;
-        } else {
+        if(isValidFilename(filename)){
             return split;
+        } else {
+            return null;
+        }
+    }
+
+    private static boolean isValidFilename(String filename){
+        String[] split = filename.split("_");
+
+        if(split.length < 5){
+            return false;
+        } else {
+            return true;
         }
     }
 }
