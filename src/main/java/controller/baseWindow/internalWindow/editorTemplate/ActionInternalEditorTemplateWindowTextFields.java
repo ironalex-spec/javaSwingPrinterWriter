@@ -18,13 +18,7 @@ public class ActionInternalEditorTemplateWindowTextFields implements ActionListe
 
     @Override
     public void keyTyped(KeyEvent e) {
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
-
-        boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
-
-        printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
     }
 
     @Override
@@ -34,6 +28,12 @@ public class ActionInternalEditorTemplateWindowTextFields implements ActionListe
 
     @Override
     public void keyReleased(KeyEvent e) {
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
+
+        printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
     }
 }

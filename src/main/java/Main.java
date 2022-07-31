@@ -16,8 +16,5 @@ public class Main {
 
     public static void main(String[] args){
         PrinterAppBaseWindow.getInstance();
-        System.out.println(ServiceInternalTemplateEditor.getWidthFromFilename("_32_22_11_.png"));
-        System.out.println(ServiceInternalTemplateEditor.getHeightFromFilename("_32_22_11_.png"));
-        System.out.println(ServiceInternalTemplateEditor.getFilletFromFilename("_32_22_11_.png"));
     }
 }
