@@ -68,8 +68,28 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.addTextFieldListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_Fillet", new ActionInternalEditorTemplateWindowTextFields());
 
+        internalWindow.addLabel("Pane_1","Pane_1_Label_TextInput","Text", 25,280,80,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_TextInput","", 90,280,100,30);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_TextInput", (byte) 0);
+        internalWindow.setTextFieldEnable("Pane_1_TextField_TextInput", false);
 
+        String[] fontNames = Service.listAvailableFonts();
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Fonts","Font", 230,250,80,30);
+        internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Fonts", fontNames, 200,280,100,30);
+        internalWindow.setComboBoxEnable("Pane_1_ComboBox_Fonts", false);
 
+        internalWindow.addLabel("Pane_1","Pane_1_Label_TextSize","Size", 310,250,80,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_TextSize","2", 310,280,30,30);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_TextSize", (byte) 0);
+        internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
+
+        internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position, mm", 25,330,120,30);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",120, 330,100,30,0, 100, 0);
+        internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
+
+        internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position, mm", 25,380,120,30);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",120, 380,100,30,0, 100, 0);
+        internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",null, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
@@ -148,6 +168,26 @@ public class PrinterAppInternalTemplateEditorWindow {
 
     public void setClearButtonEnable(boolean enable){
         internalWindow.setButtonEnable("Pane_1_Button_Clear", enable);
+    }
+
+    public void setTextTextFieldEnable(boolean enable){
+        internalWindow.setTextFieldEnable("Pane_1_TextField_TextInput", enable);
+    }
+
+    public void setXPosTextSliderEnable(boolean enable){
+        internalWindow.setSliderEnable("Pane_1_Slider_xPosText", enable);
+    }
+
+    public void setYPosTextSliderEnable(boolean enable){
+        internalWindow.setSliderEnable("Pane_1_Slider_yPosText", enable);
+    }
+
+    public void setTextSizeTextFieldEnable(boolean enable){
+        internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", enable);
+    }
+
+    public void setFontComboBoxEnable(boolean enable){
+        internalWindow.setComboBoxEnable("Pane_1_ComboBox_Fonts", enable);
     }
 
     public void updateImage(String imagePath){

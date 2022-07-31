@@ -1,6 +1,7 @@
 package main.java.controller.baseWindow.internalWindow.editorTemplate;
 
 import main.java.service.Service;
+import main.java.service.internal.templateEditor.ServiceInternalTemplateEditor;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import main.java.ui.templates.BaseWindow;
@@ -34,7 +35,6 @@ public class ActionInternalEditorTemplateWindowTextFields implements ActionListe
 
         boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
 
-        printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
-        printerAppInternalTemplateEditorWindow.setClearButtonEnable(enableButton);
+        ServiceInternalTemplateEditor.enableComponentsControl(enableButton);
     }
 }

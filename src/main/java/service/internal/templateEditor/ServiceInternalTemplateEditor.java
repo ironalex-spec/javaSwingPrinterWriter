@@ -20,6 +20,20 @@ public class ServiceInternalTemplateEditor {
         printerAppInternalTemplateEditorWindow.updateImage(pathImage);
     }
 
+    public static void enableComponentsControl(boolean enable){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enable);
+        printerAppInternalTemplateEditorWindow.setClearButtonEnable(enable);
+        printerAppInternalTemplateEditorWindow.setTextTextFieldEnable(enable);
+        printerAppInternalTemplateEditorWindow.setXPosTextSliderEnable(enable);
+        printerAppInternalTemplateEditorWindow.setYPosTextSliderEnable(enable);
+        printerAppInternalTemplateEditorWindow.setFontComboBoxEnable(enable);
+        printerAppInternalTemplateEditorWindow.setTextSizeTextFieldEnable(enable);
+    }
+
     public static String generateFilenameByPrm(int width, int height, int fillet){
         String filename = "_" + width + "_" + height + "_" + fillet + "_.png";
 

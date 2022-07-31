@@ -6,6 +6,7 @@ import main.java.ui.libClass.Swing.ScrollPane.ScrollablePicture;
 import main.java.ui.templates.window.button.WindowInternalButtonsDefinition;
 import main.java.ui.templates.window.combobox.WindowInternalComboBoxDefinition;
 import main.java.ui.templates.window.label.WindowInternalLabelsDefinition;
+import main.java.ui.templates.window.slider.WindowInternalSlidersDefinition;
 import main.java.ui.templates.window.textField.WindowInternalTextFieldsDefinition;
 
 
@@ -35,6 +36,8 @@ public class InternalWindow extends JInternalFrame{
     private WindowInternalTextFieldsDefinition windowInternalTextFieldsDefinition;
 
     private WindowInternalComboBoxDefinition windowInternalComboBoxDefinition;
+
+    private WindowInternalSlidersDefinition windowInternalSlidersDefinition;
     public InternalWindow(BaseWindow baseWindow, String title, int x, int y, int width, int height) {
         this.baseWindow = baseWindow;
 
@@ -59,6 +62,7 @@ public class InternalWindow extends JInternalFrame{
         windowInternalButtonsDefinition = new WindowInternalButtonsDefinition(this);
         windowInternalTextFieldsDefinition = new WindowInternalTextFieldsDefinition(this);
         windowInternalComboBoxDefinition = new WindowInternalComboBoxDefinition(this);
+        windowInternalSlidersDefinition = new WindowInternalSlidersDefinition(this);
 
         this.addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -69,6 +73,19 @@ public class InternalWindow extends JInternalFrame{
 
     public InternalWindow(BaseWindow baseWindow, String title){
         this(baseWindow, title, 0,0,100,100);
+    }
+
+    public void addSlider(String keyDesktopPane, String key, int x, int y, int width, int height, int minVal, int maxVal, int initValue){
+        JComponent jComponent = getComponentPane(keyDesktopPane);
+        if (jComponent == null) {jComponent = createDesktopPaneComponent(keyDesktopPane);}
+
+        windowInternalSlidersDefinition.add(jComponent, key, x, y,width, height, minVal, maxVal, initValue);
+
+        addComponentToFrame(jComponent, false);
+    }
+
+    public void setSliderEnable(String key, boolean enable){
+        windowInternalSlidersDefinition.setSliderEnable(key, enable);
     }
 
     public void addButton(String keyDesktopPane, String key, String text, int x, int y, int width, int height){
@@ -167,6 +184,10 @@ public class InternalWindow extends JInternalFrame{
         windowInternalTextFieldsDefinition.setTextFieldFormat(keyTextField, format);
     }
 
+    public void setTextFieldEnable(String key, boolean enable){
+        windowInternalTextFieldsDefinition.setTextFieldEnable(key, enable);
+    }
+
     public String getTextFieldData(String keyTextField){
         return windowInternalTextFieldsDefinition.getText(keyTextField);
     }
@@ -239,6 +260,10 @@ public class InternalWindow extends JInternalFrame{
 
     public Object getComboBoxSelectedItem(String keyTComboBox) {
         return windowInternalComboBoxDefinition.getComboBoxSelectedItem(keyTComboBox);
+    }
+
+    public void setComboBoxEnable(String key, boolean enable){
+        windowInternalComboBoxDefinition.setComboBoxEnable(key, enable);
     }
 
     public void saveComponentAsImage(String componentKey, String formatName)
@@ -357,6 +382,7 @@ public class InternalWindow extends JInternalFrame{
         windowInternalLabelsDefinition = null;
         windowInternalTextFieldsDefinition = null;
         windowInternalComboBoxDefinition = null;
+        windowInternalSlidersDefinition = null;
 
         this.removeAll();
         this.dispose();

@@ -73,6 +73,11 @@ public class WindowInternalTextFieldsDefinition implements WindowInternalElement
         jTextField.setValue(object);
     }
 
+    public void setTextFieldEnable(String keyTextField, boolean enable){
+        JFormattedTextField jTextField = textFields.get(keyTextField);
+        jTextField.setEnabled(enable);
+    }
+
     private void setTextFieldFormat(JFormattedTextField jTextField, byte format){
         DefaultFormatterFactory factory = null;
         switch (format) {

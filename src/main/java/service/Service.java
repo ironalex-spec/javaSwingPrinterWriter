@@ -1,5 +1,6 @@
 package main.java.service;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -17,6 +18,12 @@ public class Service {
         }
 
         return true;
+    }
+
+    public static String[] listAvailableFonts(){
+        String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+
+        return fonts;
     }
 
     public static String[] listFilesForFolder(String filesFolder) {

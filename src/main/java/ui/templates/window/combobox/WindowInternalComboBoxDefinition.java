@@ -34,6 +34,11 @@ public class WindowInternalComboBoxDefinition {
         comboBox.removeAllItems();
     }
 
+    public void setComboBoxEnable(String keyComboBox, boolean enable){
+        JComboBox comboBox = comboBoxes.get(keyComboBox);
+        comboBox.setEnabled(enable);
+    }
+
     public void addComboBoxItem(String keyComboBox, Object object) {
         JComboBox comboBox = comboBoxes.get(keyComboBox);
 

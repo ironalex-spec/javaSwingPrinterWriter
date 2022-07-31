@@ -39,8 +39,7 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
 
             boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
 
-            printerAppInternalTemplateEditorWindow.setSaveButtonEnable(enableButton);
-            printerAppInternalTemplateEditorWindow.setClearButtonEnable(enableButton);
+            ServiceInternalTemplateEditor.enableComponentsControl(enableButton);
 
             ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + selectedItem);
         }
