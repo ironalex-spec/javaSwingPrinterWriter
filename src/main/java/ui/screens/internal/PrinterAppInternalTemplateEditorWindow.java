@@ -1,6 +1,7 @@
 package main.java.ui.screens.internal;
 
 import main.java.controller.baseWindow.internalWindow.editorTemplate.*;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowApplyTextLabel;
 import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowComboBoxFonts;
 import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowSliders;
 import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowTextFieldTextLabel;
@@ -88,16 +89,19 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextSize", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
 
-        internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position, mm", 25,330,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",120, 330,220,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,330,120,30);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 330,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalEditorTemplateWindowSliders());
 
-
-        internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position, mm", 25,380,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",120, 380,220,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position", 25,380,120,30);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 380,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorTemplateWindowSliders());
+
+        internalWindow.addButton("Pane_1","Pane_1_Button_ApplyText","Apply", 170,430,70,30);
+        internalWindow.setButtonEnable("Pane_1_Button_ApplyText", false);
+        internalWindow.addButtonListener("Pane_1_Button_ApplyText", new ActionInternalEditorTemplateWindowApplyTextLabel());
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",null, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
@@ -200,6 +204,10 @@ public class PrinterAppInternalTemplateEditorWindow {
 
     public void setClearButtonEnable(boolean enable){
         internalWindow.setButtonEnable("Pane_1_Button_Clear", enable);
+    }
+
+    public void setApplyButtonEnable(boolean enable){
+        internalWindow.setButtonEnable("Pane_1_Button_ApplyText", enable);
     }
 
     public void setTextTextFieldEnable(boolean enable){

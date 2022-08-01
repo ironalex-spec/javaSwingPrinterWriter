@@ -2,6 +2,11 @@ package main.java.service;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class Service {
@@ -51,7 +56,29 @@ public class Service {
                 i++;
             }
         }
-
         return objects;
     }
+
+    public static boolean renameFile(String folderSource, String newFilename){
+        Path yourFile = Paths.get(folderSource);
+
+        try {
+            Files.move(yourFile, yourFile.resolveSibling(newFilename), StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean moveFileAnotherDirectory(String folderSource, String folderDest){
+        try {
+            Files.move(Paths.get(folderSource), Paths.get(folderDest), StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

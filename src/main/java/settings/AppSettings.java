@@ -9,6 +9,7 @@ public class AppSettings {
 
     public static final String templateFolder = "src/main/resources/editor/img/";
     public static final String templateTempFolder = "src/main/resources/editor/temp/";
+    public static final String TEMPLATE_TEMP_DEFAULT_NAME = "tempText.png";
 
     public static final int MAX_SLIDER_VALUE = 1000;
 }

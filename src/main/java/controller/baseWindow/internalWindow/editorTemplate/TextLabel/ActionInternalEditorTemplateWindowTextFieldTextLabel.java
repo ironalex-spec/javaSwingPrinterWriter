@@ -12,12 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ActionInternalEditorTemplateWindowTextFieldTextLabel implements ActionListener, KeyListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
+public class ActionInternalEditorTemplateWindowTextFieldTextLabel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {

@@ -35,9 +35,9 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
                 printerAppInternalTemplateEditorWindow.setWidth("");
                 printerAppInternalTemplateEditorWindow.setHeight("");
                 printerAppInternalTemplateEditorWindow.setFillet("");
-
-                ServiceInternalTemplateEditor.setDefaultControlTextLabelTemplate();
             }
+
+            ServiceInternalTemplateEditor.setDefaultControlTextLabelTemplate();
 
             boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
 

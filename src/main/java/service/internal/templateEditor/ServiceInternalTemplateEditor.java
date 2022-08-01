@@ -41,23 +41,25 @@ public class ServiceInternalTemplateEditor {
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
         String textValue = printerAppInternalTemplateEditorWindow.getTextLabel();
+        printerAppInternalTemplateEditorWindow.setApplyButtonEnable(!textValue.equals(""));
+
         Object fontValue = printerAppInternalTemplateEditorWindow.getFontChooseComboBox();
         Integer height = Integer.parseInt(printerAppInternalTemplateEditorWindow.getHeight());
         Integer width = Integer.parseInt(printerAppInternalTemplateEditorWindow.getWidth());
 
         int xPosSlider = printerAppInternalTemplateEditorWindow.getXPosTextSliderValue();
         float xOffcet = sliderToFloatRecalc(xPosSlider);
-        int xOffcet_mm = (int)(xOffcet * (float) width.intValue());
+        int xOffcet_mm = (int)(xOffcet * (float) width.intValue() / 2);
 
         int yPosSlider = printerAppInternalTemplateEditorWindow.getYPosTextSliderValue();
         float yOffcet = sliderToFloatRecalc(yPosSlider);
-        int yOffcet_mm = (int)(yOffcet * (float) height.intValue());
+        int yOffcet_mm = (int)(yOffcet * (float) height.intValue() / 2);
 
         Object selectedFile = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
 
-        ServicePrintTextAsImage.addImgText(AppSettings.templateFolder + selectedFile, AppSettings.templateTempFolder + "tempText.png", width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,10, (String) fontValue);
+        ServicePrintTextAsImage.addImgText(AppSettings.templateFolder + selectedFile, AppSettings.templateTempFolder + AppSettings.TEMPLATE_TEMP_DEFAULT_NAME, width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,10, (String) fontValue);
 
-        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateTempFolder + "tempText.png");
+        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateTempFolder + AppSettings.TEMPLATE_TEMP_DEFAULT_NAME);
     }
 
     public static void setDefaultControlTextLabelTemplate(){
@@ -65,6 +67,7 @@ public class ServiceInternalTemplateEditor {
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
         printerAppInternalTemplateEditorWindow.setTextLabel("");
+        printerAppInternalTemplateEditorWindow.setApplyButtonEnable(false);
     }
 
 
