@@ -12,6 +12,7 @@ import main.java.ui.templates.window.textField.WindowInternalTextFieldsDefinitio
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -86,6 +87,14 @@ public class InternalWindow extends JInternalFrame{
 
     public void setSliderEnable(String key, boolean enable){
         windowInternalSlidersDefinition.setSliderEnable(key, enable);
+    }
+
+    public int getSliderValue(String key){
+        return windowInternalSlidersDefinition.getValue(key);
+    }
+
+    public void addSliderListener(String key, ChangeListener changeListener){
+        windowInternalSlidersDefinition.addChangeListener(key, changeListener);
     }
 
     public void addButton(String keyDesktopPane, String key, String text, int x, int y, int width, int height){

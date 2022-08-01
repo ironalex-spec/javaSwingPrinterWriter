@@ -1,6 +1,7 @@
 package main.java.service.internal.templateEditor;
 
 import main.java.service.Service;
+import main.java.service.print.ServicePrintTextAsImage;
 import main.java.settings.AppSettings;
 import main.java.ui.screens.PrinterAppBaseWindow;
 import main.java.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
@@ -33,6 +34,39 @@ public class ServiceInternalTemplateEditor {
         printerAppInternalTemplateEditorWindow.setFontComboBoxEnable(enable);
         printerAppInternalTemplateEditorWindow.setTextSizeTextFieldEnable(enable);
     }
+
+    public static void refreshTemplateWithTextParameters(){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        String textValue = printerAppInternalTemplateEditorWindow.getTextLabel();
+        Object fontValue = printerAppInternalTemplateEditorWindow.getFontChooseComboBox();
+        Integer height = Integer.parseInt(printerAppInternalTemplateEditorWindow.getHeight());
+        Integer width = Integer.parseInt(printerAppInternalTemplateEditorWindow.getWidth());
+
+        int xPosSlider = printerAppInternalTemplateEditorWindow.getXPosTextSliderValue();
+        float xOffcet = sliderToFloatRecalc(xPosSlider);
+        int xOffcet_mm = (int)(xOffcet * (float) width.intValue());
+
+        int yPosSlider = printerAppInternalTemplateEditorWindow.getYPosTextSliderValue();
+        float yOffcet = sliderToFloatRecalc(yPosSlider);
+        int yOffcet_mm = (int)(yOffcet * (float) height.intValue());
+
+        Object selectedFile = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
+
+        ServicePrintTextAsImage.addImgText(AppSettings.templateFolder + selectedFile, AppSettings.templateTempFolder + "tempText.png", width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,10, (String) fontValue);
+
+        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateTempFolder + "tempText.png");
+    }
+
+    public static void setDefaultControlTextLabelTemplate(){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+        PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
+
+        printerAppInternalTemplateEditorWindow.setTextLabel("");
+    }
+
 
     public static String generateFilenameByPrm(int width, int height, int fillet){
         String filename = "_" + width + "_" + height + "_" + fillet + "_.png";
@@ -111,5 +145,9 @@ public class ServiceInternalTemplateEditor {
         } else {
             return true;
         }
+    }
+
+    private static float sliderToFloatRecalc(int slider){
+        return  (float)(slider / (1.0 * AppSettings.MAX_SLIDER_VALUE));
     }
 }

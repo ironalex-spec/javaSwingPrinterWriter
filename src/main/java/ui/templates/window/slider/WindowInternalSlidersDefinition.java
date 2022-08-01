@@ -45,4 +45,9 @@ public class WindowInternalSlidersDefinition {
         JSlider slider = sliders.get(key);
         slider.addChangeListener(changeListener);
     }
+
+    public int getValue(String key) {
+        JSlider slider = sliders.get(key);
+        return slider.getValue();
+    }
 }

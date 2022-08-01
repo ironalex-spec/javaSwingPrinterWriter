@@ -18,7 +18,7 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
 
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
-        Object selectedItem = printerAppInternalTemplateEditorWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Files");
+        Object selectedItem = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
 
         if (selectedItem != null) {
             String filename = (String) selectedItem;
@@ -35,6 +35,8 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
                 printerAppInternalTemplateEditorWindow.setWidth("");
                 printerAppInternalTemplateEditorWindow.setHeight("");
                 printerAppInternalTemplateEditorWindow.setFillet("");
+
+                ServiceInternalTemplateEditor.setDefaultControlTextLabelTemplate();
             }
 
             boolean enableButton = Service.isAllDataNumericInteger(printerAppInternalTemplateEditorWindow.getTextFieldsValues());

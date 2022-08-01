@@ -18,7 +18,7 @@ public class ActionInternalEditorTemplateWindowButtonClear implements ActionList
 
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
-        Object selectedItem = printerAppInternalTemplateEditorWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Files");
+        Object selectedItem = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
 
         ServiceInternalTemplateEditor.clearFileByFilename((String) selectedItem);
 

@@ -8,4 +8,7 @@ public class AppSettings {
     public static final int PPI_CM_Screen = (int) (PPI_INCH_Screen / inchToCmValue);
 
     public static final String templateFolder = "src/main/resources/editor/img/";
+    public static final String templateTempFolder = "src/main/resources/editor/temp/";
+
+    public static final int MAX_SLIDER_VALUE = 1000;
 }

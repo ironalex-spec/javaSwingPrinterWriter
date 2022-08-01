@@ -1,6 +1,9 @@
 package main.java.ui.screens.internal;
 
 import main.java.controller.baseWindow.internalWindow.editorTemplate.*;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowComboBoxFonts;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowSliders;
+import main.java.controller.baseWindow.internalWindow.editorTemplate.TextLabel.ActionInternalEditorTemplateWindowTextFieldTextLabel;
 import main.java.service.Service;
 import main.java.settings.AppSettings;
 import main.java.ui.templates.BaseWindow;
@@ -9,7 +12,6 @@ import main.java.ui.templates.InternalWindow;
 import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import java.io.File;
 import java.util.ArrayList;
 
 public class PrinterAppInternalTemplateEditorWindow {
@@ -20,6 +22,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     private String sValue_Input_Width = null;
     private String sValue_Input_Height = null;
     private String sValue_Input_Fillet = null;
+    private String sValue_Input_TextLabel = null;
 
 
     public PrinterAppInternalTemplateEditorWindow(BaseWindow baseWindow){
@@ -72,11 +75,13 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextInput","", 90,280,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextInput", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextInput", false);
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextInput", new ActionInternalEditorTemplateWindowTextFieldTextLabel());
 
         String[] fontNames = Service.listAvailableFonts();
         internalWindow.addLabel("Pane_1","Pane_1_Label_Fonts","Font", 230,250,80,30);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Fonts", fontNames, 200,280,100,30);
         internalWindow.setComboBoxEnable("Pane_1_ComboBox_Fonts", false);
+        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Fonts", new ActionInternalEditorTemplateWindowComboBoxFonts());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_TextSize","Size", 310,250,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextSize","2", 310,280,30,30);
@@ -84,12 +89,15 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position, mm", 25,330,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",120, 330,100,30,0, 100, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",120, 330,220,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
+        internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalEditorTemplateWindowSliders());
+
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position, mm", 25,380,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",120, 380,100,30,0, 100, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",120, 380,220,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
+        internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorTemplateWindowSliders());
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",null, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
@@ -110,8 +118,20 @@ public class PrinterAppInternalTemplateEditorWindow {
         return  printerAppBaseWindow;
     }
 
-    public Object getComboBoxSelectedItem(String keyComboBox){
-        return  internalWindow.getComboBoxSelectedItem(keyComboBox);
+    public Object getFileTemplateChooseComboBox(){
+        return  internalWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Files");
+    }
+
+    public Object getFontChooseComboBox(){
+        return  internalWindow.getComboBoxSelectedItem("Pane_1_ComboBox_Fonts");
+    }
+
+    public int getXPosTextSliderValue(){
+        return  internalWindow.getSliderValue("Pane_1_Slider_xPosText");
+    }
+
+    public int getYPosTextSliderValue(){
+        return  internalWindow.getSliderValue("Pane_1_Slider_yPosText");
     }
 
     public ArrayList<Object> getTextFieldsValues(){
@@ -144,6 +164,12 @@ public class PrinterAppInternalTemplateEditorWindow {
         return sValue_Input_Fillet;
     }
 
+    public String getTextLabel(){
+        setTextLabelClassField();
+
+        return sValue_Input_TextLabel;
+    }
+
     public void setFillet(String fillet){
         sValue_Input_Fillet = fillet;
 
@@ -160,6 +186,12 @@ public class PrinterAppInternalTemplateEditorWindow {
         sValue_Input_Height = height;
 
         internalWindow.setTextFieldData("Pane_1_TextField_Height", sValue_Input_Height);
+    }
+
+    public void setTextLabel(String textLabel){
+        sValue_Input_TextLabel = textLabel;
+
+        internalWindow.setTextFieldData("Pane_1_TextField_TextInput", sValue_Input_TextLabel);
     }
 
     public void setSaveButtonEnable(boolean enable){
@@ -227,6 +259,10 @@ public class PrinterAppInternalTemplateEditorWindow {
 
     private void setHeightClassField(){
         sValue_Input_Height = internalWindow.getTextFieldData("Pane_1_TextField_Height");
+    }
+
+    private void setTextLabelClassField(){
+        sValue_Input_TextLabel = internalWindow.getTextFieldData("Pane_1_TextField_TextInput");
     }
 
     private void  clearInternalWindowInstance(){
