@@ -1,10 +1,10 @@
 package test.java;
 
-import main.java.controller.HomeController;
-import main.java.controller.MyFirstTextFieldActionController;
-import main.java.ui.templates.InternalWindow;
-import main.java.controller.MyFirstButtonActionController;
-import main.java.ui.templates.BaseWindow;
+import lib.controller.HomeController;
+import lib.controller.MyFirstTextFieldActionController;
+import lib.ui.templates.InternalWindow;
+import lib.controller.MyFirstButtonActionController;
+import lib.ui.templates.BaseWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,8 +1,7 @@
 package test.java;
 
-import main.java.service.print.ServicePrintRoundedRectangleAsImage;
-import main.java.service.print.ServicePrintTextAsImage;
-import main.java.settings.AppSettings;
+import lib.service.print.ServicePrintRoundedRectangleAsImage;
+import lib.service.print.ServicePrintTextAsImage;
 
 public class TestPrintingImages {
     public static void main(String[] args) {
