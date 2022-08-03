@@ -4,6 +4,7 @@ package lib.ui.templates;
 import lib.ui.templates.window.button.WindowButtonsDefinition;
 import lib.ui.templates.window.label.WindowLabelsDefinition;
 import lib.ui.templates.window.menu.MenuBarDefinition;
+import lib.ui.templates.window.menu.MenuDefinition;
 import lib.ui.templates.window.textField.WindowTextFieldsDefinition;
 
 import javax.swing.*;
@@ -117,12 +118,24 @@ public class BaseWindow extends  JFrame{
         menuBarDefinition.addMenuItem(keyMenu, keyItem, name, width, height);
     }
 
-    public void addSubMenu(String keyMenu, String keySubmenu, String name){
-        menuBarDefinition.addSubMenu(keyMenu, keySubmenu, name);
+    public void addSubMenu(String keyMenu, String keySubmenu, String name, int width, int height){
+        menuBarDefinition.addSubMenu(keyMenu, keySubmenu, name, width, height);
     }
 
     public void addSubMenuItem(String keyMenu, String keySubmenu, String keySubmenuItem, String name){
         menuBarDefinition.addSubMenuItem(keyMenu, keySubmenu, keySubmenuItem, name);
+    }
+
+    public String getSubMenuItemName(String keyMenu, String keySubMenu, String keySubMenuItem){
+        return menuBarDefinition.getSubMenuItemName(keyMenu, keySubMenu, keySubMenuItem);
+    }
+
+    public void setMenuEnable(String keyMenu, boolean enable){
+        menuBarDefinition.setMenuEnable(keyMenu, enable);
+    }
+
+    public void setMenuText(String keyMenu, String text){
+        menuBarDefinition.setMenuText(keyMenu, text);
     }
 
     public void addMenuListener(String keyMenu, MenuListener menuListener){

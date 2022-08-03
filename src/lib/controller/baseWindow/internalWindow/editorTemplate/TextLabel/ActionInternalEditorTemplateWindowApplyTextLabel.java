@@ -20,8 +20,8 @@ public class ActionInternalEditorTemplateWindowApplyTextLabel implements ActionL
 
         Object selectedFile = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
 
-        if (Service.renameFile(AppSettings.templateTempFolder + AppSettings.TEMPLATE_TEMP_DEFAULT_NAME, (String) selectedFile)) {
-            Service.moveFileAnotherDirectory(AppSettings.templateTempFolder + (String) selectedFile, AppSettings.templateFolder + (String) selectedFile);
+        if (Service.renameFile(AppSettings.TEMPLATE_TEMP_FOLDER + AppSettings.TEMPLATE_TEMP_DEFAULT_NAME, (String) selectedFile)) {
+            Service.moveFileAnotherDirectory(AppSettings.TEMPLATE_TEMP_FOLDER + (String) selectedFile, AppSettings.TEMPLATE_FOLDER + (String) selectedFile);
 
             ServiceInternalTemplateEditor.setDefaultControlTextLabelTemplate();
         }

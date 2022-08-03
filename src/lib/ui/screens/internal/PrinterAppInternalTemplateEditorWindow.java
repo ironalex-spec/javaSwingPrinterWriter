@@ -24,7 +24,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     private String sValue_Input_TextSizeLabel = null;
 
 
-    public PrinterAppInternalTemplateEditorWindow(BaseWindow baseWindow){
+    private PrinterAppInternalTemplateEditorWindow(BaseWindow baseWindow){
         printerAppBaseWindow =  baseWindow;
 
         internalWindow = new InternalWindow(baseWindow, "Template editor", 0,0,baseWindow.getWidth() - 10,baseWindow.getHeight()-60);
@@ -34,9 +34,9 @@ public class PrinterAppInternalTemplateEditorWindow {
             e.printStackTrace();
         }
 
-        internalWindow.addLabel("Pane_1","Pane_1_Label_Width","Width, mm", 5,30,80,30);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Template", 5,30,80,30);
 
-        String[] filesName = Service.listFilesForFolder(AppSettings.templateFolder);
+        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorTemplateWindowComboBoxFiles());
 
@@ -104,7 +104,7 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setButtonEnable("Pane_1_Button_ApplyText", false);
         internalWindow.addButtonListener("Pane_1_Button_ApplyText", new ActionInternalEditorTemplateWindowApplyTextLabel());
 
-        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",null, 0,10,100,100);
+        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
@@ -256,7 +256,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = Service.listFilesForFolder(AppSettings.templateFolder);
+        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 

@@ -37,7 +37,7 @@ public class TestBaseWindow {
                 baseWindow.addMenuItem("MyMenu1", "MyMenu1Item1", "Item 1", 100,100);
                 baseWindow.addMenuItemActionListener("MyMenu1", "MyMenu1Item1", new MyFirstMenuI1tem1Controller());
                 baseWindow.addMenuItem("MyMenu1", "MyMenu1Item2", "Item 2", 100,100);
-                baseWindow.addSubMenu("MyMenu1", "MyMenu1Sub1", "Submenu1");
+                baseWindow.addSubMenu("MyMenu1", "MyMenu1Sub1", "Submenu1", 100, 100);
                 baseWindow.addSubMenuItem("MyMenu1", "MyMenu1Sub1","MyMenu1Sub1Item1","Item 1");
                 baseWindow.addSubMenuItemActionListener("MyMenu1", "MyMenu1Sub1","MyMenu1Sub1Item1", new MyFirstMenuI1tem1Controller());
 

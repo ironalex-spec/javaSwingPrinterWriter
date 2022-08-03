@@ -1,4 +1,4 @@
-package lib.service.print;
+package lib.service.paint;
 
 import lib.settings.AppSettings;
 
@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class ServicePrintRoundedRectangleAsImage {
+public class ServicePaintRoundedRectangleAsImage {
 
     public static void savePrintRectangleImage(String path, int width_mm, int height_mm, int radius_mm, int borderWidthPx){
         try {

@@ -37,14 +37,24 @@ public class MenuBarDefinition {
         menuDefinition.addMenuItem(keyItem, name, width, height);
     }
 
-    public void addSubMenu(String keyMenu, String keySubmenu, String name){
+    public void addSubMenu(String keyMenu, String keySubmenu, String name, int width, int height){
         MenuDefinition menuDefinition = menus.get(keyMenu);
-        menuDefinition.addSubMenu(keySubmenu, name);
+        menuDefinition.addSubMenu(keySubmenu, name, width, height);
     }
 
     public void addSubMenuItem(String keyMenu, String keySubmenu, String keySubmenuItem, String name){
         MenuDefinition menuDefinition = menus.get(keyMenu);
         menuDefinition.addSubMenuItem(keySubmenu, keySubmenuItem, name);
+    }
+
+    public void setMenuEnable(String keyMenu, boolean enable){
+        MenuDefinition menuDefinition = menus.get(keyMenu);
+        menuDefinition.setMenuEnable(enable);
+    }
+
+    public void setMenuText(String keyMenu, String text){
+        MenuDefinition menuDefinition = menus.get(keyMenu);
+        menuDefinition.setMenuText(text);
     }
 
     public void addMenuListener(String keyMenu, MenuListener menuListener){
@@ -68,5 +78,11 @@ public class MenuBarDefinition {
         MenuDefinition menuDefinition = menus.get(keyMenu);
 
         menuDefinition.addSubMenuItemActionListener(keySubMenu, keySubMenuItem, actionListener);
+    }
+
+    public String getSubMenuItemName(String keyMenu, String keySubMenu, String keySubMenuItem){
+        MenuDefinition menuDefinition = menus.get(keyMenu);
+
+        return menuDefinition.getSubMenuItemName(keySubMenu, keySubMenuItem);
     }
 }

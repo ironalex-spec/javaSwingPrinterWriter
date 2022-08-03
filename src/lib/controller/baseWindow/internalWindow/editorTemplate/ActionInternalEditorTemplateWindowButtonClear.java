@@ -1,6 +1,7 @@
 package lib.controller.baseWindow.internalWindow.editorTemplate;
 
 
+import lib.service.file.ServiceFile;
 import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
@@ -21,12 +22,12 @@ public class ActionInternalEditorTemplateWindowButtonClear implements ActionList
 
         Object selectedItem = printerAppInternalTemplateEditorWindow.getFileTemplateChooseComboBox();
 
-        ServiceInternalTemplateEditor.clearFileByFilename((String) selectedItem);
+        ServiceFile.clearFileByFilename((String) selectedItem);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
         printerAppInternalTemplateEditorWindow.chooseComboBoxObject(AppSettings.TEMPLATE_DEFAULT_NAME);
 
-        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + AppSettings.TEMPLATE_DEFAULT_NAME);
+        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME);
     }
 }

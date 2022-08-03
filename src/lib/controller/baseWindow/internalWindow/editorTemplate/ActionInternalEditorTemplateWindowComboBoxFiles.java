@@ -1,6 +1,7 @@
 package lib.controller.baseWindow.internalWindow.editorTemplate;
 
 import lib.service.Service;
+import lib.service.file.ServiceFile;
 import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
@@ -23,9 +24,9 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
         if (selectedItem != null) {
             String filename = (String) selectedItem;
 
-            Integer width = ServiceInternalTemplateEditor.getWidthFromFilename(filename);
-            Integer height = ServiceInternalTemplateEditor.getHeightFromFilename(filename);
-            Integer fillet = ServiceInternalTemplateEditor.getFilletFromFilename(filename);
+            Integer width = ServiceFile.getWidthFromFilename(filename);
+            Integer height = ServiceFile.getHeightFromFilename(filename);
+            Integer fillet = ServiceFile.getFilletFromFilename(filename);
 
             if (width != null && height != null && fillet != null) {
                 printerAppInternalTemplateEditorWindow.setWidth(width.toString());
@@ -43,7 +44,7 @@ public class ActionInternalEditorTemplateWindowComboBoxFiles implements ActionLi
 
             ServiceInternalTemplateEditor.enableComponentsControl(enableButton);
 
-            ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + selectedItem);
+            ServiceInternalTemplateEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + selectedItem);
         }
     }
 }

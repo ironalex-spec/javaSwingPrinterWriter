@@ -16,6 +16,7 @@ public class SubMenuDefinition {
     public void addSubMenuItem(String key, String name){
         JMenuItem jMenuItem = new JMenuItem(name);
 
+
         jSubMenu.add(jMenuItem);
         subMenuItems.put(key, jMenuItem);
     }
@@ -28,5 +29,10 @@ public class SubMenuDefinition {
         JMenuItem jMenuItem = subMenuItems.get(keySubMenuItem);
 
         jMenuItem.addActionListener(actionListener);
+    }
+
+    public String getSubMenuItemName(String keySubMenuItem){
+        JMenuItem jMenuItem = subMenuItems.get(keySubMenuItem);
+        return jMenuItem.getName();
     }
 }

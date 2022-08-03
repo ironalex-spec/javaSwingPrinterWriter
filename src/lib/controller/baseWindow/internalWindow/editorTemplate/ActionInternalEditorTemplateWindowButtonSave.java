@@ -1,8 +1,9 @@
 package lib.controller.baseWindow.internalWindow.editorTemplate;
 
 
+import lib.service.file.ServiceFile;
 import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
-import lib.service.print.ServicePrintRoundedRectangleAsImage;
+import lib.service.paint.ServicePaintRoundedRectangleAsImage;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
@@ -25,13 +26,13 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
         int width = Integer.parseInt(printerAppInternalTemplateEditorWindow.getWidth());
         int fillet = Integer.parseInt(printerAppInternalTemplateEditorWindow.getFillet());
 
-        String filename = ServiceInternalTemplateEditor.generateFilenameByPrm(width, height, fillet);
+        String filename = ServiceFile.generateFilenameByPrm(width, height, fillet);
 
-        ServicePrintRoundedRectangleAsImage.savePrintRectangleImage(AppSettings.templateFolder + filename,width,height, fillet,1);
+        ServicePaintRoundedRectangleAsImage.savePrintRectangleImage(AppSettings.TEMPLATE_FOLDER + filename,width,height, fillet,1);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
-        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.templateFolder + filename);
+        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + filename);
 
         printerAppInternalTemplateEditorWindow.chooseComboBoxObject(filename);
     }

@@ -16,8 +16,14 @@ public class MenuDefinition {
         this.jMenu = jMenu;
     }
 
-    public void addSubMenu(String key, String name){
+    public void addSubMenu(String key, String name, int width, int height){
         JMenu submenu = new JMenu(name);
+
+        submenu.setMaximumSize(new Dimension(width, height));
+        submenu.setMinimumSize(new Dimension(width, height));
+        submenu.setPreferredSize(new Dimension(width, height));
+        submenu.setHorizontalAlignment(SwingConstants.RIGHT);
+
         SubMenuDefinition subMenusDefinition = new SubMenuDefinition(submenu);
 
         jMenu.add(submenu);
@@ -45,6 +51,14 @@ public class MenuDefinition {
         jMenu.addMenuListener(menuListener);
     }
 
+    public void setMenuEnable(boolean enable){
+        jMenu.setEnabled(enable);
+    }
+
+    public void setMenuText(String text){
+        jMenu.setText(text);
+    }
+
     public void addMenuItemActionListener(String keyItem, ActionListener actionListener){
         JMenuItem jMenuItem = menuItems.get(keyItem);
 
@@ -61,5 +75,11 @@ public class MenuDefinition {
         SubMenuDefinition subMenuDefinition = subMenus.get(keySubMenu);
 
         subMenuDefinition.addSubMenuItemActionListener(keySubMenuItem, actionListener);
+    }
+
+    public String getSubMenuItemName(String keySubMenu, String keySubMenuItem){
+        SubMenuDefinition subMenuDefinition = subMenus.get(keySubMenu);
+
+        return subMenuDefinition.getSubMenuItemName(keySubMenuItem);
     }
 }

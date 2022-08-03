@@ -1,4 +1,4 @@
-package lib.service.print;
+package lib.service.paint;
 
 import lib.settings.AppSettings;
 
@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class ServicePrintTextAsImage {
+public class ServicePaintTextAsImage {
 
     public static void addImgText(String pathBaseImg, String pathWithText, int width_mm, int height_mm, int x_offcet_mm, int y_offcet_mm, String text, int textSize, String fontName){
         try {

@@ -1,5 +1,7 @@
 package lib.service;
 
+import lib.settings.AppSettings;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -87,6 +89,10 @@ public class Service {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static float sliderToFloatRecalc(int slider){
+        return  (float)(slider / (1.0 * AppSettings.MAX_SLIDER_VALUE));
     }
 
 }
