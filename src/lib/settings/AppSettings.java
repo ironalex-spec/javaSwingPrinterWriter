@@ -16,5 +16,11 @@ public class AppSettings {
     public static final String TEMPLATE_PRINTING_FOLDER = "D:/java/MyPrinterApp/resources/editor/img/printing/";
     public static final String TEMPLATE_PRINTING_NAME = "printer.png";
 
+
+    public static final String IMAGE_MAGICK_API_FOLDER = "C:/Program Files/ImageMagick-7.1.0-Q16-HDRI/";
+
+    public static final String LABEL_EXTERNAL_PCX_FOLDER = "D:/java/MyPrinterApp/resources/label/";
+    public static final String LABEL_PCX_TO_PNG_FOLDER = "D:/java/MyPrinterApp/resources/label/PNG/";
+
     public static final int MAX_SLIDER_VALUE = 1000;
 }

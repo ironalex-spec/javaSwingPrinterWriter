@@ -4,6 +4,7 @@ import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewController;
 import lib.controller.MyFirstMenuI1tem1Controller;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
+import lib.service.file.ImageMagicAPI;
 import lib.service.print.ServicePrint;
 import lib.ui.templates.BaseWindow;
 
@@ -38,9 +39,14 @@ public class PrinterAppBaseWindow {
         printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_NewTemplate", "Template editor", 100, 20);
         printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_NewTemplate", new ActionBaseWindowMenuFileNewTemplateController());
 
-        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_New", "Print", 100, 20);
+        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_New", "Print template", 100, 20);
         printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_New", new ActionBaseWindowMenuFileNewController());
 
+        if(ImageMagicAPI.getInstance().isAPIInstalled()) {
+            printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_FileLabel", "Print from file", 100, 20);
+            /*  printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_FileLabel", new ActionBaseWindowMenuFileNewController());
+             */
+        }
 
         printerAppBaseWindow.addSubMenu("Menu_Printer", "Menu_Printer_Submenu_Set", "Set", 100, 20);
          if(printerNames != null) {

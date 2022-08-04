@@ -1,3 +1,4 @@
+import lib.service.file.ImageMagicAPI;
 import lib.service.print.ServicePrint;
 import lib.ui.screens.PrinterAppBaseWindow;
 
@@ -13,6 +14,7 @@ public class Main {
     }
 
     public static void main(String[] args){
+        ImageMagicAPI.getInstance();
         PrinterAppBaseWindow.getInstance();
     }
 }
