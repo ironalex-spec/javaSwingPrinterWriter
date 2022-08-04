@@ -67,10 +67,14 @@ public class PrinterAppBaseWindow {
         return single_instance;
     }
 
+    public String getSelectedPrinter(){
+        return selectedPrinter;
+    }
+
 
 
     private void callStaticMethods(){
-        printerNames = ServicePrint.getAvailiblePrinter();
+        printerNames = ServicePrint.getAvailiblePrinters();
     }
 
     /*public void getSelectedMenuPrinter(){

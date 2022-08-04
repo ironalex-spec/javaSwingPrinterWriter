@@ -91,6 +91,16 @@ public class Service {
         }
     }
 
+    public static boolean copyFileAnotherDirectory(String folderSource, String folderDest){
+        try {
+            Files.copy(Paths.get(folderSource), Paths.get(folderDest), StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static float sliderToFloatRecalc(int slider){
         return  (float)(slider / (1.0 * AppSettings.MAX_SLIDER_VALUE));
     }

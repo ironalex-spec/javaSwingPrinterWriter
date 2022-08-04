@@ -1,6 +1,7 @@
 package lib.controller.baseWindow.internalWindow.editor;
 
 
+import lib.service.Service;
 import lib.service.file.ServiceFile;
 import lib.service.internal.editor.ServiceInternalEditor;
 import lib.settings.AppSettings;
@@ -23,25 +24,17 @@ public class ActionInternalEditorWindowComboBoxFiles implements ActionListener {
         Object selectedItem = printerAppInternalEditorWindow.getFileTemplateChooseComboBox();
 
         if (selectedItem != null) {
-            String filename = (String) selectedItem;
-
-            Integer width = ServiceFile.getWidthFromFilename(filename);
-            Integer height = ServiceFile.getHeightFromFilename(filename);
-            Integer fillet = ServiceFile.getFilletFromFilename(filename);
-
-            if (width != null && height != null && fillet != null) {
-                ;
-            } else {
-                ;
-            }
-
             ServiceInternalEditor.setDefaultControlTextLabelTemplate();
 
-            boolean enableButton = !((String) selectedItem).equals(AppSettings.TEMPLATE_DEFAULT_NAME);
+            boolean enableTextControl = ServiceInternalEditor.isEnableComponentTextControl();
 
-            ServiceInternalEditor.enableComponentsControl(enableButton);
+            ServiceInternalEditor.enableComponentsControl(enableTextControl);
 
             ServiceInternalEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + selectedItem);
+
+            printerAppInternalEditorWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
+
+            Service.copyFileAnotherDirectory(AppSettings.TEMPLATE_FOLDER + selectedItem, AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
         }
     }
 }

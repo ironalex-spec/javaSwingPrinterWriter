@@ -29,6 +29,18 @@ public class ServiceInternalEditor {
         printerAppInternalEditorWindow.setTextSizeTextFieldEnable(enable);
     }
 
+    public static boolean isEnableComponentTextControl(){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+
+        PrinterAppInternalEditorWindow printerAppInternalEditorWindow = PrinterAppInternalEditorWindow.getInstance(baseWindow);
+
+        Object selectedItem = printerAppInternalEditorWindow.getFileTemplateChooseComboBox();
+
+        boolean enableTextControl = !((String) selectedItem).equals(AppSettings.TEMPLATE_DEFAULT_NAME);
+
+        return enableTextControl;
+    }
+
     public static void refreshTemplateWithTextParameters(){
         BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
@@ -43,7 +55,6 @@ public class ServiceInternalEditor {
                 Integer width = ServiceFile.getWidthFromFilename((String) filenameChoose);
 
                 String textValue = printerAppInternalEditorWindow.getTextLabel();
-                printerAppInternalEditorWindow.setPrintButtonEnable(!textValue.equals(""));
 
                 Object fontValue = printerAppInternalEditorWindow.getFontChooseComboBox();
 

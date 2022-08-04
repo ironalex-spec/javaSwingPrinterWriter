@@ -7,6 +7,7 @@ import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalE
 import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalEditorWindowTextSizeLabel;
 import lib.service.Service;
 import lib.settings.AppSettings;
+import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
 
@@ -66,9 +67,10 @@ public class PrinterAppInternalEditorWindow {
         internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorWindowSliders());
 
         internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,230,70,30);
+        /*String choosePrinterName = PrinterAppBaseWindow.getInstance().getSelectedPrinter();*/
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
-        /*internalWindow.addButtonListener("Pane_1_Button_ApplyText", new ActionInternalEditorTemplateWindowApplyTextLabel());
-*/
+        internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalEditorWindowButtonPrint());
+
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
@@ -179,6 +181,10 @@ public class PrinterAppInternalEditorWindow {
             single_instance = new PrinterAppInternalEditorWindow(baseWindow);
         }
         return single_instance;
+    }
+
+    public static boolean isExistInstance() {
+        return single_instance != null;
     }
 
     private void setTextLabelClassField(){
