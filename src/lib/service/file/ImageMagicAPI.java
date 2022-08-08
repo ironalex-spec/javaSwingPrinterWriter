@@ -2,15 +2,9 @@ package lib.service.file;
 
 import lib.service.Service;
 import lib.settings.AppSettings;
-import lib.ui.screens.internal.PrinterAppInternalEditorWindow;
-import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
-import lib.ui.templates.BaseWindow;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class ImageMagicAPI {
     private static ImageMagicAPI single_instance = null;

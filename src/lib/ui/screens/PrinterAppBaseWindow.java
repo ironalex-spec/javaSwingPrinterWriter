@@ -1,8 +1,9 @@
 package lib.ui.screens;
 
-import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewController;
+import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
+import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.MyFirstMenuI1tem1Controller;
-import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileNewTemplateController;
+import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
 import lib.service.file.ImageMagicAPI;
 import lib.service.print.ServicePrint;
@@ -37,15 +38,16 @@ public class PrinterAppBaseWindow {
 
         printerAppBaseWindow.setMenuEnable("Menu_SelectPrinter", false);
         printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_NewTemplate", "Template editor", 100, 20);
-        printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_NewTemplate", new ActionBaseWindowMenuFileNewTemplateController());
+        printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_NewTemplate", new ActionBaseWindowMenuFileTemplateEditorController());
 
-        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_New", "Print template", 100, 20);
-        printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_New", new ActionBaseWindowMenuFileNewController());
+        printerAppBaseWindow.addSubMenu("Menu_File", "Menu_File_Submenu_Print", "Print", 100, 20);
+
+        printerAppBaseWindow.addSubMenuItem("Menu_File","Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Template", "Template");
+        printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print","Menu_File_Submenu_Print_Item_Template", new ActionBaseWindowMenuFilePrintTemplateController());
 
         if(ImageMagicAPI.getInstance().isAPIInstalled()) {
-            printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_FileLabel", "Print from file", 100, 20);
-            /*  printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_FileLabel", new ActionBaseWindowMenuFileNewController());
-             */
+            printerAppBaseWindow.addSubMenuItem("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", "Label");
+            printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", new ActionBaseWindowMenuFilePrintLabelController());
         }
 
         printerAppBaseWindow.addSubMenu("Menu_Printer", "Menu_Printer_Submenu_Set", "Set", 100, 20);
@@ -77,9 +79,8 @@ public class PrinterAppBaseWindow {
         return selectedPrinter;
     }
 
-
-
     private void callStaticMethods(){
+        ImageMagicAPI.getInstance();
         printerNames = ServicePrint.getAvailiblePrinters();
     }
 

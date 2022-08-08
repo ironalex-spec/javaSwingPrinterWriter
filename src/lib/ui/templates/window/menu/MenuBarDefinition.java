@@ -20,7 +20,7 @@ public class MenuBarDefinition {
         menu.setMaximumSize(new Dimension(width, height));
         menu.setMinimumSize(new Dimension(width, height));
         menu.setPreferredSize(new Dimension(width, height));
-        menu.setHorizontalAlignment(SwingConstants.RIGHT);
+        /*menu.setHorizontalAlignment(SwingConstants.RIGHT);*/
 
         MenuDefinition menusDefinition = new MenuDefinition(menu);
 

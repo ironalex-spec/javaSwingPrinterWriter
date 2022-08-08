@@ -22,7 +22,7 @@ public class MenuDefinition {
         submenu.setMaximumSize(new Dimension(width, height));
         submenu.setMinimumSize(new Dimension(width, height));
         submenu.setPreferredSize(new Dimension(width, height));
-        submenu.setHorizontalAlignment(SwingConstants.RIGHT);
+        /*submenu.setHorizontalAlignment(SwingConstants.RIGHT);*/
 
         SubMenuDefinition subMenusDefinition = new SubMenuDefinition(submenu);
 
@@ -41,7 +41,7 @@ public class MenuDefinition {
         jMenuItem.setMaximumSize(new Dimension(width, height));
         jMenuItem.setMinimumSize(new Dimension(width, height));
         jMenuItem.setPreferredSize(new Dimension(width, height));
-        jMenuItem.setHorizontalAlignment(SwingConstants.RIGHT);
+        /*jMenuItem.setHorizontalAlignment(SwingConstants.RIGHT);*/
 
         jMenu.add(jMenuItem);
         menuItems.put(key, jMenuItem);

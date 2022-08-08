@@ -1,12 +1,11 @@
-package lib.controller.baseWindow.internalWindow.editor;
+package lib.controller.baseWindow.internalWindow.print.editor;
 
 
 import lib.service.Service;
-import lib.service.file.ServiceFile;
 import lib.service.internal.editor.ServiceInternalEditor;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
-import lib.ui.screens.internal.PrinterAppInternalEditorWindow;
+import lib.ui.screens.internal.print.PrinterAppInternalPrintTemplateWindow;
 
 import lib.ui.templates.BaseWindow;
 
@@ -19,9 +18,9 @@ public class ActionInternalEditorWindowComboBoxFiles implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        PrinterAppInternalEditorWindow printerAppInternalEditorWindow = PrinterAppInternalEditorWindow.getInstance(baseWindow);
+        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
 
-        Object selectedItem = printerAppInternalEditorWindow.getFileTemplateChooseComboBox();
+        Object selectedItem = printerAppInternalPrintTemplateWindow.getFileTemplateChooseComboBox();
 
         if (selectedItem != null) {
             ServiceInternalEditor.setDefaultControlTextLabelTemplate();
@@ -32,7 +31,7 @@ public class ActionInternalEditorWindowComboBoxFiles implements ActionListener {
 
             ServiceInternalEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + selectedItem);
 
-            printerAppInternalEditorWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
+            printerAppInternalPrintTemplateWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
 
             Service.copyFileAnotherDirectory(AppSettings.TEMPLATE_FOLDER + selectedItem, AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
         }

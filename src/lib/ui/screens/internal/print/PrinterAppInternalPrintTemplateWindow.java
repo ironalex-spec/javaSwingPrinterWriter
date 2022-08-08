@@ -1,13 +1,12 @@
-package lib.ui.screens.internal;
+package lib.ui.screens.internal.print;
 
-import lib.controller.baseWindow.internalWindow.editor.*;
-import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalEditorWindowComboBoxFonts;
-import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalEditorWindowSliders;
-import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalEditorWindowTextFieldTextLabel;
-import lib.controller.baseWindow.internalWindow.editor.TextLabel.ActionInternalEditorWindowTextSizeLabel;
+import lib.controller.baseWindow.internalWindow.print.editor.*;
+import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowComboBoxFonts;
+import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowSliders;
+import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextFieldTextLabel;
+import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextSizeLabel;
 import lib.service.Service;
 import lib.settings.AppSettings;
-import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
 
@@ -15,17 +14,17 @@ import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-public class PrinterAppInternalEditorWindow {
-    private static PrinterAppInternalEditorWindow single_instance = null;
+public class PrinterAppInternalPrintTemplateWindow {
+    private static PrinterAppInternalPrintTemplateWindow single_instance = null;
     private BaseWindow printerAppBaseWindow;
     private InternalWindow internalWindow;
     private String sValue_Input_TextLabel = null;
     private String sValue_Input_TextSizeLabel = null;
 
-    private PrinterAppInternalEditorWindow(BaseWindow baseWindow){
+    private PrinterAppInternalPrintTemplateWindow(BaseWindow baseWindow){
         printerAppBaseWindow =  baseWindow;
 
-        internalWindow = new InternalWindow(baseWindow, "Printing", 0,0,baseWindow.getWidth() - 10,baseWindow.getHeight()-60);
+        internalWindow = new InternalWindow(baseWindow, "Template print", 0,0,baseWindow.getWidth() - 10,baseWindow.getHeight()-60);
         try {
             internalWindow.setMaximum(true);
         } catch (Exception e){
@@ -71,7 +70,7 @@ public class PrinterAppInternalEditorWindow {
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
         internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalEditorWindowButtonPrint());
 
-        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
+        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
@@ -175,10 +174,10 @@ public class PrinterAppInternalEditorWindow {
         internalWindow.chooseComboBoxItem("Pane_1_ComboBox_Files", object);
     }
 
-    public static PrinterAppInternalEditorWindow getInstance(BaseWindow baseWindow) {
+    public static PrinterAppInternalPrintTemplateWindow getInstance(BaseWindow baseWindow) {
         // To ensure only one instance is created
         if (single_instance == null) {
-            single_instance = new PrinterAppInternalEditorWindow(baseWindow);
+            single_instance = new PrinterAppInternalPrintTemplateWindow(baseWindow);
         }
         return single_instance;
     }

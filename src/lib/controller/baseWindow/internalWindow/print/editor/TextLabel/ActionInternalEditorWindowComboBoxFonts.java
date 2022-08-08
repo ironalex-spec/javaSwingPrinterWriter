@@ -1,4 +1,4 @@
-package lib.controller.baseWindow.internalWindow.editor.TextLabel;
+package lib.controller.baseWindow.internalWindow.print.editor.TextLabel;
 
 import lib.service.internal.editor.ServiceInternalEditor;
 
