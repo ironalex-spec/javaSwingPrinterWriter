@@ -1,9 +1,6 @@
 package test.java;
 
-import lib.controller.HomeController;
-import lib.controller.MyFirstTextFieldActionController;
 import lib.ui.templates.InternalWindow;
-import lib.controller.MyFirstButtonActionController;
 import lib.ui.templates.BaseWindow;
 
 import javax.swing.*;
@@ -13,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class TestInternalWindow {
     public static void main(String[] args) {
-        HomeController mn = HomeController.getInstance();
+       /* HomeController mn = HomeController.getInstance();*/
 
         internalWindowClearMemory();
     }
@@ -31,9 +28,9 @@ public class TestInternalWindow {
 
         internalWindow.addTextField("Pane2", "MyFirstTextField","1", 100,200,100,100);
         internalWindow.addSplitPain(SwingConstants.HORIZONTAL, "Pane1", "Pane3", 50);
-        internalWindow.addButtonListener("MyFirstButton", new MyFirstButtonActionController());
+       /* internalWindow.addButtonListener("MyFirstButton", new MyFirstButtonActionController());
         internalWindow.addTextFieldListener("MyFirstTextField", new MyFirstTextFieldActionController());
-        internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
+     */   internalWindow.addLabel("Pane2","MyFirstLabel4","Label14", 10,20,100,100);
 
         internalWindow.saveComponentAsImage("Pane2", "bmp");
 

@@ -3,6 +3,10 @@ package lib.ui.screens.internal.print;
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelComboBoxFiles;
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelWindowButtonClearAll;
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelWindowButtonRefresh;
+import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowComboBoxFonts;
+import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowSliders;
+import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowTextFieldTextLabel;
+import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowTextSize;
 import lib.service.Service;
 import lib.service.file.ImageMagicAPI;
 import lib.service.file.ServiceFile;
@@ -49,30 +53,30 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextInput","", 90,100,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextInput", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextInput", false);
-        /*internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextInput", new ActionInternalEditorWindowTextFieldTextLabel());
-*/
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextInput", new ActionInternalPrintLabelWindowTextFieldTextLabel());
+
         String[] fontNames = Service.listAvailableFonts();
         internalWindow.addLabel("Pane_1","Pane_1_Label_Fonts","Font", 230,75,80,30);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Fonts", fontNames, 200,100,100,30);
         internalWindow.setComboBoxEnable("Pane_1_ComboBox_Fonts", false);
-        /*internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Fonts", new ActionInternalEditorWindowComboBoxFonts());
-*/
+        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Fonts", new ActionInternalPrintLabelWindowComboBoxFonts());
+
         internalWindow.addLabel("Pane_1","Pane_1_Label_TextSize","Size", 310,75,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextSize","2", 310,100,30,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextSize", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
-        /*internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalEditorWindowTextSizeLabel());
-*/
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalPrintLabelWindowTextSize());
+
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,150,120,30);
         internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 150,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
-        /*internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalEditorWindowSliders());
-*/
+        internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalPrintLabelWindowSliders());
+
         internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position", 25,200,120,30);
         internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 200,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
-        /*internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorWindowSliders());
-*/
+        internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalPrintLabelWindowSliders());
+
         internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,250,70,30);
         /*String choosePrinterName = PrinterAppBaseWindow.getInstance().getSelectedPrinter();*/
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);

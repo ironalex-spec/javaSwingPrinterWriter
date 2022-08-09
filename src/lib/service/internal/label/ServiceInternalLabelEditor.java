@@ -48,12 +48,12 @@ public class ServiceInternalLabelEditor {
         PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
 
         Object textSize = printerAppInternalPrintLabelWindow.getTextSizeLabel();
-        Object filenameChoose = printerAppInternalPrintLabelWindow.getFileLabelChooseComboBox();
+        Object selectedFile = printerAppInternalPrintLabelWindow.getFileLabelChooseComboBox();
 
         if(Service.isDataIntNumeric(textSize)) {
             try {
-                Integer height = ServiceFile.getHeightFromFilename((String) filenameChoose);
-                Integer width = ServiceFile.getWidthFromFilename((String) filenameChoose);
+                Integer height = ServiceFile.getImageHeightMMFromPixelSize(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedFile);
+                Integer width = ServiceFile.getImageWidthMMFromPixelSize(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedFile);
 
                 String textValue = printerAppInternalPrintLabelWindow.getTextLabel();
 
@@ -67,9 +67,7 @@ public class ServiceInternalLabelEditor {
                 float yOffcet = Service.sliderToFloatRecalc(yPosSlider);
                 int yOffcet_mm = (int) (yOffcet * (float) height.intValue() / 2);
 
-                Object selectedFile = printerAppInternalPrintLabelWindow.getFileLabelChooseComboBox();
-
-                ServicePaintTextAsImage.addImgText(AppSettings.TEMPLATE_FOLDER + selectedFile,
+                ServicePaintTextAsImage.addImgText(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedFile,
                         AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME,
                         width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,
                         Integer.parseInt((String) textSize), (String) fontValue);

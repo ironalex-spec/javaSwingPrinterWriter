@@ -1,10 +1,10 @@
 package lib.ui.screens.internal.print;
 
 import lib.controller.baseWindow.internalWindow.print.editor.*;
-import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowComboBoxFonts;
-import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowSliders;
-import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextFieldTextLabel;
-import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextSizeLabel;
+import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowComboBoxFonts;
+import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowSliders;
+import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowTextFieldTextLabel;
+import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowTextSizeLabel;
 import lib.service.Service;
 import lib.service.file.ServiceFile;
 import lib.settings.AppSettings;

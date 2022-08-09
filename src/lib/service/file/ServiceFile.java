@@ -3,6 +3,8 @@ package lib.service.file;
 import lib.service.Service;
 import lib.settings.AppSettings;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -61,6 +63,22 @@ public class ServiceFile {
         }
     }
 
+    public static Integer getImageWidthMMFromPixelSize(String filepath) {
+        Integer width = null;
+
+        try {
+            BufferedImage bimg = ImageIO.read(new File(filepath));
+
+            int widthPx          = bimg.getWidth();
+
+            width = widthPx * 10 / AppSettings.PPI_CM_Screen;
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return width;
+    }
+
     public static Integer getHeightFromFilename(String filename){
         String[] filesData = getDataFromFilename(filename);
 
@@ -69,6 +87,22 @@ public class ServiceFile {
         } else {
             return null;
         }
+    }
+
+    public static Integer getImageHeightMMFromPixelSize(String filepath) {
+        Integer height = null;
+
+        try {
+            BufferedImage bimg = ImageIO.read(new File(filepath));
+
+            int heightPx         = bimg.getHeight();
+
+            height = heightPx * 10 / AppSettings.PPI_CM_Screen;
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        return height;
     }
 
     public static Integer getFilletFromFilename(String filename){

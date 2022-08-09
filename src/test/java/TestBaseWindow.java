@@ -1,9 +1,5 @@
 package test.java;
 
-import lib.controller.HomeController;
-import lib.controller.MyFirstMenuI1tem1Controller;
-import lib.controller.MyFirstTextFieldActionController;
-import lib.controller.MyFirstButtonActionController;
 import lib.ui.templates.BaseWindow;
 
 import java.awt.event.ActionEvent;
@@ -11,7 +7,7 @@ import java.awt.event.ActionListener;
 
 
 public class TestBaseWindow {
-        public static void main(String[] args) {
+      /*  public static void main(String[] args) {
                 HomeController mn = HomeController.getInstance();
 
                 BaseWindow baseWindow = new BaseWindow(200,0,500,500, 25);
@@ -42,5 +38,5 @@ public class TestBaseWindow {
                 baseWindow.addSubMenuItemActionListener("MyMenu1", "MyMenu1Sub1","MyMenu1Sub1Item1", new MyFirstMenuI1tem1Controller());
 
                 baseWindow.repaint();
-        }
+        }*/
 }

@@ -1,12 +1,11 @@
-package lib.controller.baseWindow.internalWindow.print.editor.TextLabel;
+package lib.controller.baseWindow.internalWindow.print.editor.textTemplate;
 
 import lib.service.internal.editor.ServiceInternalEditor;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ActionInternalEditorWindowTextFieldTextLabel implements KeyListener {
-
+public class ActionInternalEditorWindowTextSizeLabel implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
