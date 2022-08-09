@@ -21,7 +21,7 @@ public class ImageMagicAPI {
     public boolean convertFolderPCX_To_PNG(String folderPCX, String folderPng){
         boolean isExecute = false;
         if(isInstalled){
-            String[] filesFolderPCX = Service.listFilesForFolder(folderPCX);
+            String[] filesFolderPCX = ServiceFile.listFilesForFolder(folderPCX);
 
             for(String file : filesFolderPCX){
                 if (file.contains(".pcx")) {

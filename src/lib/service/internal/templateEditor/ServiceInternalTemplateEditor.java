@@ -1,10 +1,13 @@
 package lib.service.internal.templateEditor;
 
 import lib.service.Service;
+import lib.service.file.ServiceFile;
+import lib.service.internal.label.ServiceInternalLabelEditor;
 import lib.service.paint.ServicePaintTextAsImage;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
+import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
 import lib.ui.templates.BaseWindow;
 
 public class ServiceInternalTemplateEditor {
@@ -76,6 +79,21 @@ public class ServiceInternalTemplateEditor {
         printerAppInternalTemplateEditorWindow.setApplyButtonEnable(false);
         printerAppInternalTemplateEditorWindow.setXPosTextSliderValue(0);
         printerAppInternalTemplateEditorWindow.setYPosTextSliderValue(0);
+
+    }
+
+    public static void clearAllGeneratedLabelPNGFiles(){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+
+        PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
+
+        ServiceFile.clearAllGeneratedLabelPNGFiles();
+
+        printerAppInternalPrintLabelWindow.updateComboBoxLabelItem();
+
+        printerAppInternalPrintLabelWindow.chooseComboBoxLabelObject(AppSettings.TEMPLATE_DEFAULT_NAME);
+
+        ServiceInternalLabelEditor.updatePanelImage(AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME);
 
     }
 }

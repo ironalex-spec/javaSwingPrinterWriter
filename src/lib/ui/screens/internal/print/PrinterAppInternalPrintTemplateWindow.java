@@ -6,6 +6,7 @@ import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInt
 import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextFieldTextLabel;
 import lib.controller.baseWindow.internalWindow.print.editor.TextLabel.ActionInternalEditorWindowTextSizeLabel;
 import lib.service.Service;
+import lib.service.file.ServiceFile;
 import lib.settings.AppSettings;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
@@ -33,7 +34,7 @@ public class PrinterAppInternalPrintTemplateWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Template", 5,30,80,30);
 
-        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorWindowComboBoxFiles());
 
@@ -166,7 +167,7 @@ public class PrinterAppInternalPrintTemplateWindow {
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 

@@ -3,6 +3,7 @@ package lib.service.file;
 import lib.service.Service;
 import lib.settings.AppSettings;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,8 +15,21 @@ public class ServiceFile {
         return filename;
     }
 
-    public static void clearAllGeneratedFiles(){
-        String[] files = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+    public static void clearAllGeneratedLabelPNGFiles(){
+        String[] files = listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
+        for(String s : files){
+            if (!s.equals(AppSettings.TEMPLATE_DEFAULT_NAME)){
+                try {
+                    Files.delete(Paths.get(AppSettings.LABEL_PCX_TO_PNG_FOLDER + s));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    public static void clearAllGeneratedTemplateFiles(){
+        String[] files = listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         for(String s : files){
             if (isValidFilename(s)){
                 try {
@@ -67,6 +81,34 @@ public class ServiceFile {
         }
     }
 
+    public static String[] listFilesForFolder(String filesFolder) {
+        String[] objects = null;
+
+        File folder = new File(filesFolder);
+
+        int numObject = 0;
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listFilesForFolder(fileEntry.getAbsolutePath());
+            } else {
+                numObject++;
+            }
+        }
+
+        objects = new String[numObject];
+
+        int i = 0;
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listFilesForFolder(fileEntry.getAbsolutePath());
+            } else {
+                objects[i] = fileEntry.getName();
+                i++;
+            }
+        }
+        return objects;
+    }
+
     private static String[] getDataFromFilename(String filename){
         String[] split = filename.split("_");
 
@@ -86,4 +128,6 @@ public class ServiceFile {
             return true;
         }
     }
+
+
 }

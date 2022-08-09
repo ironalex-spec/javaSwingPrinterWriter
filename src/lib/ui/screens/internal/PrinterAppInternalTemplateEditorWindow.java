@@ -3,6 +3,7 @@ package lib.ui.screens.internal;
 import lib.controller.baseWindow.internalWindow.editorTemplate.*;
 import lib.controller.baseWindow.internalWindow.editorTemplate.TextLabel.*;
 import lib.service.Service;
+import lib.service.file.ServiceFile;
 import lib.settings.AppSettings;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
@@ -36,7 +37,7 @@ public class PrinterAppInternalTemplateEditorWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Template", 5,30,80,30);
 
-        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorTemplateWindowComboBoxFiles());
 
@@ -87,8 +88,6 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextSize", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalEditorTemplateWindowTextSizeLabel());
-
-
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,330,120,30);
         internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 330,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
@@ -256,7 +255,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = Service.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 

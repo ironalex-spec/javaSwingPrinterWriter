@@ -20,7 +20,7 @@ public class ActionInternalEditorTemplateWindowButtonClearAll implements ActionL
 
         PrinterAppInternalTemplateEditorWindow printerAppInternalTemplateEditorWindow = PrinterAppInternalTemplateEditorWindow.getInstance(baseWindow);
 
-        ServiceFile.clearAllGeneratedFiles();
+        ServiceFile.clearAllGeneratedTemplateFiles();
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 

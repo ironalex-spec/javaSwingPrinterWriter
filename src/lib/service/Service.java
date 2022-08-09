@@ -41,33 +41,6 @@ public class Service {
         return fonts;
     }
 
-    public static String[] listFilesForFolder(String filesFolder) {
-        String[] objects = null;
-
-        File folder = new File(filesFolder);
-
-        int numObject = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                numObject++;
-            }
-        }
-
-        objects = new String[numObject];
-
-        int i = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                objects[i] = fileEntry.getName();
-                i++;
-            }
-        }
-        return objects;
-    }
 
     public static boolean renameFile(String folderSource, String newFilename){
         Path yourFile = Paths.get(folderSource);
