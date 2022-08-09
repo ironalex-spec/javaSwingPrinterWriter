@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<um-configuration version="1.0">
+    <applications>
+        <application name="MyPrinterApp">
+            <file>
+                <directory>
+                    <template_folder>src/resources/editor/img/template/</template_folder>
+                    <template_temporary_folder>src/resources/editor/img/temp/</template_temporary_folder>
+                    <template_printing_folder>src/resources/editor/img/printing/</template_printing_folder>
+                    <image_magick_api_folder>C:/Program Files/ImageMagick-7.1.0-Q16-HDRI/</image_magick_api_folder>
+                    <label_external_PCX_folder>src/resources/label/</label_external_PCX_folder>
+                    <label_PCX_TO_PNG_folder>src/resources/editor/img/label/</label_PCX_TO_PNG_folder>
+                </directory>
+                <names>
+                    <template_default_name>default.jpg</template_default_name>
+                    <template_temporary_default_name>tempText.png</template_temporary_default_name>
+                    <label_printing_name>printer.png</label_printing_name>
+                </names>
+            </file>
+            <pixel>
+                <screen>
+                    <PPI_INCH>150</PPI_INCH>
+                    <PPI_CM>70</PPI_CM>
+                </screen>
+            </pixel>
+        </application>
+    </applications>
+</um-configuration>
