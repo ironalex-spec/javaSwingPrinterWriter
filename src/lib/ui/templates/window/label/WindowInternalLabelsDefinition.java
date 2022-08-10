@@ -42,7 +42,7 @@ public class WindowInternalLabelsDefinition implements WindowInternalElementsDef
             if (filePath != null) {
                 img = ImageIO.read(new File(filePath));
             } else {
-                img = ImageIO.read(new File("src/main/resources/editor/img/default.jpg"));
+                img = ImageIO.read(new File("src/main/resources/editor/img/printer.png"));
             }
 
             ImageIcon imgIco = new ImageIcon(img);

@@ -2,6 +2,7 @@ package lib.ui.screens.internal.print;
 
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelComboBoxFiles;
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelWindowButtonClearAll;
+import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelWindowButtonPrint;
 import lib.controller.baseWindow.internalWindow.print.label.ActionInternalPrintLabelWindowButtonRefresh;
 import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowComboBoxFonts;
 import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowSliders;
@@ -79,8 +80,8 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,250,70,30);
         /*String choosePrinterName = PrinterAppBaseWindow.getInstance().getSelectedPrinter();*/
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
-        /*internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalEditorWindowButtonPrint());
-*/
+        internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalPrintLabelWindowButtonPrint());
+
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);

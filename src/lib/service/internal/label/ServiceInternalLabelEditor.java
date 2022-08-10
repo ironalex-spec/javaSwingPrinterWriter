@@ -2,7 +2,7 @@ package lib.service.internal.label;
 
 import lib.service.Service;
 import lib.service.file.ServiceFile;
-import lib.service.paint.ServicePaintTextAsImage;
+import lib.service.paint.ServicePaintText;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
@@ -66,7 +66,7 @@ public class ServiceInternalLabelEditor {
                 float yOffcet = Service.sliderToFloatRecalc(yPosSlider);
                 int yOffcet_mm = (int) (yOffcet * (float) height.intValue() / 2);
 
-                ServicePaintTextAsImage.addImgText(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedFile,
+                ServicePaintText.addImgText(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedFile,
                         AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME,
                         width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,
                         Integer.parseInt((String) textSize), (String) fontValue);

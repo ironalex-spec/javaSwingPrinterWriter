@@ -2,7 +2,7 @@ package lib.service.internal.editor;
 
 import lib.service.Service;
 import lib.service.file.ServiceFile;
-import lib.service.paint.ServicePaintTextAsImage;
+import lib.service.paint.ServicePaintText;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintTemplateWindow;
@@ -68,7 +68,7 @@ public class ServiceInternalEditor {
 
                 Object selectedFile = printerAppInternalPrintTemplateWindow.getFileTemplateChooseComboBox();
 
-                ServicePaintTextAsImage.addImgText(AppSettings.TEMPLATE_FOLDER + selectedFile,
+                ServicePaintText.addImgText(AppSettings.TEMPLATE_FOLDER + selectedFile,
                         AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME,
                         width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,
                         Integer.parseInt((String) textSize), (String) fontValue);

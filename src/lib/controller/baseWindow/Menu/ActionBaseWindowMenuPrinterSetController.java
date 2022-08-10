@@ -1,7 +1,9 @@
 package lib.controller.baseWindow.Menu;
 
 import lib.service.internal.editor.ServiceInternalEditor;
+import lib.service.internal.label.ServiceInternalLabelEditor;
 import lib.ui.screens.PrinterAppBaseWindow;
+import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintTemplateWindow;
 
 import javax.swing.*;
@@ -23,6 +25,14 @@ public class ActionBaseWindowMenuPrinterSetController implements ActionListener 
             boolean enableTextControl = ServiceInternalEditor.isEnableComponentTextControl();
 
             printerAppInternalPrintTemplateWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
+        }
+
+        if (PrinterAppInternalPrintLabelWindow.isExistInstance()) {
+            PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(printerAppBaseWindow.getBaseWindow());
+
+            boolean enableTextControl = ServiceInternalLabelEditor.isEnableComponentTextControl();
+
+            printerAppInternalPrintLabelWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
         }
     }
 }

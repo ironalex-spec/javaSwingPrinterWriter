@@ -6,7 +6,7 @@ import lib.settings.AppSettings;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class ServicePaintRoundedRectangleAsImage {
+public class ServicePaintRoundedRectangle {
 
     public static void savePrintRectangleImage(String path, int width_mm, int height_mm, int radius_mm, int borderWidthPx){
         int widthPx = AppSettings.PPI_CM_Screen * width_mm / 10;

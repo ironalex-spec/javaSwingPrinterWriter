@@ -3,7 +3,7 @@ package lib.controller.baseWindow.internalWindow.editorTemplate;
 
 import lib.service.file.ServiceFile;
 import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
-import lib.service.paint.ServicePaintRoundedRectangleAsImage;
+import lib.service.paint.ServicePaintRoundedRectangle;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
@@ -28,7 +28,7 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
 
         String filename = ServiceFile.generateFilenameByPrm(width, height, fillet);
 
-        ServicePaintRoundedRectangleAsImage.savePrintRectangleImage(AppSettings.TEMPLATE_FOLDER + filename,width,height, fillet,1);
+        ServicePaintRoundedRectangle.savePrintRectangleImage(AppSettings.TEMPLATE_FOLDER + filename,width,height, fillet,1);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 

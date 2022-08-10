@@ -1,9 +1,11 @@
 package lib.ui.screens;
 
+import lib.controller.baseWindow.ActionBaseWindowTestButtonPrint;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
+import lib.controller.baseWindow.internalWindow.print.editor.ActionInternalEditorWindowButtonPrint;
 import lib.repository.file.ImageMagicAPI;
 import lib.service.print.ServicePrint;
 import lib.ui.templates.BaseWindow;
@@ -59,7 +61,10 @@ public class PrinterAppBaseWindow {
 
         printerAppBaseWindow.addMenuItem("Menu_Help", "Menu_Help_Item_About", "About", 100, 20);
     /*    printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new MyFirstMenuI1tem1Controller());
-*/    }
+    */
+        printerAppBaseWindow.addButton("Pane_1_Button_PrintLabel","PrintTest", 0,0,100,100);
+        printerAppBaseWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionBaseWindowTestButtonPrint());
+    }
 
     public BaseWindow getBaseWindow(){
         return  printerAppBaseWindow;

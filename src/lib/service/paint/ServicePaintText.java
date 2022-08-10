@@ -3,12 +3,10 @@ package lib.service.paint;
 import lib.repository.paint.RepositoryPicture;
 import lib.settings.AppSettings;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
-public class ServicePaintTextAsImage {
+public class ServicePaintText {
 
     public static void addImgText(String pathBaseImg, String pathWithText, int width_mm, int height_mm, int x_offcet_mm, int y_offcet_mm, String text, int textSize, String fontName){
         BufferedImage baseImg = RepositoryPicture.getPicture(pathBaseImg);
