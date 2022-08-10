@@ -1,5 +1,7 @@
 package lib.service.print;
 
+import lib.repository.print.RepositoryPrint;
+
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -9,12 +11,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ServicePrint {
-    public static String[] getAvailiblePrinters(){
-        /*DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PAGEABLE;
-        PrintRequestAttributeSet patts = new HashPrintRequestAttributeSet();
-        patts.add(Sides.DUPLEX);*/
-        PrintService[] ps = PrintServiceLookup.lookupPrintServices(null, null);
+    private static PrintService[] ps = PrintServiceLookup.lookupPrintServices(null, null);
 
+    public static String[] getAvailiblePrinters(){
         if (ps.length == 0) {
             return null;
         } else {
@@ -24,13 +23,11 @@ public class ServicePrint {
                 printerNames[i] = printService.getName();
                 i++;
             }
-
             return printerNames;
         }
     }
 
     public static void printSelectedPngFile(String printerName, String filePathAndName){
-        PrintService[] ps = PrintServiceLookup.lookupPrintServices(null, null);
         if (ps.length == 0) {
             throw new IllegalStateException("No Printer found");
         }
@@ -48,19 +45,6 @@ public class ServicePrint {
             throw new IllegalStateException("Printer not found");
         }
 
-        try {
-
-
-            FileInputStream fis = new FileInputStream(filePathAndName);
-            Doc pdfDoc = new SimpleDoc(fis, DocFlavor.INPUT_STREAM.PNG, null);
-            DocPrintJob printJob = myService.createPrintJob();
-            printJob.print(pdfDoc, new HashPrintRequestAttributeSet());
-            fis.close();
-
-        } catch (PrintException printException){
-            printException.printStackTrace();
-        } catch (IOException ioException){
-            ioException.printStackTrace();
-        }
+        RepositoryPrint.printSelectedPngFile(myService, filePathAndName);
     }
 }

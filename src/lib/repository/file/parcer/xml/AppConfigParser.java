@@ -1,15 +1,9 @@
-package lib.service.file.parcers.xml;
+package lib.repository.file.parcer.xml;
 
-import org.w3c.dom.*;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import lib.repository.file.parcer.xml.AppConfigHandler;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 
 public class AppConfigParser {
     public static boolean parse() {

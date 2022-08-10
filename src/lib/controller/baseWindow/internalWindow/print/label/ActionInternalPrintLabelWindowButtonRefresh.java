@@ -1,8 +1,7 @@
 package lib.controller.baseWindow.internalWindow.print.label;
 
 
-import lib.service.file.ImageMagicAPI;
-import lib.service.file.ServiceFile;
+import lib.repository.file.ImageMagicAPI;
 import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;

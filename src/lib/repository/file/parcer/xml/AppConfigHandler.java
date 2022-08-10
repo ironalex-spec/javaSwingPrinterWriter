@@ -1,4 +1,4 @@
-package lib.service.file.parcers.xml;
+package lib.repository.file.parcer.xml;
 
 import lib.settings.AppSettings;
 import org.xml.sax.Attributes;

@@ -1,6 +1,6 @@
 package lib.service.file;
 
-import lib.service.Service;
+import lib.repository.file.RepositoryFile;
 import lib.settings.AppSettings;
 
 import javax.imageio.ImageIO;
@@ -18,39 +18,15 @@ public class ServiceFile {
     }
 
     public static void clearAllGeneratedLabelPNGFiles(){
-        String[] files = listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
-        for(String s : files){
-            if (!s.equals(AppSettings.TEMPLATE_DEFAULT_NAME)){
-                try {
-                    Files.delete(Paths.get(AppSettings.LABEL_PCX_TO_PNG_FOLDER + s));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
+        RepositoryFile.clearAllGeneratedLabelPNGFiles();
     }
 
     public static void clearAllGeneratedTemplateFiles(){
-        String[] files = listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
-        for(String s : files){
-            if (isValidFilename(s)){
-                try {
-                    Files.delete(Paths.get(AppSettings.TEMPLATE_FOLDER + s));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
+        RepositoryFile.clearAllGeneratedTemplateFiles();
     }
 
     public static void clearFileByFilename(String filename){
-        if (isValidFilename(filename)){
-            try {
-                Files.delete(Paths.get(AppSettings.TEMPLATE_FOLDER + filename));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        RepositoryFile.clearFileByFilename(filename);
     }
 
     public static Integer getWidthFromFilename(String filename){
@@ -64,17 +40,7 @@ public class ServiceFile {
     }
 
     public static Integer getImageWidthMMFromPixelSize(String filepath) {
-        Integer width = null;
-
-        try {
-            BufferedImage bimg = ImageIO.read(new File(filepath));
-
-            int widthPx          = bimg.getWidth();
-
-            width = widthPx * 10 / AppSettings.PPI_CM_Screen;
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        Integer width = RepositoryFile.getImageWidthMMFromPixelSize(filepath);
 
         return width;
     }
@@ -90,17 +56,7 @@ public class ServiceFile {
     }
 
     public static Integer getImageHeightMMFromPixelSize(String filepath) {
-        Integer height = null;
-
-        try {
-            BufferedImage bimg = ImageIO.read(new File(filepath));
-
-            int heightPx         = bimg.getHeight();
-
-            height = heightPx * 10 / AppSettings.PPI_CM_Screen;
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
+        Integer height = RepositoryFile.getImageHeightMMFromPixelSize(filepath);
 
         return height;
     }
@@ -116,30 +72,8 @@ public class ServiceFile {
     }
 
     public static String[] listFilesForFolder(String filesFolder) {
-        String[] objects = null;
+        String[] objects = RepositoryFile.listFilesForFolder(filesFolder);
 
-        File folder = new File(filesFolder);
-
-        int numObject = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                numObject++;
-            }
-        }
-
-        objects = new String[numObject];
-
-        int i = 0;
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry.getAbsolutePath());
-            } else {
-                objects[i] = fileEntry.getName();
-                i++;
-            }
-        }
         return objects;
     }
 
@@ -153,7 +87,7 @@ public class ServiceFile {
         }
     }
 
-    private static boolean isValidFilename(String filename){
+    public static boolean isValidFilename(String filename){
         String[] split = filename.split("_");
 
         if(split.length < 5){
@@ -162,6 +96,4 @@ public class ServiceFile {
             return true;
         }
     }
-
-
 }

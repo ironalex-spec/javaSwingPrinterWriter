@@ -4,7 +4,7 @@ import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelControll
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
-import lib.service.file.ImageMagicAPI;
+import lib.repository.file.ImageMagicAPI;
 import lib.service.print.ServicePrint;
 import lib.ui.templates.BaseWindow;
 

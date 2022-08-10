@@ -8,7 +8,6 @@ import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInte
 import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowTextFieldTextLabel;
 import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowTextSize;
 import lib.service.Service;
-import lib.service.file.ImageMagicAPI;
 import lib.service.file.ServiceFile;
 import lib.settings.AppSettings;
 import lib.ui.templates.BaseWindow;

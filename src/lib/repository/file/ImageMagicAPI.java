@@ -1,6 +1,6 @@
-package lib.service.file;
+package lib.repository.file;
 
-import lib.service.Service;
+import lib.service.file.ServiceFile;
 import lib.settings.AppSettings;
 
 import java.io.BufferedReader;

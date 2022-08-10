@@ -6,7 +6,6 @@ import lib.service.paint.ServicePaintTextAsImage;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
-import lib.ui.screens.internal.print.PrinterAppInternalPrintTemplateWindow;
 import lib.ui.templates.BaseWindow;
 
 public class ServiceInternalLabelEditor {

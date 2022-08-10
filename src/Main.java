@@ -1,4 +1,4 @@
-import lib.service.file.parcers.xml.AppConfigParser;
+import lib.repository.file.parcer.xml.AppConfigParser;
 import lib.ui.screens.PrinterAppBaseWindow;
 
 public class Main {
