@@ -101,7 +101,7 @@ public class TestInternalWindow {
 
         InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
         internalWindow.addButton("Pane2","MyFirstLabel3","Label13", 10,30,100,10);
-        internalWindow.addLabelAsImage("Pane1","MyFirstLabel","src/main/resources/editor/img/printer.png", 0,10,100,100);
+        internalWindow.addLabelAsImage("Pane1","MyFirstLabel","src/main/resources/editor/img/printer__.png", 0,10,100,100);
         internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane2", "Pane1", 100);
         internalWindow.addScrolPaneOneComponent( "ScrolPane1", "Pane1", true);
 

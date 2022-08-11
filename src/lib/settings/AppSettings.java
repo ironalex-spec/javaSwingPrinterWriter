@@ -8,7 +8,7 @@ public class AppSettings {
     public static int PPI_CM_Screen /*= (int) (PPI_INCH_Screen / inchToCmValue)*/;
 
     public static String TEMPLATE_FOLDER /*= "src/resources/editor/img/template/"*/;
-    public static String TEMPLATE_DEFAULT_NAME /*= "printer.png"*/;
+    public static String TEMPLATE_DEFAULT_NAME /*= "printer__.png"*/;
 
     public static String TEMPLATE_TEMP_FOLDER /*= "src/resources/editor/img/temp/"*/;
     public static String TEMPLATE_TEMP_DEFAULT_NAME /*= "tempText.png"*/;

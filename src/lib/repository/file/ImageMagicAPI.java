@@ -11,7 +11,7 @@ public class ImageMagicAPI {
     private boolean isInstalled;
 
     private ImageMagicAPI(){
-        isInstalled = consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"});
+        isInstalled = RepositoryConsole.consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"});
     }
 
     public boolean isAPIInstalled(){
@@ -42,7 +42,7 @@ public class ImageMagicAPI {
             String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
                     pathPCX, "-negate", pathPng};
 
-            isExecute = consoleExecute(commands);
+            isExecute = RepositoryConsole.consoleExecute(commands);
         }
 
         return isExecute;
@@ -54,40 +54,5 @@ public class ImageMagicAPI {
             single_instance = new ImageMagicAPI();
         }
         return single_instance;
-    }
-
-    private static boolean consoleExecute(String[] commands){
-        Runtime rt = Runtime.getRuntime();
-
-        boolean isExecute = false;
-
-        try {
-            Process p = rt.exec(commands);
-            String response = readProcessOutput(p);
-            isExecute = true;
-        }catch(Exception ex) {
-            ex.printStackTrace();
-            isExecute = false;
-        }
-
-        return isExecute;
-    }
-
-    /**
-     * Reads the response from the command. Please note that this works only
-     * if the process returns immediately.
-     * @param p
-     * @return
-     * @throws Exception
-     */
-    private static String readProcessOutput(Process p) throws Exception{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String response = "";
-        String line;
-        while ((line = reader.readLine()) != null) {
-            response += line+"\r\n";
-        }
-        reader.close();
-        return response;
     }
 }

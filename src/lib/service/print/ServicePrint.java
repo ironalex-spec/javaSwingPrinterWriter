@@ -45,6 +45,6 @@ public class ServicePrint {
             throw new IllegalStateException("Printer not found");
         }
 
-        RepositoryPrint.printSelectedPngFile(myService, filePathAndName);
+        RepositoryPrint.printSelectedPngFileAsImage(myService, filePathAndName);
     }
 }
