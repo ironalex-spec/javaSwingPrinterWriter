@@ -21,6 +21,14 @@ public class AppSettings {
     public static String LABEL_EXTERNAL_PCX_FOLDER /*= "src/resources/label/"*/;
     public static String LABEL_PCX_TO_PNG_FOLDER /*= "src/resources/editor/img/label/"*/;
 
+    public static final String WINDOWS_PRINTUI_DLL_FOLDER = "C:/Windows/System32/";
+
     public static final String TEMPLATE_PRINTING_NAME_ROTATE_90 = "printer90.png";
+
     public static final int MAX_SLIDER_VALUE = 1000;
+
+    public static final int PRINTER_RESOLUTION_DPI_X = 203;
+    public static final int PRINTER_RESOLUTION_DPI_Y = 203;
+    public static final int PRINTER_PAPER_WIDTH_MM = 100; /*800 pixel*/
+    public static final int PRINTER_PAPER_HEIGHT_MM = 40; /*320 pixel*/
 }

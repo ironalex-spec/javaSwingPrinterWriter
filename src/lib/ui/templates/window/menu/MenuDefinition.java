@@ -47,6 +47,11 @@ public class MenuDefinition {
         menuItems.put(key, jMenuItem);
     }
 
+    public void setMenuItemEnable(String keyMenuItem, boolean enable){
+        JMenuItem jMenuItem = menuItems.get(keyMenuItem);
+        jMenuItem.setEnabled(enable);
+    }
+
     public void addMenuListener(MenuListener menuListener){
         jMenu.addMenuListener(menuListener);
     }

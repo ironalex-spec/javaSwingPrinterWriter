@@ -37,6 +37,11 @@ public class MenuBarDefinition {
         menuDefinition.addMenuItem(keyItem, name, width, height);
     }
 
+    public void setMenuItemEnable(String keyMenu, String keyMenuItem, boolean enable){
+        MenuDefinition menuDefinition = menus.get(keyMenu);
+        menuDefinition.setMenuItemEnable(keyMenuItem, enable);
+    }
+
     public void addSubMenu(String keyMenu, String keySubmenu, String name, int width, int height){
         MenuDefinition menuDefinition = menus.get(keyMenu);
         menuDefinition.addSubMenu(keySubmenu, name, width, height);

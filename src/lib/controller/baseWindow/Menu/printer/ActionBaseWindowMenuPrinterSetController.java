@@ -1,4 +1,4 @@
-package lib.controller.baseWindow.Menu;
+package lib.controller.baseWindow.Menu.printer;
 
 import lib.service.internal.editor.ServiceInternalEditor;
 import lib.service.internal.label.ServiceInternalLabelEditor;
@@ -18,6 +18,9 @@ public class ActionBaseWindowMenuPrinterSetController implements ActionListener 
         PrinterAppBaseWindow printerAppBaseWindow = PrinterAppBaseWindow.getInstance();
 
         printerAppBaseWindow.setStatusPrinterName(menuItem.getText());
+
+        printerAppBaseWindow.setQueuePrinterEnable(true);
+        printerAppBaseWindow.setPropertyPrinterEnable(true);
 
         if (PrinterAppInternalPrintTemplateWindow.isExistInstance()) {
             PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(printerAppBaseWindow.getBaseWindow());

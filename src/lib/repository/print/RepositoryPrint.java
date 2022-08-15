@@ -1,10 +1,13 @@
 package lib.repository.print;
 
+import lib.settings.AppSettings;
+
 import javax.imageio.ImageIO;
 import javax.print.*;
 import javax.print.attribute.*;
 import javax.print.attribute.standard.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.print.*;
 import java.io.File;
@@ -57,6 +60,7 @@ public class RepositoryPrint {
 
     /*Cmd print photo Windows standart library*/
         /*rundll32 shimgvw.dll ImageView_PrintTo /pt d:\Printer\pdf\test.jpg "TSC TTP-244CE ETHERNET"*/
+                                                                             /* "Microsoft Print to PDF"*/
                         /*
                         ImageView_Fullscreen
                         ImageView_FullscreenA
@@ -90,8 +94,8 @@ public class RepositoryPrint {
             try {
                 PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
 
-                aset.add(new PrinterResolution(203, 203, PrinterResolution.DPI));
-                aset.add(new MediaPrintableArea(0, 0, 100, 40, MediaPrintableArea.MM));
+                aset.add(new PrinterResolution(AppSettings.PRINTER_RESOLUTION_DPI_X, AppSettings.PRINTER_RESOLUTION_DPI_Y, PrinterResolution.DPI));
+                aset.add(new MediaPrintableArea(0, 0, AppSettings.PRINTER_PAPER_WIDTH_MM, AppSettings.PRINTER_PAPER_HEIGHT_MM, MediaPrintableArea.MM));
                 /*aset.add(OrientationRequested.LANDSCAPE);*/
                 aset.add(OrientationRequested.PORTRAIT);
 

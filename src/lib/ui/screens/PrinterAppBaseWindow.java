@@ -4,9 +4,11 @@ import lib.controller.baseWindow.ActionBaseWindowTestButtonPrint;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
-import lib.controller.baseWindow.Menu.ActionBaseWindowMenuPrinterSetController;
-import lib.controller.baseWindow.internalWindow.print.editor.ActionInternalEditorWindowButtonPrint;
+import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterProperty;
+import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterQueue;
+import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSetController;
 import lib.repository.file.ImageMagicAPI;
+import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.print.ServicePrint;
 import lib.ui.templates.BaseWindow;
 
@@ -59,6 +61,16 @@ public class PrinterAppBaseWindow {
             }
         }
 
+        if(RepositoryPrinterOptions.getInstance().getOptionExist()) {
+            printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_Queue", "Queue", 100, 20);
+            printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Queue", false);
+            printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Queue", new ActionBaseWindowMenuPrinterQueue());
+
+            printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_Property", "Property", 100, 20);
+            printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Property", false);
+            printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Property", new ActionBaseWindowMenuPrinterProperty());
+        }
+
         printerAppBaseWindow.addMenuItem("Menu_Help", "Menu_Help_Item_About", "About", 100, 20);
     /*    printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new MyFirstMenuI1tem1Controller());
     */
@@ -94,5 +106,13 @@ public class PrinterAppBaseWindow {
     public void setStatusPrinterName(String printerName){
         selectedPrinter = printerName;
         printerAppBaseWindow.setMenuText("Menu_SelectPrinter", "Printer : " + printerName);
+    }
+
+    public void setPropertyPrinterEnable(boolean enable){
+        printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Property", enable);
+    }
+
+    public void setQueuePrinterEnable(boolean enable){
+        printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Queue", enable);
     }
 }

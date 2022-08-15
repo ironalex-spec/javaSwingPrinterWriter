@@ -118,6 +118,10 @@ public class BaseWindow extends  JFrame{
         menuBarDefinition.addMenuItem(keyMenu, keyItem, name, width, height);
     }
 
+    public void setMenuItemEnable(String keyMenu, String keyMenuItem, boolean enable){
+        menuBarDefinition.setMenuItemEnable(keyMenu, keyMenuItem, enable);
+    }
+
     public void addSubMenu(String keyMenu, String keySubmenu, String name, int width, int height){
         menuBarDefinition.addSubMenu(keyMenu, keySubmenu, name, width, height);
     }

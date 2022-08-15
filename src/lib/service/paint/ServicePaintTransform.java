@@ -45,14 +45,29 @@ public class ServicePaintTransform {
         RepositoryPicture.savePicturePNG(resized, destPath);
     }
 
-    public static void scalePicture_v2(String destPath, String sourcePath, double scale) {
+    public static void scalePicture_v2(String destPath, String sourcePath, double scaleWidth, double scaleHeight) {
         BufferedImage src = RepositoryPicture.getPicture(sourcePath);
 
         int w = src.getWidth();
         int h = src.getHeight();
         BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();
-        at.scale(scale, scale);
+        at.scale(scaleWidth, scaleHeight);
+        AffineTransformOp scaleOp =
+                new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        after = scaleOp.filter(src, after);
+
+        RepositoryPicture.savePicturePNG(after, destPath);
+    }
+
+    public static void scalePicture_v3(String destPath, String sourcePath, double scaleWidth, double scaleHeight) {
+        BufferedImage src = RepositoryPicture.getPicture(sourcePath);
+
+        int w = src.getWidth();
+        int h = src.getHeight();
+        BufferedImage after = new BufferedImage((int)(w*scaleWidth), (int)(h*scaleHeight), BufferedImage.TYPE_INT_ARGB);
+        AffineTransform at = new AffineTransform();
+        at.scale(scaleWidth, scaleHeight);
         AffineTransformOp scaleOp =
                 new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         after = scaleOp.filter(src, after);
