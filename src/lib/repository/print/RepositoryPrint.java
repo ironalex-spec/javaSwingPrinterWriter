@@ -1,5 +1,7 @@
 package lib.repository.print;
 
+import lib.repository.file.RepositoryConsole;
+import lib.repository.file.RepositoryFile;
 import lib.settings.AppSettings;
 
 import javax.imageio.ImageIO;
@@ -75,6 +77,10 @@ public class RepositoryPrint {
 
         /*mspaint /pt d:\Printer\pdf\test.jpg "TSC TTP-244CE ETHERNET*/
 
+    /*PowerShell need work only with scripts*/
+    /*powershell.exe -executionpolicy remotesigned src\resources\scripts\powershell\print.ps1*/
+    /*powershell start-process -verb Print d:\Education\Own\JAVA\Projects\MyPrinterApp\src\resources\editor\img\label\179237333.bmp*/
+
     public static void printSelectedPngFileAsImage(PrintService myService, String filePathAndName){
         try {
             PrinterJob printJob = PrinterJob.getPrinterJob();
@@ -101,8 +107,10 @@ public class RepositoryPrint {
 
                 /*PageFormat pageFormat = printJob.getPageFormat(aset);
                 printJob.pageDialog(pageFormat);*/
-                /*printJob.pageDialog(aset);
-                printJob.printDialog();*/
+                /*printJob.pageDialog(aset);*/
+                printJob.printDialog();
+
+
 
                 printJob.print(aset);
             } catch (PrinterException e1) {
@@ -142,5 +150,23 @@ public class RepositoryPrint {
         } catch (IOException ioException){
             ioException.printStackTrace();
         }
+    }
+
+    public static boolean printSelectedPngFileAsWindowsPhotoViewer(String filepath){
+        boolean isExecute = false;
+
+        String dir = System.getProperty("user.dir");
+
+        /*Change path dividers*/
+        filepath = filepath.replace('/','\\');
+
+        RepositoryFile.replaceLineFile("src/resources/scripts/powershell/templatePrint.vbs", 1,
+                "Const sPathFile = \""+ dir + "\\"+ filepath + "\"");
+
+        String[] commands = new String[]{"cscript", "src/resources/scripts/powershell/templatePrint.vbs"};
+
+        isExecute = RepositoryConsole.consoleExecuteOtherThread(commands);
+
+        return isExecute;
     }
 }

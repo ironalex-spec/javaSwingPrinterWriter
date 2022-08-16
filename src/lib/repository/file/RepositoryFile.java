@@ -5,8 +5,7 @@ import lib.settings.AppSettings;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -106,5 +105,37 @@ public class RepositoryFile {
             }
         }
         return objects;
+    }
+
+    public static boolean replaceLineFile(String filepath, int lineNum, String newValue){
+        try {
+            // input the file content to the StringBuffer "input"
+            BufferedReader file = new BufferedReader(new FileReader(filepath));
+            StringBuffer inputBuffer = new StringBuffer();
+            String line;
+
+            int i = 1;
+            while ((line = file.readLine()) != null) {
+                if(i==lineNum) {
+                    inputBuffer.append(newValue);
+                    inputBuffer.append('\n');
+                } else {
+                    inputBuffer.append(line);
+                    inputBuffer.append('\n');
+                }
+                i++;
+            }
+            file.close();
+            String inputStr = inputBuffer.toString();
+
+            // write the new string with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            fileOut.write(inputStr.getBytes());
+            fileOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 }

@@ -1,12 +1,12 @@
 package lib.ui.screens;
 
-import lib.controller.baseWindow.ActionBaseWindowTestButtonPrint;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterProperty;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterQueue;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSetController;
+import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSettings;
 import lib.repository.file.ImageMagicAPI;
 import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.print.ServicePrint;
@@ -66,6 +66,10 @@ public class PrinterAppBaseWindow {
             printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Queue", false);
             printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Queue", new ActionBaseWindowMenuPrinterQueue());
 
+            printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_PrintSettings", "Print settings", 100, 20);
+            printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_PrintSettings", false);
+            printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_PrintSettings", new ActionBaseWindowMenuPrinterSettings());
+
             printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_Property", "Property", 100, 20);
             printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Property", false);
             printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Property", new ActionBaseWindowMenuPrinterProperty());
@@ -74,8 +78,6 @@ public class PrinterAppBaseWindow {
         printerAppBaseWindow.addMenuItem("Menu_Help", "Menu_Help_Item_About", "About", 100, 20);
     /*    printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new MyFirstMenuI1tem1Controller());
     */
-        printerAppBaseWindow.addButton("Pane_1_Button_PrintLabel","PrintTest", 0,0,100,100);
-        printerAppBaseWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionBaseWindowTestButtonPrint());
     }
 
     public BaseWindow getBaseWindow(){
@@ -110,6 +112,10 @@ public class PrinterAppBaseWindow {
 
     public void setPropertyPrinterEnable(boolean enable){
         printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Property", enable);
+    }
+
+    public void setPrintSettingsEnable(boolean enable){
+        printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_PrintSettings", enable);
     }
 
     public void setQueuePrinterEnable(boolean enable){

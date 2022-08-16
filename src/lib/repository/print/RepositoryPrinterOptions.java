@@ -4,6 +4,8 @@ import lib.repository.file.RepositoryConsole;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 
+import java.io.IOException;
+
 public class RepositoryPrinterOptions {
     private static RepositoryPrinterOptions single_instance;
     private static boolean isOptionExist;
@@ -12,6 +14,14 @@ public class RepositoryPrinterOptions {
         String[] commands = new String[]{"powershell", "-command","(" + AppSettings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
 
         isOptionExist = RepositoryConsole.consoleExecuteOtherThread(commands);
+    }
+
+    public boolean printerPrintSettingsOpen(String printerName){
+        if (isOptionExist) {
+            return executePrintUI_DLL(printerName, "/e");
+        } else {
+            return false;
+        }
     }
 
     public boolean printerPropertyOpen(String printerName){
@@ -29,6 +39,16 @@ public class RepositoryPrinterOptions {
             return false;
         }
     }
+
+    public boolean makeDefaultPrinter(String printerName){
+        if (isOptionExist) {
+            return executePrintUI_DLL(printerName, "/y");
+        } else {
+            return false;
+        }
+    }
+
+
 
     private boolean executePrintUI_DLL(String printerName, String attribute){
         boolean isExecute = false;

@@ -1,5 +1,6 @@
 package lib.controller.baseWindow.Menu.printer;
 
+import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.internal.editor.ServiceInternalEditor;
 import lib.service.internal.label.ServiceInternalLabelEditor;
 import lib.ui.screens.PrinterAppBaseWindow;
@@ -19,8 +20,11 @@ public class ActionBaseWindowMenuPrinterSetController implements ActionListener 
 
         printerAppBaseWindow.setStatusPrinterName(menuItem.getText());
 
+        RepositoryPrinterOptions.getInstance().makeDefaultPrinter(menuItem.getText());
+
         printerAppBaseWindow.setQueuePrinterEnable(true);
         printerAppBaseWindow.setPropertyPrinterEnable(true);
+        printerAppBaseWindow.setPrintSettingsEnable(true);
 
         if (PrinterAppInternalPrintTemplateWindow.isExistInstance()) {
             PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(printerAppBaseWindow.getBaseWindow());

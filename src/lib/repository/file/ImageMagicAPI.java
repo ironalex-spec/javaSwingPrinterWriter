@@ -1,6 +1,8 @@
 package lib.repository.file;
 
 import lib.service.file.ServiceFile;
+import lib.service.paint.ServicePaintTransform;
+import lib.service.print.ServicePrint;
 import lib.settings.AppSettings;
 
 
@@ -26,8 +28,9 @@ public class ImageMagicAPI {
                     isExecute = convertPCX_TO_PNG(folderPCX + file, folderPng + file.replace(".pcx", ".png"));
 
                     /*Scale PCX to format*/
-                    /*ServicePaintTransform.scalePicture_v3(folderPng + file.replace(".pcx", ".png"), folderPng + file.replace(".pcx", ".png") , 1.0*AppSettings.PPI_INCH_Screen/AppSettings.PRINTER_RESOLUTION_DPI_X,1.0*AppSettings.PPI_INCH_Screen/AppSettings.PRINTER_RESOLUTION_DPI_Y);
-*/
+      /*              float scale = ServicePrint.getScaleImageForTargetPrinter(folderPng + file.replace(".pcx", ".png"));
+    */                ServicePaintTransform.scalePicture_v3(folderPng + file.replace(".pcx", ".png"), folderPng + file.replace(".pcx", ".png") , 1, 1);
+
                     if(!isExecute) {
                         break;
                     }
