@@ -27,7 +27,7 @@ public class PrinterAppBaseWindow {
     private PrinterAppBaseWindow(){
         callStaticMethods();
 
-        printerAppBaseWindow = new BaseWindow(0,0,900,600, 20);
+        printerAppBaseWindow = new BaseWindow("PrintLabel",0,0,900,600, 20);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         printerAppBaseWindow.setLocation(dim.width/2-printerAppBaseWindow.getSize().width/2, dim.height/2-printerAppBaseWindow.getSize().height/2);

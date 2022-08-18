@@ -25,8 +25,8 @@ public class BaseWindow extends  JFrame{
 
     private HashMap<String, JPanel> panelHashMap = new HashMap<String, JPanel>();
 
-    public BaseWindow(int x, int y, int width, int height, int menuHeight) {
-        this.setTitle("Base window");
+    public BaseWindow(String title, int x, int y, int width, int height, int menuHeight) {
+        this.setTitle(title);
         /*this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -71,7 +71,7 @@ public class BaseWindow extends  JFrame{
     }
 
     public BaseWindow(){
-        this(0,0,100,100,0);
+        this("BaseWindow",0,0,100,100,0);
     }
 
     public void addButton(String key, String text, int x, int y, int width, int height){
