@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="LabelPrintApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LabelPrintApp_jar</output-path>
+    <root id="archive" name="LabelPrintApp.jar">
+      <element id="module-output" name="LabelPrintApp" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Printer API/pdfbox-app-3.0.0-alpha3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

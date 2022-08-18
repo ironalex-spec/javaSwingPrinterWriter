@@ -1,6 +1,4 @@
-package lib.repository.cipher;
-
-import lib.repository.file.ImageMagicAPI;
+package lib.service.cipher;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -11,15 +9,15 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
-public class RepositoryCipher {
+public class ServiceCipher {
     private final String key = "AlexZheleznev196";
     private final Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
 
-    private static RepositoryCipher single_instance;
+    private static ServiceCipher single_instance;
 
     private Cipher cipher = null;
 
-    RepositoryCipher()  {
+    ServiceCipher()  {
         try {
             cipher = Cipher.getInstance("AES");
         } catch (NoSuchPaddingException | NoSuchAlgorithmException algException){
@@ -50,9 +48,9 @@ public class RepositoryCipher {
         return null;
     }
 
-    public static RepositoryCipher getInstance() {
+    public static ServiceCipher getInstance() {
         if (single_instance == null) {
-            single_instance = new RepositoryCipher();
+            single_instance = new ServiceCipher();
         }
         return single_instance;
     }

@@ -1,20 +1,10 @@
 package test.java;
 
-import lib.repository.cipher.RepositoryCipher;
+import lib.service.cipher.ServiceCipher;
 import lib.repository.registry.RepositoryWinReg;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 public class TestRegistry {
     public static void main(String ... args) throws UnsupportedEncodingException {
@@ -47,21 +37,21 @@ public class TestRegistry {
             System.out.println("Response = " + response);
         }
 
-        byte[] encryptedByte = RepositoryCipher.getInstance().encryptText(response.getBytes());
+        byte[] encryptedByte = ServiceCipher.getInstance().encryptText(response.getBytes());
 
-        String encrypted = RepositoryCipher.getInstance().byteArrToString(encryptedByte);
+        String encrypted = ServiceCipher.getInstance().byteArrToString(encryptedByte);
 
         System.out.println("encrypted = " + encrypted);
 
         //SET DATA TO REGISTRY
-        /*if( reg.addValue(RepositoryWinReg.WRKey.HKCU, "SOFTWARE\\MyPrinterApp", "encrypted", encrypted, RepositoryWinReg.WRType.REG_SZ) ) {
+        if( reg.addValue(RepositoryWinReg.WRKey.HKCU, "SOFTWARE\\LabelPrintingApp", "encrypted", encrypted, RepositoryWinReg.WRType.REG_SZ) ) {
             System.out.println("value created");
         }
         else {
             System.err.println("Error: could not create the value");
-        }*/
+        }
 
-        String registryEncryptedReg = reg.showValue(RepositoryWinReg.WRKey.HKCU, "SOFTWARE\\MyPrinterApp", "encrypted");
+        String registryEncryptedReg = reg.showValue(RepositoryWinReg.WRKey.HKCU, "SOFTWARE\\LabelPrintingApp", "encrypted");
         System.out.println("registryEncryptedReg = " + registryEncryptedReg);
 
         byte[] encryptedByteReg = registryEncryptedReg.getBytes(StandardCharsets.UTF_8);
