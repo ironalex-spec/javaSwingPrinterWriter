@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <um-configuration version="1.0">
-    <applications>
+    <applications version="1.0.0.0">
         <application name="MyPrinterApp">
             <file>
                 <directory>

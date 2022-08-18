@@ -1,4 +1,4 @@
-Const sPathFile = "D:\Education\Own\JAVA\Projects\MyPrinterApp\src\resources\editor\img\printing\printer.png"
+Const sPathFile = "D:\Education\Own\JAVA\Projects\LabelPrintApp\src\resources\editor\img\printing\printer.png"
 Const iNormalFocus = 1
 Set objShell = WScript.CreateObject("WScript.Shell")
 objShell.Run "rundll32 " & chr(34) & "%ProgramFiles(x86)%\Windows Photo Viewer\PhotoViewer.dll" & chr(34) & ",ImageView_Fullscreen " & sPathFile, iNormalFocus

@@ -1,10 +1,9 @@
+import lib.app.BuildVersion;
 import lib.repository.file.parcer.xml.AppConfigParser;
-import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.license.ServiceAppLicense;
 import lib.ui.screens.PrinterAppBaseWindow;
-import lib.ui.screens.error.PrinterAppErrorWindow;
-
-import javax.swing.*;
+import lib.ui.screens.information.PrinterAppInfoMessages;
+import lib.ui.screens.information.PrinterAppInfoWindow;
 
 public class Main {
     public static void main(String[] args){
@@ -13,11 +12,7 @@ public class Main {
                 PrinterAppBaseWindow.getInstance();
             }
         } else {
-            String message = "Wrong license application error!!!\n\n"
-                    + "\u2709 mail: zhelezonsany@gmail.com\n"
-                    + "\u2706 phone: +375-44-750-88-09";
-
-            PrinterAppErrorWindow.showWindow("Wrong License", message);
+            PrinterAppInfoWindow.showErrorWindow("Wrong License", PrinterAppInfoMessages.MESSAGE_ERROR_LICENSE);
 
             System.exit(0);
         }

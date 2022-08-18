@@ -3,6 +3,7 @@ package lib.ui.screens;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
+import lib.controller.baseWindow.Menu.ActionBaseWindowMenuHelpAboutController;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterProperty;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterQueue;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSetController;
@@ -76,8 +77,7 @@ public class PrinterAppBaseWindow {
         }
 
         printerAppBaseWindow.addMenuItem("Menu_Help", "Menu_Help_Item_About", "About", 100, 20);
-    /*    printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new MyFirstMenuI1tem1Controller());
-    */
+        printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new ActionBaseWindowMenuHelpAboutController());
     }
 
     public BaseWindow getBaseWindow(){
