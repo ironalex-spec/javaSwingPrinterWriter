@@ -83,7 +83,7 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalPrintLabelWindowButtonPrint());
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
-        internalWindow.addSplitPain(SwingConstants.VERTICAL, "Pane_1", "Pane_2", 350);
+        internalWindow.addSplitPain(AppSettings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
         internalWindow.addInternalFrameListener(new InternalFrameAdapter(){

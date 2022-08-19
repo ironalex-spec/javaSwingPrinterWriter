@@ -25,6 +25,12 @@ public class AppSettings {
 
     public static final String TEMPLATE_PRINTING_NAME_ROTATE_90 = "printer90.png";
 
+    public static int baseWindowHeight = 100;
+    public static int baseWindowWidth = 100;
+    public static String baseWindowPosition = "CENTER_CENTER";
+
+    public static int baseWindowContentPosition = 0;
+
     public static final int MAX_SLIDER_VALUE = 1000;
 
     public static final int PRINTER_RESOLUTION_DPI_X = 203;

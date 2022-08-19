@@ -20,6 +20,12 @@ public class AppConfigHandler extends DefaultHandler {
     private boolean isPPIInch = false;
     private boolean isPPICm = false;
 
+    private boolean isWindowHeight = false;
+    private boolean isWindowWidth = false;
+    private boolean isWindowPosition = false;
+
+    private boolean isContentPosition = false;
+
     private int intParseValues = 0;
 
 
@@ -73,6 +79,20 @@ public class AppConfigHandler extends DefaultHandler {
         } else if (isPPICm) {
             AppSettings.PPI_CM_Screen = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
+
+
+        } else if (isWindowHeight) {
+            AppSettings.baseWindowHeight = Integer.parseInt(new String(ch, start, length));
+            intParseValues++;
+        } else if (isWindowWidth) {
+            AppSettings.baseWindowWidth = Integer.parseInt(new String(ch, start, length));
+            intParseValues++;
+        } else if (isWindowPosition) {
+            AppSettings.baseWindowPosition = new String(ch, start, length);
+            intParseValues++;
+        } else if (isContentPosition) {
+            AppSettings.baseWindowContentPosition = Integer.parseInt(new String(ch, start, length));
+            intParseValues++;
         }
     }
 
@@ -95,6 +115,11 @@ public class AppConfigHandler extends DefaultHandler {
 
             isPPIInch = qName.equalsIgnoreCase("PPI_INCH");
             isPPICm = qName.equalsIgnoreCase("PPI_CM");
+
+            isWindowHeight = qName.equalsIgnoreCase("height");
+            isWindowWidth = qName.equalsIgnoreCase("width");
+            isWindowPosition = qName.equalsIgnoreCase("position");
+            isContentPosition = qName.equalsIgnoreCase("content_position");
         } else {
             isTemplateFolder = false;
             isTemplateTemporaryFolder = false;
@@ -109,6 +134,11 @@ public class AppConfigHandler extends DefaultHandler {
 
             isPPIInch = false;
             isPPICm = false;
+
+            isWindowHeight = false;
+            isWindowWidth = false;
+            isWindowPosition = false;
+            isContentPosition = false;
         }
     }
 }

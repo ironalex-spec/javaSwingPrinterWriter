@@ -10,6 +10,10 @@ public class Main {
         if (ServiceAppLicense.checkAppLicense()) {
             if (AppConfigParser.parse()) {
                 PrinterAppBaseWindow.getInstance();
+            } else {
+                PrinterAppInfoWindow.showErrorWindow("Application Error", "config XML error");
+
+                System.exit(0);
             }
         } else {
             PrinterAppInfoWindow.showErrorWindow("Wrong License", PrinterAppInfoMessages.MESSAGE_ERROR_LICENSE);

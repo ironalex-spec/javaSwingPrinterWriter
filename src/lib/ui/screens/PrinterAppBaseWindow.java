@@ -11,6 +11,7 @@ import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSetting
 import lib.repository.file.ImageMagicAPI;
 import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.print.ServicePrint;
+import lib.settings.AppSettings;
 import lib.ui.templates.BaseWindow;
 
 import java.awt.*;
@@ -27,16 +28,21 @@ public class PrinterAppBaseWindow {
     private PrinterAppBaseWindow(){
         callStaticMethods();
 
-        printerAppBaseWindow = new BaseWindow("PrintLabel",0,0,900,600, 20);
+        printerAppBaseWindow = new BaseWindow("PrintLabel",0,0, AppSettings.baseWindowWidth,AppSettings.baseWindowHeight, 20);
 
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        printerAppBaseWindow.setLocation(dim.width/2-printerAppBaseWindow.getSize().width/2, dim.height/2-printerAppBaseWindow.getSize().height/2);
+        String xPosition = AppSettings.baseWindowPosition.split("_")[0];
+        String yPosition = AppSettings.baseWindowPosition.split("_")[1];
+
+        int xLocation = getWindowLocationX(xPosition);
+        int yLocation = getWindowLocationY(yPosition);
+
+        printerAppBaseWindow.setLocation(xLocation, yLocation);
 
         printerAppBaseWindow.updateWindowIcon("src/resources/img/printerLogo.png");
 
         printerAppBaseWindow.addMenu("Menu_File", "File", 100, 20);
         printerAppBaseWindow.addMenu("Menu_Printer", "Printer", 100, 20);
-        printerAppBaseWindow.addMenu("Menu_SelectPrinter", "Printer : ", 500, 20);
+        printerAppBaseWindow.addMenu("Menu_SelectPrinter", "Printer : ", 200, 20);
         printerAppBaseWindow.addMenuHorizontalGlue();
         printerAppBaseWindow.addMenu("Menu_Help", "Help", 100, 20);
 
@@ -121,4 +127,46 @@ public class PrinterAppBaseWindow {
     public void setQueuePrinterEnable(boolean enable){
         printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Queue", enable);
     }
+
+    private int getWindowLocationX(String position){
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int xLocation = 0;
+        switch (position) {
+            case "CENTER" :
+                xLocation = dim.width/2-printerAppBaseWindow.getSize().width/2;
+                break;
+            case "LEFT" :
+                xLocation = 0;
+                break;
+            case "RIGHT" :
+                xLocation = dim.width-printerAppBaseWindow.getSize().width;
+                break;
+            default:
+                xLocation = 0;
+        }
+
+        return xLocation;
+    }
+
+        private int getWindowLocationY(String position){
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+            int yLocation = 0;
+            switch (position) {
+                case "CENTER" :
+                    yLocation = dim.height/2-printerAppBaseWindow.getSize().height/2;
+                    break;
+                case "UP" :
+                    yLocation = 0;
+                    break;
+                case "DOWN" :
+                    yLocation = dim.height-printerAppBaseWindow.getSize().height;
+                    break;
+                default:
+                    yLocation = 0;
+            }
+
+            return yLocation;
+        }
 }

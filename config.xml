@@ -2,6 +2,12 @@
 <um-configuration version="1.0">
     <applications version="1.0.0.0">
         <application name="MyPrinterApp">
+            <window>
+                <height>800</height>
+                <width>400</width>
+                <position>RIGHT_UP</position>
+                <content_position>0</content_position> <!--0 - horizontal, 1  - vertical-->
+            </window>
             <file>
                 <directory>
                     <template_folder>src/resources/editor/img/template/</template_folder>
