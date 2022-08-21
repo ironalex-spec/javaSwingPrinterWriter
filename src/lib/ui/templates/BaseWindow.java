@@ -7,15 +7,18 @@ import lib.ui.templates.window.menu.MenuBarDefinition;
 import lib.ui.templates.window.menu.MenuDefinition;
 import lib.ui.templates.window.textField.WindowTextFieldsDefinition;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class BaseWindow extends  JFrame{
     private JMenuBar jMenuBar;
-    JDesktopPane jDesktopPane = new JDesktopPane();
+    private JDesktopPane jDesktopPane = new JDesktopPane();
 
     /*Item definition base window*/
     private MenuBarDefinition menuBarDefinition;
@@ -32,7 +35,7 @@ public class BaseWindow extends  JFrame{
 
         this.setResizable(true);
         this.setSize(width, height);
-        this.setPreferredSize(new Dimension(10,10));
+        this.setPreferredSize(new Dimension(10, 10));
         this.setLocation(x, y);
 
         if (menuHeight != 0) {
@@ -42,6 +45,7 @@ public class BaseWindow extends  JFrame{
             menuBarDefinition = new MenuBarDefinition(jMenuBar);
             this.setJMenuBar(jMenuBar);
         }
+
 
         /*frame.setLayout(null);*/
         this.setContentPane(jDesktopPane);
@@ -60,6 +64,34 @@ public class BaseWindow extends  JFrame{
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void updateDesktopPaneWithImage(final String pathImage){
+        jDesktopPane = new JDesktopPane() {
+            ImageIcon printing = new ImageIcon(pathImage);
+            Image image = printing.getImage();
+
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+
+                super.paintComponent(grphcs);
+
+                int xPosition = this.getWidth()/2 - image.getWidth(this)/2 ;
+                int yPosition = this.getHeight()/2 - image.getHeight(this)/2 ;
+
+                this.setBackground(new Color(250,250,250));
+
+                grphcs.drawImage(image, xPosition, yPosition, this);
+            }
+
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(image.getWidth(this), image.getHeight(this));
+            }
+        };
+
+        this.setContentPane(jDesktopPane);
+        this.setVisible(true);
     }
 
     public JFrame getJFrame(){

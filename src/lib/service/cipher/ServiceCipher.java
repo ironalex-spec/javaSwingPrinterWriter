@@ -74,6 +74,10 @@ public class ServiceCipher {
                 c='n';
             } else if (c == '\t') {
                 c='t';
+            } else if (c == '"') {
+                c='\'';
+            } else if (c == '\0') {
+                c='0';
             }
 
             out += Character.toString(c);

@@ -17,9 +17,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
@@ -303,6 +301,22 @@ public class InternalWindow extends JInternalFrame{
         }
     }
 
+    public void addScrolPaneComponent(String keyScrollPane, String keyDesktopPane, boolean addScale){
+        JComponent jDesktopPane = getComponentPane(keyDesktopPane);
+        if (jDesktopPane == null) {jDesktopPane = createDesktopPaneComponent(keyDesktopPane);}
+
+        JPanel pContainer = new JPanel();
+
+        JComponent jScrollPane = getComponentPane(keyScrollPane);
+        if (jScrollPane == null) {jScrollPane = createScrollPaneComponent(keyDesktopPane, pContainer);}
+
+
+        componentHashMap.put(keyScrollPane, jScrollPane);
+
+        boolean isRight = getLocationComponentSplitPane(jDesktopPane);
+        addComponentToFrame(jScrollPane, isRight);
+    }
+
     public void addScrolPaneOneComponent(String keyScrollPane, String keyDesktopPane, boolean addScale){
         JComponent jDesktopPane = getComponentPane(keyDesktopPane);
         if (jDesktopPane == null) {jDesktopPane = createDesktopPaneComponent(keyDesktopPane);}
@@ -382,6 +396,8 @@ public class InternalWindow extends JInternalFrame{
         System.gc();
 
     }
+
+
 
     private void clearAllComponentsInternalWindow(){
         baseWindow = null;

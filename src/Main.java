@@ -11,7 +11,7 @@ public class Main {
             if (AppConfigParser.parse()) {
                 PrinterAppBaseWindow.getInstance();
             } else {
-                PrinterAppInfoWindow.showErrorWindow("Application Error", "config XML error");
+                PrinterAppInfoWindow.showErrorWindow("Application Error", PrinterAppInfoMessages.MESSAGE_ERROR_CONFIG);
 
                 System.exit(0);
             }

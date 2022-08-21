@@ -105,7 +105,8 @@ public class PrinterAppInternalTemplateEditorWindow {
 
         internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
         internalWindow.addSplitPain(AppSettings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
-        internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
+
+        internalWindow.addScrolPaneOneComponent( "ScrolPane_2", "Pane_2", true);
 
         internalWindow.addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -251,7 +252,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     }
 
     public void updateImage(String imagePath){
-        internalWindow.updateLabelImage("ScrolPane_1","LabelImage_1",imagePath);
+        internalWindow.updateLabelImage("ScrolPane_2","LabelImage_1",imagePath);
     }
 
     public void updateComboBoxFileItem(){

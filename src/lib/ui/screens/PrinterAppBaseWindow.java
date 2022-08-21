@@ -29,6 +29,7 @@ public class PrinterAppBaseWindow {
         callStaticMethods();
 
         printerAppBaseWindow = new BaseWindow("PrintLabel",0,0, AppSettings.baseWindowWidth,AppSettings.baseWindowHeight, 20);
+        printerAppBaseWindow.updateDesktopPaneWithImage("src/resources/img/gif_printing.gif");
 
         String xPosition = AppSettings.baseWindowPosition.split("_")[0];
         String yPosition = AppSettings.baseWindowPosition.split("_")[1];

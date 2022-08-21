@@ -13,7 +13,11 @@ public class ServiceAppLicense {
 
         String registryEncryptedReg = getAppLicenseValueEncryped();
 
-        return registryEncryptedReg.equals(systemEncrypted);
+        if (registryEncryptedReg != null) {
+            return registryEncryptedReg.equals(systemEncrypted);
+        }
+
+        return false;
     }
 
     private static String getSystemLicenseValueEncryped(){
