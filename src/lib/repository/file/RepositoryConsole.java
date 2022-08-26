@@ -6,9 +6,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class RepositoryConsole {
-    //in one thread
-    public static boolean consoleExecute(String[] commands, boolean isWaitReply){
+    private static RepositoryConsole single_instance = null;
 
+    //in one thread
+    public boolean consoleExecute(String[] commands, boolean isWaitReply){
 
         Runtime rt = Runtime.getRuntime();
 
@@ -29,7 +30,7 @@ public class RepositoryConsole {
     }
 
     //each window in own thread
-    public static boolean consoleExecuteOtherThread(final String[] commands){
+    public boolean consoleExecuteOtherThread(final String[] commands){
         boolean isExecute = false;
 
         ExecutorService executor = Executors.newFixedThreadPool(4);
@@ -67,7 +68,7 @@ public class RepositoryConsole {
      * @return
      * @throws Exception
      */
-    private static String readProcessOutput(Process p) throws Exception{
+    private String readProcessOutput(Process p) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String response = "";
         String line;
@@ -76,5 +77,13 @@ public class RepositoryConsole {
         }
         reader.close();
         return response;
+    }
+
+    public static RepositoryConsole getInstance() {
+        // To ensure only one instance is created
+        if (single_instance == null) {
+            single_instance = new RepositoryConsole();
+        }
+        return single_instance;
     }
 }

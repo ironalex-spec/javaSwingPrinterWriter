@@ -1,14 +1,6 @@
 package lib.service.file;
 
-import lib.repository.file.RepositoryFile;
-import lib.settings.AppSettings;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import lib.repository.file.RepositoryFileLabel;
 
 public class ServiceFile {
     public static String generateFilenameByPrm(int width, int height, int fillet){
@@ -18,15 +10,15 @@ public class ServiceFile {
     }
 
     public static void clearAllGeneratedLabelPNGFiles(){
-        RepositoryFile.clearAllGeneratedLabelPNGFiles();
+        RepositoryFileLabel.getInstance().clearAllGeneratedLabelPNGFiles();
     }
 
     public static void clearAllGeneratedTemplateFiles(){
-        RepositoryFile.clearAllGeneratedTemplateFiles();
+        RepositoryFileLabel.getInstance().clearAllGeneratedTemplateFiles();
     }
 
     public static void clearFileByFilename(String filename){
-        RepositoryFile.clearFileByFilename(filename);
+        RepositoryFileLabel.getInstance().clearFileByFilename(filename);
     }
 
     public static Integer getWidthFromFilename(String filename){
@@ -40,7 +32,7 @@ public class ServiceFile {
     }
 
     public static Integer getImageWidthMMFromPixelSize(String filepath) {
-        Integer width = RepositoryFile.getImageWidthMMFromPixelSize(filepath);
+        Integer width = RepositoryFileLabel.getInstance().getImageWidthMMFromPixelSize(filepath);
 
         return width;
     }
@@ -56,7 +48,7 @@ public class ServiceFile {
     }
 
     public static Integer getImageHeightMMFromPixelSize(String filepath) {
-        Integer height = RepositoryFile.getImageHeightMMFromPixelSize(filepath);
+        Integer height = RepositoryFileLabel.getInstance().getImageHeightMMFromPixelSize(filepath);
 
         return height;
     }
@@ -72,7 +64,7 @@ public class ServiceFile {
     }
 
     public static String[] listFilesForFolder(String filesFolder) {
-        String[] objects = RepositoryFile.listFilesForFolder(filesFolder);
+        String[] objects = RepositoryFileLabel.getInstance().listFilesForFolder(filesFolder);
 
         return objects;
     }

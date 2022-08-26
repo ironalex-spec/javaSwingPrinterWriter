@@ -11,7 +11,7 @@ public class ImageMagicAPI {
     private boolean isInstalled;
 
     private ImageMagicAPI(){
-        isInstalled = RepositoryConsole.consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"}, true);
+        isInstalled = RepositoryConsole.getInstance().consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"}, true);
     }
 
     public boolean isAPIInstalled(){
@@ -47,7 +47,7 @@ public class ImageMagicAPI {
             String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
                     pathPCX, "-negate", pathPng};
 
-            isExecute = RepositoryConsole.consoleExecute(commands, true);
+            isExecute = RepositoryConsole.getInstance().consoleExecute(commands, true);
         }
 
         return isExecute;

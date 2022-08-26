@@ -6,6 +6,7 @@ import lib.ui.libClass.Swing.ScrollPane.ScrollablePicture;
 import lib.ui.templates.window.button.WindowInternalButtonsDefinition;
 import lib.ui.templates.window.combobox.WindowInternalComboBoxDefinition;
 import lib.ui.templates.window.label.WindowInternalLabelsDefinition;
+import lib.ui.templates.window.progresBar.WindowInternalProgresBarDefinition;
 import lib.ui.templates.window.slider.WindowInternalSlidersDefinition;
 import lib.ui.templates.window.textField.WindowInternalTextFieldsDefinition;
 
@@ -32,6 +33,8 @@ public class InternalWindow extends JInternalFrame{
     private WindowInternalButtonsDefinition windowInternalButtonsDefinition;
     private WindowInternalLabelsDefinition windowInternalLabelsDefinition;
     private WindowInternalTextFieldsDefinition windowInternalTextFieldsDefinition;
+
+    private WindowInternalProgresBarDefinition windowInternalProgresBarDefinition;
 
     private WindowInternalComboBoxDefinition windowInternalComboBoxDefinition;
 
@@ -61,6 +64,7 @@ public class InternalWindow extends JInternalFrame{
         windowInternalTextFieldsDefinition = new WindowInternalTextFieldsDefinition(this);
         windowInternalComboBoxDefinition = new WindowInternalComboBoxDefinition(this);
         windowInternalSlidersDefinition = new WindowInternalSlidersDefinition(this);
+        windowInternalProgresBarDefinition = new WindowInternalProgresBarDefinition(this);
 
         this.addInternalFrameListener(new InternalFrameAdapter(){
             public void internalFrameClosing(InternalFrameEvent e) {
@@ -72,6 +76,7 @@ public class InternalWindow extends JInternalFrame{
     public InternalWindow(BaseWindow baseWindow, String title){
         this(baseWindow, title, 0,0,100,100);
     }
+
 
     public void addSlider(String keyDesktopPane, String key, int x, int y, int width, int height, int minVal, int maxVal, int initValue){
         JComponent jComponent = getComponentPane(keyDesktopPane);
@@ -96,6 +101,19 @@ public class InternalWindow extends JInternalFrame{
 
     public void addSliderListener(String key, ChangeListener changeListener){
         windowInternalSlidersDefinition.addChangeListener(key, changeListener);
+    }
+
+    public void addProgressBar(String keyDesktopPane, String key, int maxValue, int x, int y, int width, int height){
+        JComponent jComponent = getComponentPane(keyDesktopPane);
+        if (jComponent == null) {jComponent = createDesktopPaneComponent(keyDesktopPane);}
+
+        windowInternalProgresBarDefinition.add(jComponent, key, maxValue, x, y,width, height);
+
+        addComponentToFrame(jComponent, false);
+    }
+
+    public void setProgressBarValue(String keyProgressBar, int value){
+        windowInternalProgresBarDefinition.setValue(keyProgressBar, value);
     }
 
     public void addButton(String keyDesktopPane, String key, String text, int x, int y, int width, int height){

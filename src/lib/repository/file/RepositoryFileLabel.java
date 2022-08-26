@@ -9,8 +9,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class RepositoryFile {
-    public static void clearAllGeneratedLabelPNGFiles(){
+public class RepositoryFileLabel {
+    private static RepositoryFileLabel single_instance = null;
+
+    public void clearAllGeneratedLabelPNGFiles(){
         String[] files = listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
         for(String s : files){
             if (!s.equals(AppSettings.TEMPLATE_DEFAULT_NAME)){
@@ -23,7 +25,7 @@ public class RepositoryFile {
         }
     }
 
-    public static void clearAllGeneratedTemplateFiles(){
+    public void clearAllGeneratedTemplateFiles(){
         String[] files = listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
         for(String s : files){
             if (ServiceFile.isValidFilename(s)){
@@ -36,7 +38,7 @@ public class RepositoryFile {
         }
     }
 
-    public static void clearFileByFilename(String filename){
+    public void clearFileByFilename(String filename){
         if (ServiceFile.isValidFilename(filename)){
             try {
                 Files.delete(Paths.get(AppSettings.TEMPLATE_FOLDER + filename));
@@ -47,7 +49,7 @@ public class RepositoryFile {
     }
 
 
-    public static Integer getImageWidthMMFromPixelSize(String filepath) {
+    public Integer getImageWidthMMFromPixelSize(String filepath) {
         Integer width = null;
 
         try {
@@ -63,7 +65,7 @@ public class RepositoryFile {
         return width;
     }
 
-    public static Integer getImageHeightMMFromPixelSize(String filepath) {
+    public Integer getImageHeightMMFromPixelSize(String filepath) {
         Integer height = null;
 
         try {
@@ -79,7 +81,7 @@ public class RepositoryFile {
         return height;
     }
 
-    public static String[] listFilesForFolder(String filesFolder) {
+    public String[] listFilesForFolder(String filesFolder) {
         String[] objects = null;
 
         File folder = new File(filesFolder);
@@ -107,7 +109,7 @@ public class RepositoryFile {
         return objects;
     }
 
-    public static boolean replaceLineFile(String filepath, int lineNum, String newValue){
+    public boolean replaceLineFile(String filepath, int lineNum, String newValue){
         try {
             // input the file content to the StringBuffer "input"
             BufferedReader file = new BufferedReader(new FileReader(filepath));
@@ -137,5 +139,13 @@ public class RepositoryFile {
         }
 
         return true;
+    }
+
+    public static RepositoryFileLabel getInstance() {
+        // To ensure only one instance is created
+        if (single_instance == null) {
+            single_instance = new RepositoryFileLabel();
+        }
+        return single_instance;
     }
 }

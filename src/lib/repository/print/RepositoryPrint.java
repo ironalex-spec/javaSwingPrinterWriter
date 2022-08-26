@@ -1,7 +1,7 @@
 package lib.repository.print;
 
 import lib.repository.file.RepositoryConsole;
-import lib.repository.file.RepositoryFile;
+import lib.repository.file.RepositoryFileLabel;
 import lib.settings.AppSettings;
 
 import javax.imageio.ImageIO;
@@ -9,7 +9,6 @@ import javax.print.*;
 import javax.print.attribute.*;
 import javax.print.attribute.standard.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.print.*;
 import java.io.File;
@@ -160,12 +159,12 @@ public class RepositoryPrint {
         /*Change path dividers*/
         filepath = filepath.replace('/','\\');
 
-        RepositoryFile.replaceLineFile("src/resources/scripts/powershell/templatePrint.vbs", 1,
+        RepositoryFileLabel.getInstance().replaceLineFile("src/resources/scripts/powershell/templatePrint.vbs", 1,
                 "Const sPathFile = \""+ dir + "\\"+ filepath + "\"");
 
         String[] commands = new String[]{"cscript", "src/resources/scripts/powershell/templatePrint.vbs"};
 
-        isExecute = RepositoryConsole.consoleExecuteOtherThread(commands);
+        isExecute = RepositoryConsole.getInstance().consoleExecuteOtherThread(commands);
 
         return isExecute;
     }

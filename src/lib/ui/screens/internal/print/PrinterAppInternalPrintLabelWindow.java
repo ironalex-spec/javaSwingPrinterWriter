@@ -40,7 +40,7 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Labels", 5,30,80,30);
 
         String[] filesName = ServiceFile.listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
-        internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Labels", filesName, 90,30,150,30);
+        internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Labels", filesName, 90,10,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Labels", new ActionInternalPrintLabelComboBoxFiles());
 
         internalWindow.addButton("Pane_1","Pane_1_Button_ClearAll","Clear All", 250,10,90,30);
@@ -48,6 +48,9 @@ public class PrinterAppInternalPrintLabelWindow {
 
         internalWindow.addButton("Pane_1","Pane_1_Button_Refresh","Refresh", 250,50,90,30);
         internalWindow.addButtonListener("Pane_1_Button_Refresh", new ActionInternalPrintLabelWindowButtonRefresh());
+
+        internalWindow.addProgressBar("Pane_1","Pane_1_ProgressBar_Process",100, 90,50,150,30);
+        internalWindow.setProgressBarValue("Pane_1_ProgressBar_Process", 100);
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_TextInput","Text", 25,100,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextInput","", 90,100,100,30);

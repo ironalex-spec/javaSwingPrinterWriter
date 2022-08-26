@@ -13,7 +13,7 @@ public class RepositoryPrinterOptions {
     RepositoryPrinterOptions(){
         String[] commands = new String[]{"powershell", "-command","(" + AppSettings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
 
-        isOptionExist = RepositoryConsole.consoleExecuteOtherThread(commands);
+        isOptionExist = RepositoryConsole.getInstance().consoleExecuteOtherThread(commands);
     }
 
     public boolean printerPrintSettingsOpen(String printerName){
@@ -56,7 +56,7 @@ public class RepositoryPrinterOptions {
         String[] commands = new String[]{"rundll32 ", AppSettings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll,PrintUIEntry", attribute,
                 "/n", printerName};
 
-        isExecute = RepositoryConsole.consoleExecute(commands, false);
+        isExecute = RepositoryConsole.getInstance().consoleExecute(commands, false);
 
         return isExecute;
     }
