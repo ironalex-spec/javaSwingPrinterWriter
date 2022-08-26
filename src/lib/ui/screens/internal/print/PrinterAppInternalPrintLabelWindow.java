@@ -138,6 +138,14 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.setTextFieldData("Pane_1_TextField_TextInput", sValue_Input_TextLabel);
     }
 
+    public void setProgressBarProcessValue(int value){
+        internalWindow.setProgressBarValue("Pane_1_ProgressBar_Process", value);
+    }
+
+    public void setProgressBarProcessMaxValue(int maxValue){
+        internalWindow.setProgressBarMaxValue("Pane_1_ProgressBar_Process", maxValue);
+    }
+
     public void setTextSizeLabel(String textSizeLabel){
         sValue_Input_TextSizeLabel = textSizeLabel;
 

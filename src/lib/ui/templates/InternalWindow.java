@@ -116,6 +116,10 @@ public class InternalWindow extends JInternalFrame{
         windowInternalProgresBarDefinition.setValue(keyProgressBar, value);
     }
 
+    public void setProgressBarMaxValue(String keyProgressBar, int maxValue){
+        windowInternalProgresBarDefinition.setMaxValue(keyProgressBar, maxValue);
+    }
+
     public void addButton(String keyDesktopPane, String key, String text, int x, int y, int width, int height){
         JComponent jComponent = getComponentPane(keyDesktopPane);
         if (jComponent == null) {jComponent = createDesktopPaneComponent(keyDesktopPane);}

@@ -16,14 +16,8 @@ public class ActionInternalPrintLabelWindowButtonRefresh implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
-
-        PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
-
         ServiceInternalTemplateEditor.clearAllGeneratedLabelPNGFiles();
 
-        ImageMagicAPI.getInstance().convertFolderPCX_To_PNG(AppSettings.LABEL_EXTERNAL_PCX_FOLDER, AppSettings.LABEL_PCX_TO_PNG_FOLDER);
-
-        printerAppInternalPrintLabelWindow.updateComboBoxLabelItem();
+        ServiceInternalTemplateEditor.convertPCX_To_Png();
     }
 }

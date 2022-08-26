@@ -5,10 +5,14 @@ import lib.service.paint.ServicePaintTransform;
 import lib.service.print.ServicePrint;
 import lib.settings.AppSettings;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class ImageMagicAPI {
     private static ImageMagicAPI single_instance = null;
     private boolean isInstalled;
+    private ExecutorService executor = null;
 
     private ImageMagicAPI(){
         isInstalled = RepositoryConsole.getInstance().consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"}, true);
@@ -41,7 +45,7 @@ public class ImageMagicAPI {
         return isExecute;
     }
 
-    private boolean convertPCX_TO_PNG(String pathPCX, String pathPng){
+    public boolean convertPCX_TO_PNG(String pathPCX, String pathPng){
         boolean isExecute = false;
         if(isInstalled){
             String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
@@ -51,6 +55,39 @@ public class ImageMagicAPI {
         }
 
         return isExecute;
+    }
+
+    public boolean convertPCX_TO_PNG_Thread(final String pathPCX, final String pathPng){
+        boolean isExecute = false;
+
+        executor = Executors.newFixedThreadPool(2);
+        try {
+            executor.execute(new Runnable() {
+                public void run() {
+                    String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
+                            pathPCX, "-negate", pathPng};
+
+                    RepositoryConsole.getInstance().consoleExecute(commands, true);
+
+                }
+            });
+
+            isExecute = true;
+        }catch(Exception ex) {
+            ex.printStackTrace();
+            isExecute = false;
+        }
+
+        executor.shutdownNow();
+
+        return isExecute;
+    }
+
+    public boolean isThreadTerminated(){
+        if(executor == null){
+            return false;
+        }
+        return executor.isTerminated();
     }
 
     public static ImageMagicAPI getInstance() {

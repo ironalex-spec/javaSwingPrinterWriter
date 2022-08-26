@@ -39,6 +39,11 @@ public class WindowInternalProgresBarDefinition{
         jProgressBar.setValue(Value);
     }
 
+    public void setMaxValue(String keyProgresBar, int maxValue){
+        JProgressBar jProgressBar = progressBars.get(keyProgresBar);
+        jProgressBar.setMaximum(maxValue);
+    }
+
     @Override
     protected void finalize() throws Throwable
     {

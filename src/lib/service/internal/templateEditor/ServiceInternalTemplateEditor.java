@@ -1,14 +1,19 @@
 package lib.service.internal.templateEditor;
 
+import lib.app.ThreadCounter;
+import lib.repository.file.ImageMagicAPI;
 import lib.service.Service;
 import lib.service.file.ServiceFile;
 import lib.service.internal.label.ServiceInternalLabelEditor;
 import lib.service.paint.ServicePaintText;
+import lib.service.paint.ServicePaintTransform;
 import lib.settings.AppSettings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
 import lib.ui.templates.BaseWindow;
+
+import javax.swing.*;
 
 public class ServiceInternalTemplateEditor {
     public static void updatePanelImage(String pathImage){
@@ -95,5 +100,96 @@ public class ServiceInternalTemplateEditor {
 
         ServiceInternalLabelEditor.updatePanelImage(AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME);
 
+    }
+
+    public static boolean convertPCX_To_Png() {
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+        final PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
+
+        final String[] filesFolderPCX = ServiceFile.listFilesForFolder(AppSettings.LABEL_EXTERNAL_PCX_FOLDER);
+
+        final boolean isExecute = false;
+
+        Thread processFileThread = new Thread(new Runnable() {
+            public void run() {
+                int i= 1;
+                final int numPcx = getPCXFolderFileNum(AppSettings.LABEL_EXTERNAL_PCX_FOLDER);
+                ThreadCounter.setCountThread(numPcx);
+                for (String file : filesFolderPCX) {
+                    if (file.contains(".pcx")) {
+                        ImageMagicAPI.getInstance().convertPCX_TO_PNG(AppSettings.LABEL_EXTERNAL_PCX_FOLDER + file, AppSettings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"));
+                        /*ServicePaintTransform.scalePicture_v3(AppSettings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"), AppSettings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"), 1, 1);
+*/
+                        // Runs inside of the Swing UI thread
+                        final int finalI = i;
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                printerAppInternalPrintLabelWindow.setProgressBarProcessMaxValue(numPcx);
+                                printerAppInternalPrintLabelWindow.setProgressBarProcessValue(finalI);
+                            }
+                        });
+
+                        try {
+                            java.lang.Thread.sleep(100);
+                        } catch (Exception e) {
+                        }
+
+
+                        i++;
+                        ThreadCounter.decCountThread();
+                        if (ThreadCounter.isCountFinish()){
+                            convertPCX_To_Png_Finish();
+                        }
+                    }
+                }
+            }
+        });
+
+        processFileThread.start();
+
+        return isExecute;
+    }
+
+    private static void convertPCX_To_Png_Finish() {
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+        PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
+
+        printerAppInternalPrintLabelWindow.updateComboBoxLabelItem();
+    }
+
+    public static int getPCXFolderFileNum(String folder){
+        final String[] filesFolderPCX = ServiceFile.listFilesForFolder(folder);
+        int iNumPcx = 0;
+        for (String file : filesFolderPCX) {
+            if (file.contains(".pcx")) {
+                iNumPcx++;
+            }
+        }
+        return iNumPcx;
+    }
+
+    private void sampleProgressBar(){
+        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
+        final PrinterAppInternalPrintLabelWindow printerAppInternalPrintLabelWindow = PrinterAppInternalPrintLabelWindow.getInstance(baseWindow);
+
+        new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i <= 100; i++) {
+
+                    // Runs inside of the Swing UI thread
+                    final int finalI = i;
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            printerAppInternalPrintLabelWindow.setProgressBarProcessValue(finalI);
+                        }
+                    });
+
+                    try {
+                        java.lang.Thread.sleep(100);
+                    }
+                    catch(Exception e) { }
+                }
+            }
+        }).start();
     }
 }
