@@ -1,9 +1,8 @@
 package lib.service;
 
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -75,7 +74,7 @@ public class Service {
     }
 
     public static float sliderToFloatRecalc(int slider){
-        return  (float)(slider / (1.0 * AppSettings.MAX_SLIDER_VALUE));
+        return  (float)(slider / (1.0 * Settings.MAX_SLIDER_VALUE));
     }
 
 }

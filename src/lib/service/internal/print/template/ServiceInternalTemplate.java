@@ -1,27 +1,39 @@
-package lib.service.internal.editor;
+package lib.service.internal.print.template;
 
 import lib.service.Service;
 import lib.service.file.ServiceFile;
 import lib.service.paint.ServicePaintText;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintTemplateWindow;
 import lib.ui.templates.BaseWindow;
 
-public class ServiceInternalEditor {
-    public static void updatePanelImage(String pathImage){
+public class ServiceInternalTemplate {
+    private static ServiceInternalTemplate single_instance;
+    private PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow;
+
+    public static ServiceInternalTemplate getInstance() {
+        if (single_instance == null) {
+            single_instance = new ServiceInternalTemplate();
+        }
+        return single_instance;
+    }
+
+    public static void clearInstance(){
+        single_instance = null;
+    }
+
+    ServiceInternalTemplate(){
         BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
 
-        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
+        printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
+    }
 
+    public void updatePanelImage(String pathImage){
         printerAppInternalPrintTemplateWindow.updateImage(pathImage);
     }
 
-    public static void enableComponentsControl(boolean enable){
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
-
-        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
-
+    public void enableComponentsControl(boolean enable){
         printerAppInternalPrintTemplateWindow.setTextTextFieldEnable(enable);
         printerAppInternalPrintTemplateWindow.setXPosTextSliderEnable(enable);
         printerAppInternalPrintTemplateWindow.setYPosTextSliderEnable(enable);
@@ -29,23 +41,15 @@ public class ServiceInternalEditor {
         printerAppInternalPrintTemplateWindow.setTextSizeTextFieldEnable(enable);
     }
 
-    public static boolean isEnableComponentTextControl(){
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
-
-        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
-
+    public boolean isEnableComponentTextControl(){
         Object selectedItem = printerAppInternalPrintTemplateWindow.getFileTemplateChooseComboBox();
 
-        boolean enableTextControl = !((String) selectedItem).equals(AppSettings.TEMPLATE_DEFAULT_NAME);
+        boolean enableTextControl = !((String) selectedItem).equals(Settings.TEMPLATE_DEFAULT_NAME);
 
         return enableTextControl;
     }
 
-    public static void refreshTemplateWithTextParameters(){
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
-
-        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
-
+    public void refreshTemplateWithTextParameters(){
         Object textSize = printerAppInternalPrintTemplateWindow.getTextSizeLabel();
         Object filenameChoose = printerAppInternalPrintTemplateWindow.getFileTemplateChooseComboBox();
 
@@ -68,25 +72,21 @@ public class ServiceInternalEditor {
 
                 Object selectedFile = printerAppInternalPrintTemplateWindow.getFileTemplateChooseComboBox();
 
-                ServicePaintText.addImgText(AppSettings.TEMPLATE_FOLDER + selectedFile,
-                        AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME,
+                ServicePaintText.addImgText(Settings.TEMPLATE_FOLDER + selectedFile,
+                        Settings.TEMPLATE_PRINTING_FOLDER + Settings.TEMPLATE_PRINTING_NAME,
                         width.intValue(), height.intValue(), xOffcet_mm, yOffcet_mm, textValue,
                         Integer.parseInt((String) textSize), (String) fontValue);
 
-                ServiceInternalEditor.updatePanelImage(AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
+                updatePanelImage(Settings.TEMPLATE_PRINTING_FOLDER + Settings.TEMPLATE_PRINTING_NAME);
             }catch (NumberFormatException nfe) {
                 nfe.printStackTrace();
             }
         }
     }
 
-    public static void setDefaultControlTextLabelTemplate(){
-        BaseWindow baseWindow = PrinterAppBaseWindow.getInstance().getBaseWindow();
-        PrinterAppInternalPrintTemplateWindow printerAppInternalPrintTemplateWindow = PrinterAppInternalPrintTemplateWindow.getInstance(baseWindow);
-
+    public void setDefaultControlTextLabelTemplate(){
         printerAppInternalPrintTemplateWindow.setTextLabel("");
         printerAppInternalPrintTemplateWindow.setXPosTextSliderValue(0);
         printerAppInternalPrintTemplateWindow.setYPosTextSliderValue(0);
-
     }
 }

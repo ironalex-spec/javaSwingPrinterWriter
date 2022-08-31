@@ -10,11 +10,11 @@ import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInte
 import lib.controller.baseWindow.internalWindow.print.label.textLabel.ActionInternalPrintLabelWindowTextSize;
 import lib.service.Service;
 import lib.service.file.ServiceFile;
-import lib.settings.AppSettings;
+import lib.service.internal.print.label.ServiceInternalLabel;
+import lib.app.Settings;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
 
-import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -39,7 +39,7 @@ public class PrinterAppInternalPrintLabelWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Labels", 5,30,80,30);
 
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.LABEL_PCX_TO_PNG_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Labels", filesName, 90,10,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Labels", new ActionInternalPrintLabelComboBoxFiles());
 
@@ -71,12 +71,12 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalPrintLabelWindowTextSize());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,150,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 150,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 150,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalPrintLabelWindowSliders());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position", 25,200,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 200,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 200,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalPrintLabelWindowSliders());
 
@@ -85,8 +85,8 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
         internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalPrintLabelWindowButtonPrint());
 
-        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
-        internalWindow.addSplitPain(AppSettings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
+        internalWindow.addLabelAsImage("Pane_2","LabelImage_1", Settings.LABEL_PCX_TO_PNG_FOLDER + Settings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
+        internalWindow.addSplitPain(Settings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
         internalWindow.addInternalFrameListener(new InternalFrameAdapter(){
@@ -189,7 +189,11 @@ public class PrinterAppInternalPrintLabelWindow {
     }
 
     public void updateComboBoxLabelItem(){
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
+/*        if(single_instance == null) {
+            PrinterAppInternalPrintLabelWindow.getInstance(printerAppBaseWindow);
+        }*/
+
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.LABEL_PCX_TO_PNG_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Labels", filesName);
     }
 
@@ -223,5 +227,7 @@ public class PrinterAppInternalPrintLabelWindow {
 
     private void  clearInternalWindowInstance(){
         single_instance = null;
+        ServiceInternalLabel.clearInstance();
+        System.gc();
     }
 }

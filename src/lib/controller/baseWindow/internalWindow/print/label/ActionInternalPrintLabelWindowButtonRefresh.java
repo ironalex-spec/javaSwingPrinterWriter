@@ -1,12 +1,7 @@
 package lib.controller.baseWindow.internalWindow.print.label;
 
 
-import lib.repository.file.ImageMagicAPI;
-import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
-import lib.settings.AppSettings;
-import lib.ui.screens.PrinterAppBaseWindow;
-import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
-import lib.ui.templates.BaseWindow;
+import lib.service.internal.print.label.ServiceInternalLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +11,8 @@ public class ActionInternalPrintLabelWindowButtonRefresh implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ServiceInternalTemplateEditor.clearAllGeneratedLabelPNGFiles();
+        ServiceInternalLabel.getInstance().clearAllGeneratedLabelPNGFiles();
 
-        ServiceInternalTemplateEditor.convertPCX_To_Png();
+        ServiceInternalLabel.getInstance().convertPCX_To_Png();
     }
 }

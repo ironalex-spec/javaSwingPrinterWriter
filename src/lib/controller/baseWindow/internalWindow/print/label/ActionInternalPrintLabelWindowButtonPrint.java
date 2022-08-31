@@ -1,9 +1,8 @@
 package lib.controller.baseWindow.internalWindow.print.label;
 
 
-import lib.service.paint.ServicePaintTransform;
 import lib.service.print.ServicePrint;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 import lib.ui.screens.PrinterAppBaseWindow;
 
 import java.awt.event.ActionEvent;
@@ -14,6 +13,6 @@ public class ActionInternalPrintLabelWindowButtonPrint implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
       /*  ServicePaintTransform.rotateClockwise90(AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME_ROTATE_90, AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
-*/        ServicePrint.printSelectedPngFile(PrinterAppBaseWindow.getInstance().getSelectedPrinter(), AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
+*/        ServicePrint.printSelectedPngFile(PrinterAppBaseWindow.getInstance().getSelectedPrinter(), Settings.TEMPLATE_PRINTING_FOLDER + Settings.TEMPLATE_PRINTING_NAME);
     }
 }

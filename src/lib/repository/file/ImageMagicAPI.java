@@ -2,8 +2,7 @@ package lib.repository.file;
 
 import lib.service.file.ServiceFile;
 import lib.service.paint.ServicePaintTransform;
-import lib.service.print.ServicePrint;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,7 +14,7 @@ public class ImageMagicAPI {
     private ExecutorService executor = null;
 
     private ImageMagicAPI(){
-        isInstalled = RepositoryConsole.getInstance().consoleExecute(new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe"}, true);
+        isInstalled = RepositoryConsole.getInstance().consoleExecute(new String[]{Settings.IMAGE_MAGICK_API_FOLDER + "magick.exe"}, true);
     }
 
     public boolean isAPIInstalled(){
@@ -48,7 +47,7 @@ public class ImageMagicAPI {
     public boolean convertPCX_TO_PNG(String pathPCX, String pathPng){
         boolean isExecute = false;
         if(isInstalled){
-            String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
+            String[] commands = new String[]{Settings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
                     pathPCX, "-negate", pathPng};
 
             isExecute = RepositoryConsole.getInstance().consoleExecute(commands, true);
@@ -64,7 +63,7 @@ public class ImageMagicAPI {
         try {
             executor.execute(new Runnable() {
                 public void run() {
-                    String[] commands = new String[]{AppSettings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
+                    String[] commands = new String[]{Settings.IMAGE_MAGICK_API_FOLDER + "magick.exe", "convert",
                             pathPCX, "-negate", pathPng};
 
                     RepositoryConsole.getInstance().consoleExecute(commands, true);

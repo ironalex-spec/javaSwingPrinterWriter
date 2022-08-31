@@ -1,7 +1,7 @@
 package lib.controller.baseWindow.internalWindow.print.label;
 
 
-import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import lib.service.internal.print.label.ServiceInternalLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,6 @@ public class ActionInternalPrintLabelWindowButtonClearAll implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ServiceInternalTemplateEditor.clearAllGeneratedLabelPNGFiles();
+        ServiceInternalLabel.getInstance().clearAllGeneratedLabelPNGFiles();
      }
 }

@@ -1,17 +1,17 @@
 package lib.ui.screens.internal.print;
 
-import lib.controller.baseWindow.internalWindow.print.editor.*;
-import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowComboBoxFonts;
-import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowSliders;
-import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowTextFieldTextLabel;
-import lib.controller.baseWindow.internalWindow.print.editor.textTemplate.ActionInternalEditorWindowTextSizeLabel;
+import lib.controller.baseWindow.internalWindow.print.template.*;
+import lib.controller.baseWindow.internalWindow.print.template.textTemplate.ActionInternalPrintTemplateWindowComboBoxFonts;
+import lib.controller.baseWindow.internalWindow.print.template.textTemplate.ActionInternalPrintTemplateWindowSliders;
+import lib.controller.baseWindow.internalWindow.print.template.textTemplate.ActionInternalPrintTemplateWindowTextFieldTextLabel;
+import lib.controller.baseWindow.internalWindow.print.template.textTemplate.ActionInternalPrintTemplateWindowTextSizeLabel;
 import lib.service.Service;
 import lib.service.file.ServiceFile;
-import lib.settings.AppSettings;
+import lib.service.internal.print.template.ServiceInternalTemplate;
+import lib.app.Settings;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
 
-import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -34,45 +34,45 @@ public class PrinterAppInternalPrintTemplateWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Template", 5,30,80,30);
 
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.TEMPLATE_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
-        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorWindowComboBoxFiles());
+        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalPrintTemplateWindowComboBoxFiles());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_TextInput","Text", 25,80,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextInput","", 90,80,100,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextInput", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextInput", false);
-        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextInput", new ActionInternalEditorWindowTextFieldTextLabel());
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextInput", new ActionInternalPrintTemplateWindowTextFieldTextLabel());
 
         String[] fontNames = Service.listAvailableFonts();
         internalWindow.addLabel("Pane_1","Pane_1_Label_Fonts","Font", 230,55,80,30);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Fonts", fontNames, 200,80,100,30);
         internalWindow.setComboBoxEnable("Pane_1_ComboBox_Fonts", false);
-        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Fonts", new ActionInternalEditorWindowComboBoxFonts());
+        internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Fonts", new ActionInternalPrintTemplateWindowComboBoxFonts());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_TextSize","Size", 310,55,80,30);
         internalWindow.addTextField("Pane_1","Pane_1_TextField_TextSize","2", 310,80,30,30);
         internalWindow.setTextFieldFormat("Pane_1_TextField_TextSize", (byte) 0);
         internalWindow.setTextFieldEnable("Pane_1_TextField_TextSize", false);
-        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalEditorWindowTextSizeLabel());
+        internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalPrintTemplateWindowTextSizeLabel());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,130,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 130,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 130,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
-        internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalEditorWindowSliders());
+        internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalPrintTemplateWindowSliders());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position", 25,180,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 180,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 180,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
-        internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorWindowSliders());
+        internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalPrintTemplateWindowSliders());
 
         internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,230,70,30);
         /*String choosePrinterName = PrinterAppBaseWindow.getInstance().getSelectedPrinter();*/
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
-        internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalEditorWindowButtonPrint());
+        internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalPrintTemplateWindowButtonPrint());
 
-        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.LABEL_PCX_TO_PNG_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
-        internalWindow.addSplitPain(AppSettings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
+        internalWindow.addLabelAsImage("Pane_2","LabelImage_1", Settings.LABEL_PCX_TO_PNG_FOLDER + Settings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
+        internalWindow.addSplitPain(Settings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
         internalWindow.addScrolPaneOneComponent( "ScrolPane_1", "Pane_2", true);
 
         internalWindow.addInternalFrameListener(new InternalFrameAdapter(){
@@ -167,7 +167,7 @@ public class PrinterAppInternalPrintTemplateWindow {
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.TEMPLATE_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 
@@ -197,5 +197,7 @@ public class PrinterAppInternalPrintTemplateWindow {
 
     private void  clearInternalWindowInstance(){
         single_instance = null;
+        ServiceInternalTemplate.clearInstance();
+        System.gc();
     }
 }

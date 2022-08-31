@@ -1,7 +1,7 @@
-package lib.controller.baseWindow.internalWindow.editorTemplate;
+package lib.controller.baseWindow.internalWindow.editor.template;
 
 import lib.service.Service;
-import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import lib.service.internal.editor.template.ServiceInternalTemplateEditor;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import lib.ui.templates.BaseWindow;
@@ -35,6 +35,6 @@ public class ActionInternalEditorTemplateWindowTextFields implements ActionListe
 
         boolean enableButton = Service.isAllDataIntNumeric(printerAppInternalTemplateEditorWindow.getTextFieldsValues());
 
-        ServiceInternalTemplateEditor.enableComponentsControl(enableButton);
+        ServiceInternalTemplateEditor.getInstance().enableComponentsControl(enableButton);
     }
 }

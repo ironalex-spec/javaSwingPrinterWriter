@@ -2,9 +2,8 @@ package lib.controller.baseWindow.internalWindow.print.label;
 
 
 import lib.service.Service;
-import lib.service.internal.editor.ServiceInternalEditor;
-import lib.service.internal.label.ServiceInternalLabelEditor;
-import lib.settings.AppSettings;
+import lib.service.internal.print.label.ServiceInternalLabel;
+import lib.app.Settings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.print.PrinterAppInternalPrintLabelWindow;
 import lib.ui.templates.BaseWindow;
@@ -23,17 +22,17 @@ public class ActionInternalPrintLabelComboBoxFiles implements ActionListener {
         Object selectedItem = printerAppInternalPrintLabelWindow.getFileLabelChooseComboBox();
 
         if (selectedItem != null) {
-            ServiceInternalLabelEditor.setDefaultControlTextLabelTemplate();
+            ServiceInternalLabel.getInstance().setDefaultControlTextLabelTemplate();
 
-            boolean enableTextControl = ServiceInternalLabelEditor.isEnableComponentTextControl();
+            boolean enableTextControl = ServiceInternalLabel.getInstance().isEnableComponentTextControl();
 
-            ServiceInternalLabelEditor.enableComponentsControl(enableTextControl);
+            ServiceInternalLabel.getInstance().enableComponentsControl(enableTextControl);
 
-            ServiceInternalLabelEditor.updatePanelImage(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedItem);
+            ServiceInternalLabel.getInstance().updatePanelImage(Settings.LABEL_PCX_TO_PNG_FOLDER + selectedItem);
 
             printerAppInternalPrintLabelWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
 
-            Service.copyFileAnotherDirectory(AppSettings.LABEL_PCX_TO_PNG_FOLDER + selectedItem, AppSettings.TEMPLATE_PRINTING_FOLDER + AppSettings.TEMPLATE_PRINTING_NAME);
+            Service.copyFileAnotherDirectory(Settings.LABEL_PCX_TO_PNG_FOLDER + selectedItem, Settings.TEMPLATE_PRINTING_FOLDER + Settings.TEMPLATE_PRINTING_NAME);
         }
     }
 }

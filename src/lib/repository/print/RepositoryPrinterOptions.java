@@ -1,17 +1,14 @@
 package lib.repository.print;
 
 import lib.repository.file.RepositoryConsole;
-import lib.settings.AppSettings;
-import lib.ui.screens.PrinterAppBaseWindow;
-
-import java.io.IOException;
+import lib.app.Settings;
 
 public class RepositoryPrinterOptions {
     private static RepositoryPrinterOptions single_instance;
     private static boolean isOptionExist;
 
     RepositoryPrinterOptions(){
-        String[] commands = new String[]{"powershell", "-command","(" + AppSettings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
+        String[] commands = new String[]{"powershell", "-command","(" + Settings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
 
         isOptionExist = RepositoryConsole.getInstance().consoleExecuteOtherThread(commands);
     }
@@ -53,7 +50,7 @@ public class RepositoryPrinterOptions {
     private boolean executePrintUI_DLL(String printerName, String attribute){
         boolean isExecute = false;
 
-        String[] commands = new String[]{"rundll32 ", AppSettings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll,PrintUIEntry", attribute,
+        String[] commands = new String[]{"rundll32 ", Settings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll,PrintUIEntry", attribute,
                 "/n", printerName};
 
         isExecute = RepositoryConsole.getInstance().consoleExecute(commands, false);

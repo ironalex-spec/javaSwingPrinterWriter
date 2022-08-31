@@ -1,7 +1,5 @@
 package lib.repository.paint;
 
-import lib.settings.AppSettings;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -14,7 +14,7 @@ public class AppConfigParser {
             SAXParser saxParser = factory.newSAXParser();
             AppConfigHandler appConfigHandler = new AppConfigHandler();
             saxParser.parse("config.xml", appConfigHandler);
-            isParse = appConfigHandler.getParsedValues() == 15;
+            isParse = appConfigHandler.getParsedValues() == 16;
         } catch (Exception e) {
             e.printStackTrace();
         }

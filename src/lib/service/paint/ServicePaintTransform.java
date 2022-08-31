@@ -1,7 +1,6 @@
 package lib.service.paint;
 
 import lib.repository.paint.RepositoryPicture;
-import lib.settings.AppSettings;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

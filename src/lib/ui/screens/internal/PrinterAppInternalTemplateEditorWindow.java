@@ -1,14 +1,15 @@
 package lib.ui.screens.internal;
 
-import lib.controller.baseWindow.internalWindow.editorTemplate.*;
-import lib.controller.baseWindow.internalWindow.editorTemplate.TextLabel.*;
+import lib.controller.baseWindow.internalWindow.editor.template.*;
+import lib.controller.baseWindow.internalWindow.editor.template.TextLabel.*;
+
 import lib.service.Service;
 import lib.service.file.ServiceFile;
-import lib.settings.AppSettings;
+import lib.service.internal.editor.template.ServiceInternalTemplateEditor;
+import lib.app.Settings;
 import lib.ui.templates.BaseWindow;
 import lib.ui.templates.InternalWindow;
 
-import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class PrinterAppInternalTemplateEditorWindow {
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_Files","Template", 5,30,80,30);
 
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.TEMPLATE_FOLDER);
         internalWindow.addComboBox("Pane_1","Pane_1_ComboBox_Files", filesName, 90,30,150,30);
         internalWindow.addComboBoxActionListener("Pane_1_ComboBox_Files", new ActionInternalEditorTemplateWindowComboBoxFiles());
 
@@ -90,12 +91,12 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.addTextFieldKeyListener("Pane_1_TextField_TextSize", new ActionInternalEditorTemplateWindowTextSizeLabel());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_xPosText","X position", 25,330,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 330,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_xPosText",90, 330,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_xPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_xPosText", new ActionInternalEditorTemplateWindowSliders());
 
         internalWindow.addLabel("Pane_1","Pane_1_Label_yPosText","Y position", 25,380,120,30);
-        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 380,250,30,-1*AppSettings.MAX_SLIDER_VALUE, AppSettings.MAX_SLIDER_VALUE, 0);
+        internalWindow.addSlider("Pane_1","Pane_1_Slider_yPosText",90, 380,250,30,-1* Settings.MAX_SLIDER_VALUE, Settings.MAX_SLIDER_VALUE, 0);
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalEditorTemplateWindowSliders());
 
@@ -103,8 +104,8 @@ public class PrinterAppInternalTemplateEditorWindow {
         internalWindow.setButtonEnable("Pane_1_Button_ApplyText", false);
         internalWindow.addButtonListener("Pane_1_Button_ApplyText", new ActionInternalEditorTemplateWindowApplyTextLabel());
 
-        internalWindow.addLabelAsImage("Pane_2","LabelImage_1",AppSettings.TEMPLATE_FOLDER + AppSettings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
-        internalWindow.addSplitPain(AppSettings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
+        internalWindow.addLabelAsImage("Pane_2","LabelImage_1", Settings.TEMPLATE_FOLDER + Settings.TEMPLATE_DEFAULT_NAME, 0,10,100,100);
+        internalWindow.addSplitPain(Settings.baseWindowContentPosition, "Pane_1", "Pane_2", 350);
 
         internalWindow.addScrolPaneOneComponent( "ScrolPane_2", "Pane_2", true);
 
@@ -256,7 +257,7 @@ public class PrinterAppInternalTemplateEditorWindow {
     }
 
     public void updateComboBoxFileItem(){
-        String[] filesName = ServiceFile.listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] filesName = ServiceFile.listFilesForFolder(Settings.TEMPLATE_FOLDER);
         internalWindow.updateComboBoxItems("Pane_1_ComboBox_Files", filesName);
     }
 
@@ -299,8 +300,9 @@ public class PrinterAppInternalTemplateEditorWindow {
     }
 
 
-
     private void  clearInternalWindowInstance(){
         single_instance = null;
+        ServiceInternalTemplateEditor.clearInstance();
+        System.gc();
     }
 }

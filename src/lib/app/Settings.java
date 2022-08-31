@@ -1,8 +1,6 @@
-package lib.settings;
+package lib.app;
 
-import java.awt.*;
-
-public class AppSettings {
+public class Settings {
     public static final double inchToCmValue = 2.54;
     public static int PPI_INCH_Screen /*= Toolkit.getDefaultToolkit().getScreenResolution()*/;
     public static int PPI_CM_Screen /*= (int) (PPI_INCH_Screen / inchToCmValue)*/;
@@ -28,6 +26,8 @@ public class AppSettings {
     public static int baseWindowHeight = 100;
     public static int baseWindowWidth = 100;
     public static String baseWindowPosition = "CENTER_CENTER";
+
+    public static int typePrinting = 0;
 
     public static int baseWindowContentPosition = 0;
 

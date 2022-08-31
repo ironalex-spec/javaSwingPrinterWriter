@@ -1,6 +1,6 @@
 package lib.repository.file.parcer.xml;
 
-import lib.settings.AppSettings;
+import lib.app.Settings;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -26,6 +26,8 @@ public class AppConfigHandler extends DefaultHandler {
 
     private boolean isContentPosition = false;
 
+    private boolean isTypePrinting = false;
+
     private int intParseValues = 0;
 
 
@@ -43,55 +45,60 @@ public class AppConfigHandler extends DefaultHandler {
     //reads the text value of the currently parsed element
     public void characters(char ch[], int start, int length) throws SAXException {
         if(isTemplateFolder) {
-            AppSettings.TEMPLATE_FOLDER = new String(ch, start, length);
+            Settings.TEMPLATE_FOLDER = new String(ch, start, length);
             intParseValues++;
         } else if (isTemplateTemporaryFolder) {
-            AppSettings.TEMPLATE_TEMP_FOLDER = new String(ch, start, length);
+            Settings.TEMPLATE_TEMP_FOLDER = new String(ch, start, length);
             intParseValues++;
         } else if (isTemplatePrintingFolder) {
-            AppSettings.TEMPLATE_PRINTING_FOLDER = new String(ch, start, length);
+            Settings.TEMPLATE_PRINTING_FOLDER = new String(ch, start, length);
             intParseValues++;
         } else if (isImageMagickApiFolder) {
-            AppSettings.IMAGE_MAGICK_API_FOLDER = new String(ch, start, length);
+            Settings.IMAGE_MAGICK_API_FOLDER = new String(ch, start, length);
             intParseValues++;
         } else if (isLabelExternalPCXfolder) {
-            AppSettings.LABEL_EXTERNAL_PCX_FOLDER = new String(ch, start, length);
+            Settings.LABEL_EXTERNAL_PCX_FOLDER = new String(ch, start, length);
             intParseValues++;
         } else if (isLabelPCXToPNGfolder) {
-            AppSettings.LABEL_PCX_TO_PNG_FOLDER = new String(ch, start, length);
+            Settings.LABEL_PCX_TO_PNG_FOLDER = new String(ch, start, length);
             intParseValues++;
 
 
         } else if (isTemplateDefaultName) {
-            AppSettings.TEMPLATE_DEFAULT_NAME = new String(ch, start, length);
+            Settings.TEMPLATE_DEFAULT_NAME = new String(ch, start, length);
             intParseValues++;
         } else if (isTemplateTemporaryDefaultName) {
-            AppSettings.TEMPLATE_TEMP_DEFAULT_NAME = new String(ch, start, length);
+            Settings.TEMPLATE_TEMP_DEFAULT_NAME = new String(ch, start, length);
             intParseValues++;
         } else if (isLabelPrintingName) {
-            AppSettings.TEMPLATE_PRINTING_NAME = new String(ch, start, length);
+            Settings.TEMPLATE_PRINTING_NAME = new String(ch, start, length);
             intParseValues++;
 
 
         } else if (isPPIInch) {
-            AppSettings.PPI_INCH_Screen = Integer.parseInt(new String(ch, start, length));
+            Settings.PPI_INCH_Screen = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
         } else if (isPPICm) {
-            AppSettings.PPI_CM_Screen = Integer.parseInt(new String(ch, start, length));
+            Settings.PPI_CM_Screen = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
 
 
         } else if (isWindowHeight) {
-            AppSettings.baseWindowHeight = Integer.parseInt(new String(ch, start, length));
+            Settings.baseWindowHeight = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
         } else if (isWindowWidth) {
-            AppSettings.baseWindowWidth = Integer.parseInt(new String(ch, start, length));
+            Settings.baseWindowWidth = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
         } else if (isWindowPosition) {
-            AppSettings.baseWindowPosition = new String(ch, start, length);
+            Settings.baseWindowPosition = new String(ch, start, length);
             intParseValues++;
         } else if (isContentPosition) {
-            AppSettings.baseWindowContentPosition = Integer.parseInt(new String(ch, start, length));
+            Settings.baseWindowContentPosition = Integer.parseInt(new String(ch, start, length));
+            intParseValues++;
+        }
+
+        else if (isTypePrinting) {
+            Settings.typePrinting = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
         }
     }
@@ -120,6 +127,8 @@ public class AppConfigHandler extends DefaultHandler {
             isWindowWidth = qName.equalsIgnoreCase("width");
             isWindowPosition = qName.equalsIgnoreCase("position");
             isContentPosition = qName.equalsIgnoreCase("content_position");
+
+            isTypePrinting = qName.equalsIgnoreCase("type_printing");
         } else {
             isTemplateFolder = false;
             isTemplateTemporaryFolder = false;
@@ -139,6 +148,7 @@ public class AppConfigHandler extends DefaultHandler {
             isWindowWidth = false;
             isWindowPosition = false;
             isContentPosition = false;
+            isTypePrinting = false;
         }
     }
 }

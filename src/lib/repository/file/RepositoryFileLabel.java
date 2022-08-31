@@ -1,7 +1,7 @@
 package lib.repository.file;
 
 import lib.service.file.ServiceFile;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,11 +13,11 @@ public class RepositoryFileLabel {
     private static RepositoryFileLabel single_instance = null;
 
     public void clearAllGeneratedLabelPNGFiles(){
-        String[] files = listFilesForFolder(AppSettings.LABEL_PCX_TO_PNG_FOLDER);
+        String[] files = listFilesForFolder(Settings.LABEL_PCX_TO_PNG_FOLDER);
         for(String s : files){
-            if (!s.equals(AppSettings.TEMPLATE_DEFAULT_NAME)){
+            if (!s.equals(Settings.TEMPLATE_DEFAULT_NAME)){
                 try {
-                    Files.delete(Paths.get(AppSettings.LABEL_PCX_TO_PNG_FOLDER + s));
+                    Files.delete(Paths.get(Settings.LABEL_PCX_TO_PNG_FOLDER + s));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -26,11 +26,11 @@ public class RepositoryFileLabel {
     }
 
     public void clearAllGeneratedTemplateFiles(){
-        String[] files = listFilesForFolder(AppSettings.TEMPLATE_FOLDER);
+        String[] files = listFilesForFolder(Settings.TEMPLATE_FOLDER);
         for(String s : files){
             if (ServiceFile.isValidFilename(s)){
                 try {
-                    Files.delete(Paths.get(AppSettings.TEMPLATE_FOLDER + s));
+                    Files.delete(Paths.get(Settings.TEMPLATE_FOLDER + s));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -41,7 +41,7 @@ public class RepositoryFileLabel {
     public void clearFileByFilename(String filename){
         if (ServiceFile.isValidFilename(filename)){
             try {
-                Files.delete(Paths.get(AppSettings.TEMPLATE_FOLDER + filename));
+                Files.delete(Paths.get(Settings.TEMPLATE_FOLDER + filename));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -57,7 +57,7 @@ public class RepositoryFileLabel {
 
             int widthPx          = bimg.getWidth();
 
-            width = widthPx * 10 / AppSettings.PPI_CM_Screen;
+            width = widthPx * 10 / Settings.PPI_CM_Screen;
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class RepositoryFileLabel {
 
             int heightPx         = bimg.getHeight();
 
-            height = heightPx * 10 / AppSettings.PPI_CM_Screen;
+            height = heightPx * 10 / Settings.PPI_CM_Screen;
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

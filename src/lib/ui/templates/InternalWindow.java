@@ -277,7 +277,7 @@ public class InternalWindow extends JInternalFrame{
     public void updateComboBoxItems(String keyComboBox, String[] data) {
         windowInternalComboBoxDefinition.clearComboBoxItems(keyComboBox);
 
-        for(String s : data){
+        for (String s : data) {
             addComboBoxItem(keyComboBox, s);
         }
     }

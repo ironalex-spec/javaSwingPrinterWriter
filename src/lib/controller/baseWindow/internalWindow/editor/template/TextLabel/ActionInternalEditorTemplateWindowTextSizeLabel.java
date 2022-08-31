@@ -1,9 +1,7 @@
-package lib.controller.baseWindow.internalWindow.editorTemplate.TextLabel;
+package lib.controller.baseWindow.internalWindow.editor.template.TextLabel;
 
-import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import lib.service.internal.editor.template.ServiceInternalTemplateEditor;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -20,6 +18,6 @@ public class ActionInternalEditorTemplateWindowTextSizeLabel implements KeyListe
 
     @Override
     public void keyReleased(KeyEvent e) {
-        ServiceInternalTemplateEditor.refreshTemplateWithTextParameters();
+        ServiceInternalTemplateEditor.getInstance().refreshTemplateWithTextParameters();
     }
 }

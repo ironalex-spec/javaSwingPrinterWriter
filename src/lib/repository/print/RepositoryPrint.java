@@ -2,7 +2,7 @@ package lib.repository.print;
 
 import lib.repository.file.RepositoryConsole;
 import lib.repository.file.RepositoryFileLabel;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import javax.imageio.ImageIO;
 import javax.print.*;
@@ -16,7 +16,36 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class RepositoryPrint {
-    public static void printSelectedPngFile(PrintService myService, String filePathAndName){
+
+    public static boolean printerPrint(PrintService myService, String filePathAndName){
+        boolean isPrint = false;
+
+        switch (Settings.typePrinting){
+            case 0 :
+                isPrint = printSelectedPngFileAsWindowsPhotoViewer(filePathAndName);
+                break;
+
+            case 1:
+                isPrint = printSelectedPngFileAsImage(myService, filePathAndName);
+                break;
+
+            case 2:
+                isPrint = printSelectedPngFile(myService, filePathAndName);
+                break;
+
+            case 3:
+                isPrint = printSelectedPngFileAsSimpleDoc(myService, filePathAndName);
+                break;
+
+            default:
+                isPrint = printSelectedPngFileAsWindowsPhotoViewer(filePathAndName);
+                break;
+        }
+
+        return isPrint;
+    }
+    private static boolean printSelectedPngFile(PrintService myService, String filePathAndName){
+        boolean isExecute = false;
         try {
             FileInputStream fis = new FileInputStream(filePathAndName);
             Doc pdfDoc = new SimpleDoc(fis, DocFlavor.INPUT_STREAM.PNG, null);
@@ -28,11 +57,13 @@ public class RepositoryPrint {
 
             printJob.print(pdfDoc, aset);
             fis.close();
+            isExecute = true;
         } catch (PrintException printException){
             printException.printStackTrace();
         } catch (IOException ioException){
             ioException.printStackTrace();
         }
+        return isExecute;
     }
 
     /*consoleRun:  print /d:"TSC TTP-244CE ETHERNET" printer_.png*/
@@ -80,7 +111,8 @@ public class RepositoryPrint {
     /*powershell.exe -executionpolicy remotesigned src\resources\scripts\powershell\print.ps1*/
     /*powershell start-process -verb Print d:\Education\Own\JAVA\Projects\MyPrinterApp\src\resources\editor\img\label\179237333.bmp*/
 
-    public static void printSelectedPngFileAsImage(PrintService myService, String filePathAndName){
+    private static boolean printSelectedPngFileAsImage(PrintService myService, String filePathAndName){
+        boolean isExecute = false;
         try {
             PrinterJob printJob = PrinterJob.getPrinterJob();
             printJob.setPrintService(myService);
@@ -99,8 +131,8 @@ public class RepositoryPrint {
             try {
                 PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
 
-                aset.add(new PrinterResolution(AppSettings.PRINTER_RESOLUTION_DPI_X, AppSettings.PRINTER_RESOLUTION_DPI_Y, PrinterResolution.DPI));
-                aset.add(new MediaPrintableArea(0, 0, AppSettings.PRINTER_PAPER_WIDTH_MM, AppSettings.PRINTER_PAPER_HEIGHT_MM, MediaPrintableArea.MM));
+                aset.add(new PrinterResolution(Settings.PRINTER_RESOLUTION_DPI_X, Settings.PRINTER_RESOLUTION_DPI_Y, PrinterResolution.DPI));
+                aset.add(new MediaPrintableArea(0, 0, Settings.PRINTER_PAPER_WIDTH_MM, Settings.PRINTER_PAPER_HEIGHT_MM, MediaPrintableArea.MM));
                 /*aset.add(OrientationRequested.LANDSCAPE);*/
                 aset.add(OrientationRequested.PORTRAIT);
 
@@ -112,6 +144,7 @@ public class RepositoryPrint {
 
 
                 printJob.print(aset);
+                isExecute = true;
             } catch (PrinterException e1) {
                 e1.printStackTrace();
             }
@@ -121,9 +154,12 @@ public class RepositoryPrint {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+
+        return isExecute;
     }
 
-    public static void printSelectedPngFileAsSimpleDoc(PrintService myService, String filePathAndName){
+    private static boolean printSelectedPngFileAsSimpleDoc(PrintService myService, String filePathAndName){
+        boolean isExecute = false;
         try {
             FileInputStream fis = new FileInputStream(filePathAndName);
 
@@ -144,14 +180,16 @@ public class RepositoryPrint {
 
             printJob.print(pdfDoc, aset);
             fis.close();
+            isExecute = true;
         } catch (PrintException printException){
             printException.printStackTrace();
         } catch (IOException ioException){
             ioException.printStackTrace();
         }
+        return isExecute;
     }
 
-    public static boolean printSelectedPngFileAsWindowsPhotoViewer(String filepath){
+    private static boolean printSelectedPngFileAsWindowsPhotoViewer(String filepath){
         boolean isExecute = false;
 
         String dir = System.getProperty("user.dir");

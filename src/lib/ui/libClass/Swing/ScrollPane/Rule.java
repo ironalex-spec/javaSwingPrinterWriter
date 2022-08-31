@@ -1,6 +1,6 @@
 package lib.ui.libClass.Swing.ScrollPane;
 
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import java.awt.*;
 import javax.swing.*;
@@ -32,10 +32,10 @@ public class Rule extends JComponent {
     private void setIncrementAndUnits() {
         int INCHi = Toolkit.getDefaultToolkit().getScreenResolution();
         if (isMetric) {
-            units = AppSettings.PPI_CM_Screen; // dots per centimeter
+            units = Settings.PPI_CM_Screen; // dots per centimeter
             increment = units;
         } else {
-            units = AppSettings.PPI_INCH_Screen;
+            units = Settings.PPI_INCH_Screen;
             increment = units / 2;
         }
     }

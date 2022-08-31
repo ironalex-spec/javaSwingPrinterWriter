@@ -29,6 +29,9 @@
                     <PPI_CM>53</PPI_CM>
                 </screen>
             </pixel>
+            <printing>
+                <type_printing>1</type_printing>
+            </printing>
         </application>
     </applications>
 </um-configuration>

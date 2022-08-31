@@ -1,10 +1,10 @@
-package lib.controller.baseWindow.internalWindow.editorTemplate;
+package lib.controller.baseWindow.internalWindow.editor.template;
 
 
 import lib.service.file.ServiceFile;
-import lib.service.internal.templateEditor.ServiceInternalTemplateEditor;
+import lib.service.internal.editor.template.ServiceInternalTemplateEditor;
 import lib.service.paint.ServicePaintRoundedRectangle;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 import lib.ui.screens.PrinterAppBaseWindow;
 import lib.ui.screens.internal.PrinterAppInternalTemplateEditorWindow;
 import lib.ui.templates.BaseWindow;
@@ -28,11 +28,11 @@ public class ActionInternalEditorTemplateWindowButtonSave implements ActionListe
 
         String filename = ServiceFile.generateFilenameByPrm(width, height, fillet);
 
-        ServicePaintRoundedRectangle.savePrintRectangleImage(AppSettings.TEMPLATE_FOLDER + filename,width,height, fillet,1);
+        ServicePaintRoundedRectangle.savePrintRectangleImage(Settings.TEMPLATE_FOLDER + filename,width,height, fillet,1);
 
         printerAppInternalTemplateEditorWindow.updateComboBoxFileItem();
 
-        ServiceInternalTemplateEditor.updatePanelImage(AppSettings.TEMPLATE_FOLDER + filename);
+        ServiceInternalTemplateEditor.getInstance().updatePanelImage(Settings.TEMPLATE_FOLDER + filename);
 
         printerAppInternalTemplateEditorWindow.chooseComboBoxObject(filename);
     }

@@ -1,7 +1,6 @@
 package lib.controller.baseWindow.internalWindow.print.label.textLabel;
 
-import lib.service.internal.editor.ServiceInternalEditor;
-import lib.service.internal.label.ServiceInternalLabelEditor;
+import lib.service.internal.print.label.ServiceInternalLabel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +9,6 @@ public class ActionInternalPrintLabelWindowComboBoxFonts implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ServiceInternalLabelEditor.refreshTemplateWithTextParameters();
+        ServiceInternalLabel.getInstance().refreshTemplateWithTextParameters();
     }
 }

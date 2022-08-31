@@ -2,7 +2,7 @@ package lib.ui.screens;
 
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintLabelController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFilePrintTemplateController;
-import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileTemplateEditorController;
+import lib.controller.baseWindow.Menu.ActionBaseWindowMenuFileEditorTemplateController;
 import lib.controller.baseWindow.Menu.ActionBaseWindowMenuHelpAboutController;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterProperty;
 import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterQueue;
@@ -11,7 +11,7 @@ import lib.controller.baseWindow.Menu.printer.ActionBaseWindowMenuPrinterSetting
 import lib.repository.file.ImageMagicAPI;
 import lib.repository.print.RepositoryPrinterOptions;
 import lib.service.print.ServicePrint;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 import lib.ui.templates.BaseWindow;
 
 import java.awt.*;
@@ -28,11 +28,11 @@ public class PrinterAppBaseWindow {
     private PrinterAppBaseWindow(){
         callStaticMethods();
 
-        printerAppBaseWindow = new BaseWindow("PrintLabel",0,0, AppSettings.baseWindowWidth,AppSettings.baseWindowHeight, 20);
+        printerAppBaseWindow = new BaseWindow("PrintLabel",0,0, Settings.baseWindowWidth, Settings.baseWindowHeight, 20);
         printerAppBaseWindow.updateDesktopPaneWithImage("src/resources/img/gif_printing.gif");
 
-        String xPosition = AppSettings.baseWindowPosition.split("_")[0];
-        String yPosition = AppSettings.baseWindowPosition.split("_")[1];
+        String xPosition = Settings.baseWindowPosition.split("_")[0];
+        String yPosition = Settings.baseWindowPosition.split("_")[1];
 
         int xLocation = getWindowLocationX(xPosition);
         int yLocation = getWindowLocationY(yPosition);
@@ -41,18 +41,20 @@ public class PrinterAppBaseWindow {
 
         printerAppBaseWindow.updateWindowIcon("src/resources/img/printerLogo.png");
 
-        printerAppBaseWindow.addMenu("Menu_File", "File", 100, 20);
-        printerAppBaseWindow.addMenu("Menu_Printer", "Printer", 100, 20);
+        printerAppBaseWindow.addMenu("Menu_File", "File", 40, 20);
+        printerAppBaseWindow.addMenu("Menu_Printer", "Printer", 60, 20);
         printerAppBaseWindow.addMenu("Menu_SelectPrinter", "Printer : ", 200, 20);
         printerAppBaseWindow.addMenuHorizontalGlue();
-        printerAppBaseWindow.addMenu("Menu_Help", "Help", 100, 20);
+        printerAppBaseWindow.addMenu("Menu_Help", "Help", 40, 20);
 
         printerAppBaseWindow.setMenuEnable("Menu_SelectPrinter", false);
-        printerAppBaseWindow.addMenuItem("Menu_File", "Menu_File_Item_NewTemplate", "Template editor", 100, 20);
-        printerAppBaseWindow.addMenuItemActionListener("Menu_File", "Menu_File_Item_NewTemplate", new ActionBaseWindowMenuFileTemplateEditorController());
+
+
+        printerAppBaseWindow.addSubMenu("Menu_File", "Menu_File_Item_Editor", "Editor", 100, 20);
+        printerAppBaseWindow.addSubMenuItem("Menu_File","Menu_File_Item_Editor", "Menu_File_Item_Editor_Template", "Template");
+        printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Item_Editor","Menu_File_Item_Editor_Template", new ActionBaseWindowMenuFileEditorTemplateController());
 
         printerAppBaseWindow.addSubMenu("Menu_File", "Menu_File_Submenu_Print", "Print", 100, 20);
-
         printerAppBaseWindow.addSubMenuItem("Menu_File","Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Template", "Template");
         printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print","Menu_File_Submenu_Print_Item_Template", new ActionBaseWindowMenuFilePrintTemplateController());
 

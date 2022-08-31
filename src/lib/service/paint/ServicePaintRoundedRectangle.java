@@ -1,7 +1,7 @@
 package lib.service.paint;
 
 import lib.repository.paint.RepositoryPicture;
-import lib.settings.AppSettings;
+import lib.app.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 public class ServicePaintRoundedRectangle {
 
     public static void savePrintRectangleImage(String path, int width_mm, int height_mm, int radius_mm, int borderWidthPx){
-        int widthPx = AppSettings.PPI_CM_Screen * width_mm / 10;
-        int heightPx = AppSettings.PPI_CM_Screen * height_mm / 10;
-        int radiusPx = AppSettings.PPI_CM_Screen * radius_mm / 10;
+        int widthPx = Settings.PPI_CM_Screen * width_mm / 10;
+        int heightPx = Settings.PPI_CM_Screen * height_mm / 10;
+        int radiusPx = Settings.PPI_CM_Screen * radius_mm / 10;
 
         BufferedImage bi = printRoundedRectangleImage(widthPx,  heightPx, radiusPx, borderWidthPx);
 
