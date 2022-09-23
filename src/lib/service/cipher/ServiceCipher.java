@@ -66,8 +66,12 @@ public class ServiceCipher {
                 c = (char) (b);
             }
 
+            if (b==-128){ c = 'e'; }
+
             if (c == ' '){
                 c='z';
+            } else if (c == '\f') {
+                c='f';
             } else if (c == '\r') {
                 c='r';
             } else if (c == '\n') {

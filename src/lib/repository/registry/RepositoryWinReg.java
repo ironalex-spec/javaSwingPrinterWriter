@@ -167,33 +167,37 @@ public class RepositoryWinReg {
     private String parceRegestryResponseValue(List<String> response, String valueName) {
         String valueResponse = null;
         for (int i = 0; i < response.size(); i++) {
+
             if (response.get(i).contains(valueName)) {
-                String[] split = response.get(i).split(" ");
 
-                int index = 0;
-                for (String str : split) {
-                    if (str.contains("REG_")) {
-                        break;
+                String responseValueI = response.get(i);
+                int indexValue = responseValueI.indexOf("REG_");
+
+                if (indexValue > 0) {
+                    indexValue += 6;
+
+                    while (responseValueI.substring(indexValue, indexValue + 1).equals(" ")) {
+                        indexValue++;
+
+                        if(indexValue == responseValueI.length()){
+                            break;
+                        }
                     }
-                    index++;
-                }
 
-                if (index > 0) {
-                    index += 4;
-
-                    if (index < split.length) {
+                    valueResponse = responseValueI.substring(indexValue);
+                    /*if (indexValue < responseValueI.length()) {
                         valueResponse = "";
-                        if (index == split.length - 1) {
+                        if (indexValue == responseValueI.length() - 1) {
                             valueResponse = split[index];
                         } else {
-                            while (index <= split.length - 1) {
-                                valueResponse = valueResponse + " " + split[index];
-                                index++;
+                            while (indexValue <= split.length - 1) {
+                                valueResponse = valueResponse + " " + split[indexValue];
+                                indexValue++;
                             }
                         }
                     } else {
                         valueResponse = null;
-                    }
+                    }*/
                 } else {
                     valueResponse = null;
                 }
