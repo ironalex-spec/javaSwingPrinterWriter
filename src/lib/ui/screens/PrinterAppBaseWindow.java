@@ -39,7 +39,7 @@ public class PrinterAppBaseWindow {
 
         printerAppBaseWindow.setLocation(xLocation, yLocation);
 
-        printerAppBaseWindow.updateWindowIcon("src/resources/img/printerLogo.png");
+        printerAppBaseWindow.updateWindowIcon("src/resources/img/myimage.png");
 
         printerAppBaseWindow.addMenu("Menu_File", "File", 40, 20);
         printerAppBaseWindow.addMenu("Menu_Printer", "Printer", 60, 20);

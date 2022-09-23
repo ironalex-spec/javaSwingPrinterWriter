@@ -84,7 +84,7 @@ public class TestInternalWindow {
 
     public static void internalWindowAddImageWithScaleTest(){
         BaseWindow baseWindow = new BaseWindow("TestBaseWindow",0,0,500,500, 25);
-        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.updateWindowIcon("src/main/resources/img/myimage.png");
         baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
 
         InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
@@ -96,7 +96,7 @@ public class TestInternalWindow {
 
     public static void internalWindowClearMemory(){
         BaseWindow baseWindow = new BaseWindow("TestBaseWindow",0,0,500,500, 25);
-        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.updateWindowIcon("src/main/resources/img/myimage.png");
         baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
 
         InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);
@@ -123,7 +123,7 @@ public class TestInternalWindow {
 
     public static void internalWindowComboBox(){
         BaseWindow baseWindow = new BaseWindow("TestBaseWindow",0,0,500,500, 25);
-        baseWindow.updateWindowIcon("src/main/resources/img/printerLogo.png");
+        baseWindow.updateWindowIcon("src/main/resources/img/myimage.png");
         baseWindow.addLabel("Pane2","MyFirstLabel3", 10,30,100,10);
 
         final InternalWindow internalWindow = new InternalWindow(baseWindow, "Internal1*", 0,0,500,500);

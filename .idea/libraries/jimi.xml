@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jimi">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/lib/api/jimi.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
