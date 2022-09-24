@@ -2,6 +2,7 @@ package lib.service.internal.print.label;
 
 import lib.app.ThreadCounter;
 import lib.repository.file.ImageMagicAPI;
+import lib.repository.file.JIMIConvertImageAPI;
 import lib.service.Service;
 import lib.service.file.ServiceFile;
 import lib.service.paint.ServicePaintText;
@@ -114,7 +115,13 @@ public class ServiceInternalLabel {
                 ThreadCounter.setCountThread(numPcx);
                 for (String file : filesFolderPCX) {
                     if (file.contains(".pcx")) {
-                        ImageMagicAPI.getInstance().convertPCX_TO_PNG(Settings.LABEL_EXTERNAL_PCX_FOLDER + file, Settings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"));
+
+                        if(Settings.typePCXConversion == 0) {
+                            ImageMagicAPI.getInstance().convertPCX_TO_PNG(Settings.LABEL_EXTERNAL_PCX_FOLDER + file, Settings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"));
+                        } else {
+                            JIMIConvertImageAPI.getInstance().convertPCX_TO_PNG(Settings.LABEL_EXTERNAL_PCX_FOLDER + file, Settings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"));
+                        }
+
                         /*ServicePaintTransform.scalePicture_v3(AppSettings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"), AppSettings.LABEL_PCX_TO_PNG_FOLDER + file.replace(".pcx", ".png"), 1, 1);
                          */
                         // Runs inside of the Swing UI thread

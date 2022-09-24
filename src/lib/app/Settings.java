@@ -29,6 +29,8 @@ public class Settings {
 
     public static int typePrinting = 0;
 
+    public static int typePCXConversion = 0;
+
     public static int baseWindowContentPosition = 0;
 
     public static final int MAX_SLIDER_VALUE = 1000;

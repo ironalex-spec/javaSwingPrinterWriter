@@ -22,6 +22,9 @@
                     <template_temporary_default_name>tempText.png</template_temporary_default_name>
                     <label_printing_name>printer.png</label_printing_name>
                 </names>
+                <convert>
+                    <type_pcx_conversion>1</type_pcx_conversion>
+                </convert>
             </file>
             <pixel>
                 <screen>

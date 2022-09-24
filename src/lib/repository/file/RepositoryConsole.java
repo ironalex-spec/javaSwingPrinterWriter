@@ -43,7 +43,6 @@ public class RepositoryConsole {
                         Process p = Runtime.getRuntime().exec(commands);
 
                         String response = readProcessOutput(p);
-                        boolean test = true;
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

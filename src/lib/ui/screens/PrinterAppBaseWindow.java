@@ -49,7 +49,6 @@ public class PrinterAppBaseWindow {
 
         printerAppBaseWindow.setMenuEnable("Menu_SelectPrinter", false);
 
-
         printerAppBaseWindow.addSubMenu("Menu_File", "Menu_File_Item_Editor", "Editor", 100, 20);
         printerAppBaseWindow.addSubMenuItem("Menu_File","Menu_File_Item_Editor", "Menu_File_Item_Editor_Template", "Template");
         printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Item_Editor","Menu_File_Item_Editor_Template", new ActionBaseWindowMenuFileEditorTemplateController());
@@ -58,7 +57,10 @@ public class PrinterAppBaseWindow {
         printerAppBaseWindow.addSubMenuItem("Menu_File","Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Template", "Template");
         printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print","Menu_File_Submenu_Print_Item_Template", new ActionBaseWindowMenuFilePrintTemplateController());
 
-        if(ImageMagicAPI.getInstance().isAPIInstalled()) {
+        if (Settings.typePCXConversion == 1){
+            printerAppBaseWindow.addSubMenuItem("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", "Label");
+            printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", new ActionBaseWindowMenuFilePrintLabelController());
+        } else if (ImageMagicAPI.getInstance().isAPIInstalled() ) {
             printerAppBaseWindow.addSubMenuItem("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", "Label");
             printerAppBaseWindow.addSubMenuItemActionListener("Menu_File", "Menu_File_Submenu_Print", "Menu_File_Submenu_Print_Item_Label", new ActionBaseWindowMenuFilePrintLabelController());
         }
@@ -83,7 +85,7 @@ public class PrinterAppBaseWindow {
             printerAppBaseWindow.addMenuItem("Menu_Printer", "Menu_Printer_Item_Property", "Property", 100, 20);
             printerAppBaseWindow.setMenuItemEnable("Menu_Printer", "Menu_Printer_Item_Property", false);
             printerAppBaseWindow.addMenuItemActionListener("Menu_Printer", "Menu_Printer_Item_Property", new ActionBaseWindowMenuPrinterProperty());
-        }
+       }
 
         printerAppBaseWindow.addMenuItem("Menu_Help", "Menu_Help_Item_About", "About", 100, 20);
         printerAppBaseWindow.addMenuItemActionListener("Menu_Help", "Menu_Help_Item_About", new ActionBaseWindowMenuHelpAboutController());
@@ -107,7 +109,10 @@ public class PrinterAppBaseWindow {
     }
 
     private void callStaticMethods(){
-        ImageMagicAPI.getInstance();
+        if (Settings.typePCXConversion == 0) {
+            ImageMagicAPI.getInstance();
+        }
+
         printerNames = ServicePrint.getAvailiblePrinters();
     }
 

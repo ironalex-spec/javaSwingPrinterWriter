@@ -28,6 +28,8 @@ public class AppConfigHandler extends DefaultHandler {
 
     private boolean isTypePrinting = false;
 
+    private boolean  isTypePCXConversion = false;
+
     private int intParseValues = 0;
 
 
@@ -98,6 +100,11 @@ public class AppConfigHandler extends DefaultHandler {
         }
 
         else if (isTypePrinting) {
+            Settings.typePCXConversion = Integer.parseInt(new String(ch, start, length));
+            intParseValues++;
+        }
+
+        else if (isTypePCXConversion) {
             Settings.typePrinting = Integer.parseInt(new String(ch, start, length));
             intParseValues++;
         }
@@ -129,6 +136,8 @@ public class AppConfigHandler extends DefaultHandler {
             isContentPosition = qName.equalsIgnoreCase("content_position");
 
             isTypePrinting = qName.equalsIgnoreCase("type_printing");
+
+            isTypePCXConversion = qName.equalsIgnoreCase("type_pcx_conversion");
         } else {
             isTemplateFolder = false;
             isTemplateTemporaryFolder = false;
@@ -149,6 +158,8 @@ public class AppConfigHandler extends DefaultHandler {
             isWindowPosition = false;
             isContentPosition = false;
             isTypePrinting = false;
+
+            isTypePCXConversion = false;
         }
     }
 }

@@ -17,67 +17,20 @@ use this
  */
 
 import com.sun.jimi.core.*;
-
-import com.sun.jimi.core.raster.*;
-
-import com.sun.jimi.core.JimiException;
-
-import javax.swing.*;
-
-import javax.swing.event.*;
-
-import java.awt.*;
-
-import java.awt.color.ICC_ColorSpace;
-
-import java.awt.color.ICC_ProfileRGB;
-
-import java.awt.event.*;
+import lib.repository.file.JIMIConvertImageAPI;
 
 import java.awt.image.*;
 
-import java.beans.PropertyVetoException;
-
 import java.io.*;
-
-import java.util.*;
 
 import javax.imageio.*;
 
-import java.util.Arrays;
 
-
-
-public class ImageMagickTest {
+public class JIMIApiTest {
 
     public static void main(String args[]) {
-
-//String readFormats[] = Jimi.getDecoderTypes();
-
-//String writeFormats[] = Jimi.getEncoderTypes();
-
-//System.out.println("Decoders: " + Arrays.asList(readFormats));
-
-//System.out.println("Encoders: " + Arrays.asList(writeFormats));
-
-
-
         try {
-
-//Image im = Jimi.getImage("ims.pcx", Jimi.SYNCHRONOUS);
-
-//System.out.println("Image Height="+im.getHeight()+", Image Width="+im.getWidth());
-
-
-//System.out.println("Is err? "+im.isError());
-
-//Jimi.putImage("image/jpg", im, "ims-1.jpg");
-
-//System.out.println("Wrote Image.");
-
-//loadImage("ASCPRIN.pcx");
-
-            loadImage("DR.pcx");
+            JIMIConvertImageAPI.getInstance().convertPCX_TO_PNG("DR.pcx", "lololo.png");
 
         } catch (Exception e) {
 
@@ -86,9 +39,6 @@ public class ImageMagickTest {
             e.printStackTrace();
 
         }
-
-
-
     }
 
 

@@ -8,9 +8,10 @@ public class RepositoryPrinterOptions {
     private static boolean isOptionExist;
 
     RepositoryPrinterOptions(){
-        String[] commands = new String[]{"powershell", "-command","(" + Settings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
+        //WINDOWS XP not support powershell
+        //String[] commands = new String[]{"powershell", "-command","(" + Settings.WINDOWS_PRINTUI_DLL_FOLDER + "printui.dll" +").VersionInfo"};
 
-        isOptionExist = RepositoryConsole.getInstance().consoleExecuteOtherThread(commands);
+        isOptionExist = true;//RepositoryConsole.getInstance().consoleExecuteOtherThread(commands);
     }
 
     public boolean printerPrintSettingsOpen(String printerName){
