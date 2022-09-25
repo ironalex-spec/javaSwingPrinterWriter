@@ -123,7 +123,14 @@ public class RepositoryPrint {
                     if (pageIndex != 0) {
                         return NO_SUCH_PAGE;
                     }
-                    graphics.drawImage(bufferedImage, 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
+                    graphics.drawImage(bufferedImage,
+
+                            (int) (Settings.PRINTER_PAPER_PADDING_LEFT_MM * Settings.inchToCmValue),
+                            (int) (Settings.PRINTER_PAPER_PADDING_TOP_MM * Settings.inchToCmValue),
+
+                            (int) (Settings.PRINTER_PAPER_WIDTH_MM * Settings.inchToCmValue),
+                            (int) (Settings.PRINTER_PAPER_HEIGHT_MM * Settings.inchToCmValue), null);
+
                     return PAGE_EXISTS;
                 }
             });
@@ -136,12 +143,17 @@ public class RepositoryPrint {
                 /*aset.add(OrientationRequested.LANDSCAPE);*/
                 aset.add(OrientationRequested.PORTRAIT);
 
-                /*PageFormat pageFormat = printJob.getPageFormat(aset);
-                printJob.pageDialog(pageFormat);*/
-                /*printJob.pageDialog(aset);*/
-                printJob.printDialog();
+                //myPaper.setImageableArea(0, 0, 0, 0);
 
+                PageFormat pageFormat = printJob.getPageFormat(aset);
 
+                Paper myPaper = pageFormat.getPaper();
+                myPaper.setSize(Settings.PRINTER_PAPER_WIDTH_MM * Settings.inchToCmValue * 72.0, Settings.PRINTER_PAPER_HEIGHT_MM * Settings.inchToCmValue * 72.0);
+                myPaper.setImageableArea(0.0, 0.0, Settings.PRINTER_PAPER_WIDTH_MM * Settings.inchToCmValue * 72.0, Settings.PRINTER_PAPER_HEIGHT_MM * Settings.inchToCmValue * 72.0);
+
+                pageFormat.setPaper(myPaper);
+
+                //printJob.pageDialog(pageFormat);
 
                 printJob.print(aset);
                 isExecute = true;

@@ -30,6 +30,7 @@ public class ActionInternalPrintLabelComboBoxFiles implements ActionListener {
 
             ServiceInternalLabel.getInstance().updatePanelImage(Settings.LABEL_PCX_TO_PNG_FOLDER + selectedItem);
 
+            printerAppInternalPrintLabelWindow.setPrintMarginTextFieldsEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
             printerAppInternalPrintLabelWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
 
             Service.copyFileAnotherDirectory(Settings.LABEL_PCX_TO_PNG_FOLDER + selectedItem, Settings.TEMPLATE_PRINTING_FOLDER + Settings.TEMPLATE_PRINTING_NAME);

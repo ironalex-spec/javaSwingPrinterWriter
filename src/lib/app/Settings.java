@@ -40,6 +40,9 @@ public class Settings {
     public static final int PRINTER_PAPER_WIDTH_MM = 100; /*800 pixel*/
     public static final int PRINTER_PAPER_HEIGHT_MM = 40; /*320 pixel*/
 
+    public static double PRINTER_PAPER_PADDING_TOP_MM = 2.0;
+    public static double PRINTER_PAPER_PADDING_LEFT_MM = 2.0;
+
     /*USING STANDART PRINTER WITH PAPER MAX RESOLUTION*/
     /*printer PRINT 100x40 by resolution 204x94*/
 }

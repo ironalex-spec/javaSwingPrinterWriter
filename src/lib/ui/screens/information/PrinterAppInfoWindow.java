@@ -19,7 +19,7 @@ public class PrinterAppInfoWindow extends JOptionPane {
 
     public static boolean showAppInfoWindow(String title, String text) {
         try {
-            Image image = ImageIO.read(new File("src/resources/img/myimage.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            Image image = ImageIO.read(new File("src/resources/img/printerLogo.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
 
             ImageIcon icon =  new ImageIcon(image);
 

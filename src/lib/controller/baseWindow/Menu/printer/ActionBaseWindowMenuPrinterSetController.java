@@ -39,6 +39,7 @@ public class ActionBaseWindowMenuPrinterSetController implements ActionListener 
 
             boolean enableTextControl = ServiceInternalLabel.getInstance().isEnableComponentTextControl();
 
+            printerAppInternalPrintLabelWindow.setPrintMarginTextFieldsEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
             printerAppInternalPrintLabelWindow.setPrintButtonEnable(enableTextControl && PrinterAppBaseWindow.getInstance().getSelectedPrinter() != null);
         }
     }

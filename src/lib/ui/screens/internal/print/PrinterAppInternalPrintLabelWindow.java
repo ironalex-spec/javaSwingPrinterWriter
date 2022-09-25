@@ -80,7 +80,17 @@ public class PrinterAppInternalPrintLabelWindow {
         internalWindow.setSliderEnable("Pane_1_Slider_yPosText", false);
         internalWindow.addSliderListener("Pane_1_Slider_yPosText", new ActionInternalPrintLabelWindowSliders());
 
-        internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,250,70,30);
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Margin_Top","Top margin, mm", 110,250,100,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_Margin_Top", Double.toString(Settings.PRINTER_PAPER_PADDING_TOP_MM), 205,250,45,30);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_Margin_Top", (byte) 0);
+        internalWindow.setTextFieldEnable("Pane_1_TextField_Margin_Top", false);
+
+        internalWindow.addLabel("Pane_1","Pane_1_Label_Margin_Left","Left margin, mm", 5,300,100,30);
+        internalWindow.addTextField("Pane_1","Pane_1_TextField_Margin_Left", Double.toString(Settings.PRINTER_PAPER_PADDING_LEFT_MM), 100,300,45,30);
+        internalWindow.setTextFieldFormat("Pane_1_TextField_Margin_Left", (byte) 0);
+        internalWindow.setTextFieldEnable("Pane_1_TextField_Margin_Left", false);
+
+        internalWindow.addButton("Pane_1","Pane_1_Button_PrintLabel","Print", 170,300,70,30);
         /*String choosePrinterName = PrinterAppBaseWindow.getInstance().getSelectedPrinter();*/
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", false);
         internalWindow.addButtonListener("Pane_1_Button_PrintLabel", new ActionInternalPrintLabelWindowButtonPrint());
@@ -120,6 +130,14 @@ public class PrinterAppInternalPrintLabelWindow {
         return  internalWindow.getSliderValue("Pane_1_Slider_yPosText");
     }
 
+    public String getPrintMarginTopValue(){
+        return  internalWindow.getTextFieldData("Pane_1_TextField_Margin_Top");
+    }
+
+    public String getPrintMarginLeftValue(){
+        return  internalWindow.getTextFieldData("Pane_1_TextField_Margin_Left");
+    }
+
     public String getTextLabel(){
         setTextLabelClassField();
 
@@ -154,6 +172,11 @@ public class PrinterAppInternalPrintLabelWindow {
 
     public void setPrintButtonEnable(boolean enable){
         internalWindow.setButtonEnable("Pane_1_Button_PrintLabel", enable);
+    }
+
+    public void setPrintMarginTextFieldsEnable(boolean enable){
+        internalWindow.setTextFieldEnable("Pane_1_TextField_Margin_Top", enable);
+        internalWindow.setTextFieldEnable("Pane_1_TextField_Margin_Left", enable);
     }
 
     public void setTextTextFieldEnable(boolean enable){
